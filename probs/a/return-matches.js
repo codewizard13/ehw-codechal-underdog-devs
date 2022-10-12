@@ -9,11 +9,13 @@ const fs = require('fs')
 
 let matches = []
 let reg = /UU/
-let filename = 'sb/sowpods.txt'
+let filename = '../sowpods.txt'
 
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
+
+console.log('\nSOLUTION WITH forEach:\n')
 
 words.forEach((word, i) => {
   if (word.match(reg)) {
@@ -23,5 +25,5 @@ words.forEach((word, i) => {
 
 // Doing same thig with filter()
 matches = words.filter((word) => word.match(reg))
-console.log('SOLUTION WITH filter():')
+console.log('\nSOLUTION WITH filter():')
 console.log(matches)
