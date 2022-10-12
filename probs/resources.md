@@ -113,6 +113,8 @@ for i in range 0 to size of s - 1, do
 return True
 ```
 
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+
 #### GIT
 
 - https://stackoverflow.com/questions/12987907/git-how-to-commit-a-manually-deleted-file

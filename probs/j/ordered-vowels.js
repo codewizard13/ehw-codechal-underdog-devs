@@ -31,47 +31,45 @@ console.log('\nSOLUTION:\n')
  *  all 5 vowels in any order
  */
 
-function has5Vowels {
-  filtered = words.filter(
+function has5Vowels(arr) {
+  return filtered = arr.filter(
     word =>
       word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
   )
 
   console.log(filtered)
-  console.log(`Total matches: ${filtered.length}`)
+  console.log(`Total matches: ${filtered.length}\n`)
 }
 
 let hasAllVowels = has5Vowels(words)
 console.log(hasAllVowels)
 
+console.log(`has5Vowels(words) is array: ${Array.isArray(has5Vowels(words))}`)
+console.log(`hasAllVowels is array: ${Array.isArray(hasAllVowels)}`)
 
-function vowelsAlphabetical(word) {
 
-  let word_arr = word.split('')
-  let n = word_arr.length
+/**
+ * 
+ * Loop through word list and return array of strings
+ *  with all 5 vowels apearing in alphabetical order.
+ */
+function vowelsAlphabetical(arr) {
 
-  // Variable for starting character. ASCII 64
-  //  is less than any vowel, so start there
-  let c = String.fromCharCode(64)
-
-  word_arr.forEach((char, i) => {
-    console.log(`CHAR ${i}: ${char}`)
+  arr.forEach((word, i) => {
+    console.log(`word ${i}: ${word}`)
   })
 
-  console.log(filtered)
-  console.log(`Total matches: ${filtered.length}`)
+  return arr // debugged for an hour or so, until I spotted that i was missing return statement
+
 }
 
 
-// let orderedVowels = hasAllVowels.filter(
-//   // word.match(/.*A.*E.*I.*O.*U.*/) -- DOESN'T WORK
+let vowels_in_alpha = vowelsAlphabetical(hasAllVowels)
+console.log(hasAllVowels.length)
 
-//   // word => vowelsAlphabetical(word)
-//   word => vowelsAlphabetical(word)
-// )
 
-// console.log(orderedVowels)
-// console.log(`Total matches: ${orderedVowels.length}`)
+console.log(vowels_in_alpha)
+console.log(`Total matches: ${vowels_in_alpha.length}`)
 
 
 
