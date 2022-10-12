@@ -87,10 +87,30 @@ Some regular expression resources to get challenge inspirations from:
 
 You can simply use a regular expression in your method :
 
+**GOTCHA: This doesn't work**
+
 ```java
 public static boolean containsVowels(String word) {
     return Pattern.matches(".*a.*e.*i.*o.*u.*y.*", word);
 }
+```
+
+
+- https://www.geeksforgeeks.org/check-whether-the-vowels-in-a-string-are-in-alphabetical-order-or-not/
+
+- https://www.tutorialspoint.com/check-whether-the-vowels-in-a-string-are-in-alphabetical-order-or-not-in-python#
+
+To solve this, we will follow these steps −
+
+```
+character := character whose ASCII is 64
+for i in range 0 to size of s - 1, do
+  if s[i] is any one of ('A','E','I','O','U','a','e','i','o','u'), then
+   if s[i] < character, then
+   return False
+  otherwise,
+    character := s[i]
+return True
 ```
 
 #### GIT

@@ -15,6 +15,7 @@ const fs = require('fs')
 let matches = []
 let reg = /UU/
 let filename = '../sowpods.txt'
+let filtered = []
 
 // Read file into an array of words
 
@@ -24,10 +25,46 @@ const words = fileStr.split('\n') // make array
 
 console.log('\nSOLUTION:\n')
 
-const filtered = words.filter(
-  word =>
-    word.match(/.*A.*E.*I.*O.*U.*/)
+function has5Vowels(word) {
+  var filtered = words.filter(
+    word =>
+      word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
+  )
+
+  console.log(filtered)
+  console.log(`Total matches: ${filtered.length}`)
+}
+
+
+
+function vowelsAlphabetical(word) {
+
+  let word_arr = word.split('')
+  let n = word_arr.length
+
+  // Variable for starting character. ASCII 64
+  //  is less than any vowel, so start there
+  let c = String.fromCharCode(64)
+
+  word_arr.forEach((char, i) => {
+    console.log(`CHAR ${i}: ${char}`)
+  })
+
+  console.log(filtered)
+  console.log(`Total matches: ${filtered.length}`)
+}
+
+
+filtered = words.filter(
+  // word.match(/.*A.*E.*I.*O.*U.*/) -- DOESN'T WORK
+
+  // word => vowelsAlphabetical(word)
+  word => has5Vowels(word)
 )
 
-console.log(filtered)
-console.log(`Total matches: ${filtered.length}`)
+
+
+
+/* CODE HINT:
+https://www.geeksforgeeks.org/check-whether-the-vowels-in-a-string-are-in-alphabetical-order-or-not/
+*/

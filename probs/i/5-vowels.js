@@ -6,7 +6,7 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the words that have all 5 vowels, in any order?
 Date Completed: 10/12/22
 
-Demonstrates: Negated character class
+Demonstrates: Words containing all 5 vowels any order
 
 */
 
