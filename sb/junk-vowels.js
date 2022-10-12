@@ -13,8 +13,6 @@ Working out the vowel processing code
 // Demo array with 3 matching result in middle (ARTERIOUS, etc)
 let sampleArr = ['QUADRIPOLE', 'QUADRISECTIONS', 'QUESTIONABILITY', 'RATATOUILLE', 'ARTERIOUS', 'BACTERIOUS', 'CAESIOUS', 'SEQUACIOUSLY', 'SEQUESTRATION', 'SUBCATEGORIZING', 'SUPERNATATION', 'SUPEROVULATING', 'SUSTENTATIONS', 'TAUTOMETRICAL', 'THIOSULPHATE', 'UNORDAINED', 'UNORGANISED', 'UNPROFITABLE', 'UNREASONINGLY', 'UTOPIANISED', 'UTOPIANISER', 'VARIOUSNESS', 'VITUPERATION'];
 
-
-
 function vowelsAlphaArr(arr) {
 
   let matches = [];
@@ -44,7 +42,6 @@ function vowelsAlphaArr(arr) {
 
   return matches
 }
-
 
 
 console.log(`\nRESULTS:\n`)

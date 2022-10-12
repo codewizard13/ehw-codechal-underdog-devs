@@ -6,7 +6,7 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the words that have all 5 vowels, in any order?
 Date Completed: 10/12/22
 
-Demonstrates: Vowels in order
+Demonstrates: Vowels in order [ MORE COMPLEX THAN YOU'D THINK ]
 
 */
 
@@ -53,57 +53,46 @@ console.log(`hasAllVowels is array: ${Array.isArray(hasAllVowels)}`)
  * Loop through word list and return array of strings
  *  with all 5 vowels apearing in alphabetical order.
  */
-function vowelsAlphabetical(arr) {
+function vowelsAlphaArr(arr) {
 
-  let matches = []
+  let matches = [];
 
+  // foreach word in array
   arr.forEach((word, i) => {
-    console.log(`word ${i}: ${word}`)
+    // console.log(`word ${i}: ${word}`);
 
-    let len = word.length
-    let c = String.fromCharCode(64)
+    // Grab all vowels from word
+    this_vowels = word.match(/[AEIOU]/g)
 
-    word.split('').forEach(char => {
+    // console.log(`this_vowels = ${this_vowels}`)
 
-      // Is the character a vowel?
-      if (
-        char == 'A'
-        || char == 'E'
-        || char == 'I'
-        || char == 'O'
-        || char == 'U'
-      ) {
-        // console.log(`${char}: VOWEL`)
+    // Foreach vowel in vowel string 
+    for (j = 0; j < this_vowels.length; j++) {
+      // console.log(`j: ${j} | this_vowels[j]: ${this_vowels[j]}`)
 
-        if (char < c) {
-          return false
-        }
+      if (this_vowels[0] != 'A') { return }
+      if (this_vowels[1] != 'E') { return }
+      if (this_vowels[2] != 'I') { return }
+      if (this_vowels[3] != 'O') { return }
+      if (this_vowels[4] != 'U') { return }
+    }
 
-      } else {
-        // console.log(char)
-        c = char
-
-      }
-      matches.push(word)
-
-    })
-
-
-
-  })
+    matches.push(word);
+  }); // end foreach word
 
   return matches
-
-
 }
 
 
-let vowels_in_alpha = vowelsAlphabetical(hasAllVowels)
-console.log(hasAllVowels.length)
 
 
-console.log(`vowels_in_alpha`)
-console.log(vowels_in_alpha)
+let vowels_in_alpha = vowelsAlphaArr(hasAllVowels)
+console.log(`\nRESULTS:\n`)
+console.log(vowelsAlphaArr(hasAllVowels))
+
+
+// console.log(`vowels_in_alpha`)
+// console.log(vowels_in_alpha)
 console.log(`Total matches: ${vowels_in_alpha.length}`)
 
 
