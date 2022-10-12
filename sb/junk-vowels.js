@@ -10,54 +10,33 @@ Working out the vowel processing code
 
 */
 
-let arr = ['QUADRIPOLE', 'QUADRISECTIONS', 'QUESTIONABILITY', 'RATATOUILLE', 'SEQUACIOUSLY', 'SEQUESTRATION', 'SUBCATEGORIZING', 'SUPERNATATION', 'SUPEROVULATING', 'SUSTENTATIONS', 'TAUTOMETRICAL', 'THIOSULPHATE', 'UNORDAINED', 'UNORGANISED', 'UNPROFITABLE', 'UNREASONINGLY', 'UTOPIANISED', 'UTOPIANISER', 'VARIOUSNESS', 'VITUPERATION'];
+let arr = ['QUADRIPOLE', 'QUADRISECTIONS', 'QUESTIONABILITY', 'RATATOUILLE', 'ARTERIOUS', 'BACTERIOUS', 'CAESIOUS', 'SEQUACIOUSLY', 'SEQUESTRATION', 'SUBCATEGORIZING', 'SUPERNATATION', 'SUPEROVULATING', 'SUSTENTATIONS', 'TAUTOMETRICAL', 'THIOSULPHATE', 'UNORDAINED', 'UNORGANISED', 'UNPROFITABLE', 'UNREASONINGLY', 'UTOPIANISED', 'UTOPIANISER', 'VARIOUSNESS', 'VITUPERATION'];
 
 let matches = [];
 
 // foreach word in array
 arr.forEach((word, i) => {
   // console.log(`word ${i}: ${word}`);
-  // Grab all vowels
 
+  // Grab all vowels from word
   this_vowels = word.match(/[AEIOU]/g)
-  console.log(`this_vowels = ${this_vowels}`)
 
-  let len = word.length;
-  let c = String.fromCharCode(64);
+  // if first vowel in set isn't 'A' then jump to next word
+  if (this_vowels[0] !== 'A') { return }
 
-  // split the current word into char array
-  word.split("").forEach((char) => {
-    // Is the character a vowel?
-    if (
-      char == "A" ||
-      char == "E" ||
-      char == "I" ||
-      char == "O" ||
-      char == "U"
-    ) {
-      // console.log(`${char}: VOWEL`)
+  // console.log(`this_vowels = ${this_vowels}`)
 
-      if (char < c) {
-        return false;
-      }
-    } else {
-      // console.log(char)
-      c = char;
-    } // end if vowel
+  // Foreach vowel in vowel string 
+  for (j = 0; j < this_vowels.length; j++) {
+    console.log(`j: ${j} | this_vowels[j]: ${this_vowels[j]}`)
 
+    if (this_vowels[1] != 'E') { return }
+    if (this_vowels[2] != 'I') { return }
+    if (this_vowels[3] != 'O') { return }
+    if (this_vowels[4] != 'U') { return }
+  }
 
-  }); // end foreach char
   matches.push(word);
 }); // end foreach word
 
-
 console.log(matches);
-
-
-let str = "Hello World";
-
-let res = str.match(/[aeiou]/ig).join("");
-console.log(res);
-
-let res2 = str.match(/[^aeiou]/ig).join("");
-console.log(res2);
