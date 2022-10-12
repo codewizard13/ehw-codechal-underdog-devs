@@ -25,8 +25,14 @@ const words = fileStr.split('\n') // make array
 
 console.log('\nSOLUTION:\n')
 
-function has5Vowels(word) {
-  var filtered = words.filter(
+/**
+ * 
+ * Loop through word list and return strings containing
+ *  all 5 vowels in any order
+ */
+
+function has5Vowels {
+  filtered = words.filter(
     word =>
       word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
   )
@@ -35,6 +41,8 @@ function has5Vowels(word) {
   console.log(`Total matches: ${filtered.length}`)
 }
 
+let hasAllVowels = has5Vowels(words)
+console.log(hasAllVowels)
 
 
 function vowelsAlphabetical(word) {
@@ -55,13 +63,15 @@ function vowelsAlphabetical(word) {
 }
 
 
-filtered = words.filter(
-  // word.match(/.*A.*E.*I.*O.*U.*/) -- DOESN'T WORK
+// let orderedVowels = hasAllVowels.filter(
+//   // word.match(/.*A.*E.*I.*O.*U.*/) -- DOESN'T WORK
 
-  // word => vowelsAlphabetical(word)
-  word => has5Vowels(word)
-)
+//   // word => vowelsAlphabetical(word)
+//   word => vowelsAlphabetical(word)
+// )
 
+// console.log(orderedVowels)
+// console.log(`Total matches: ${orderedVowels.length}`)
 
 
 
