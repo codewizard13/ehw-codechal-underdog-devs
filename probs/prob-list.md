@@ -15,7 +15,7 @@ For loops and if conditions
 - [x] What are all of the words that have no E or A and are at least 15 letters long?
 - [x] What are all of the words that have a B and an X and are less than 5 letters long?
 - [x] What are all of the words that both start and end with a Y?
-- [ ] What are all of the words with no vowel and not even a Y?
+- [x] What are all of the words with no vowel and not even a Y? **GOTCHA: Negated character classes not working with caret in match()**
 - [ ] What are all of the words that have all 5 vowels, in any order?
 - [ ] What are all of the words that have all 5 vowels, in alphabetical order?
 
