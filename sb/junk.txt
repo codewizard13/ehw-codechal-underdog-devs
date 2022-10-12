@@ -1,0 +1,34 @@
+BUSTLINE
+BUSTLINES
+BUSTLING
+BUSTLINGLY
+
+BUSTS
+BUSTY
+BUSULFAN
+BUSULFANS
+BUSUUTI
+BUSUUTIS
+BUSY
+BUSYBODIED
+BUSYBODIES
+BUSYBODY
+BUSYBODYING
+BUSYBODYINGS
+BUSYING
+BUSYNESS
+BUSYNESSES
+
+['BUSTLINE', 'BUSTLINES', 'BUSTLING', 'BUSTLINGLY', 'BUSTS', 'BUSTY', 'BUSULFAN', 'BUSULFANS', 'BUSUUTI', 'BUSUUTIS', 'BUSY', 'BUSYBODIED', 'BUSYBODIES', 'BUSYBODY', 'BUSYBODYING', 'BUSYBODYINGS', 'BUSYING', 'BUSYNESS', 'BUSYNESSES']
+
+matches = words.filter(word => {
+    return word.match(/UU/)
+})
+
+
+/\r?\n/
+
+
+https://melvingeorge.me/blog/get-all-the-contents-from-file-as-string-nodejs
+
+What are all of the words containing UU?
