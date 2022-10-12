@@ -1,12 +1,12 @@
 /* 
 
-Filename: ordered-vowels.js
+Filename: junk-vowels.js
 
 Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the words that have all 5 vowels, in any order?
 Date Completed: 10/12/22
 
-Demonstrates: Vowels in order
+Working out the vowel processing code
 
 */
 

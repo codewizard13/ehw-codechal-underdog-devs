@@ -114,6 +114,7 @@ return True
 ```
 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+- https://www.dcode.fr/random-selection
 
 #### GIT
 
