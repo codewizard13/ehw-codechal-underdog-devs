@@ -16,7 +16,11 @@ let matches = [];
 
 // foreach word in array
 arr.forEach((word, i) => {
-  console.log(`word ${i}: ${word}`);
+  // console.log(`word ${i}: ${word}`);
+  // Grab all vowels
+
+  this_vowels = word.match(/[AEIOU]/g)
+  console.log(`this_vowels = ${this_vowels}`)
 
   let len = word.length;
   let c = String.fromCharCode(64);
