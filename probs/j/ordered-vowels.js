@@ -23,30 +23,19 @@ const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
 
-console.log('\nSOLUTION:\n')
-
 /**
  * 
  * Loop through word list and return strings containing
  *  all 5 vowels in any order
  */
-
 function has5Vowels(arr) {
   return filtered = arr.filter(
     word =>
       word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
   )
-
-  console.log(filtered)
-  console.log(`Total matches: ${filtered.length}\n`)
-
 }
 
 let hasAllVowels = has5Vowels(words)
-console.log(hasAllVowels)
-
-console.log(`has5Vowels(words) is array: ${Array.isArray(has5Vowels(words))}`)
-console.log(`hasAllVowels is array: ${Array.isArray(hasAllVowels)}`)
 
 /**
  * 
@@ -59,7 +48,6 @@ function vowelsAlphaArr(arr) {
 
   // foreach word in array
   arr.forEach((word, i) => {
-    // console.log(`word ${i}: ${word}`);
 
     // Grab all vowels from word
     this_vowels = word.match(/[AEIOU]/g)
@@ -78,24 +66,16 @@ function vowelsAlphaArr(arr) {
     }
 
     matches.push(word);
+
   }); // end foreach word
 
   return matches
 }
 
-
-
-
 let vowels_in_alpha = vowelsAlphaArr(hasAllVowels)
 console.log(`\nRESULTS:\n`)
 console.log(vowelsAlphaArr(hasAllVowels))
-
-
-// console.log(`vowels_in_alpha`)
-// console.log(vowels_in_alpha)
-console.log(`Total matches: ${vowels_in_alpha.length}`)
-
-
+console.log(`\nTotal matches: ${vowels_in_alpha.length}`)
 
 /* CODE HINT:
 https://www.geeksforgeeks.org/check-whether-the-vowels-in-a-string-are-in-alphabetical-order-or-not/
