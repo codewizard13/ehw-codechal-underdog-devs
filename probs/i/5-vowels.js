@@ -3,7 +3,7 @@
 Filename: 5-vowels.js
 
 Programmer: Eric Hepperle
-Assignment: Wordplay: What are all of the words with no vowel and not even a Y?
+Assignment: Wordplay: What are all of the words that have all 5 vowels, in any order?
 Date Completed: 10/12/22
 
 Demonstrates: Negated character class
@@ -26,8 +26,7 @@ console.log('\nSOLUTION:\n')
 // let regex = /[^AEIOU]/ -- negated char class NOT WORKING
 const filtered = words.filter(
   word =>
-    word.match(/^(?!.*A)(?!.*E)(?!.*I)(?!.*O)(?!.*U)(?!.*Y).*/)
-  // word.match(regex)
+    word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
 )
 
 console.log(filtered)
