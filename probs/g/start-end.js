@@ -1,12 +1,12 @@
 /* 
 
-Filename: less-than.js
+Filename: start-end.js
 
 Programmer: Eric Hepperle
-Assignment: Wordplay: What are all of the words that have a B and an X and are less than 5 letters long?
+Assignment: Wordplay: What are all of the words that both start and end with a Y?
 Date Completed: 10/12/22
 
-Demonstrates: Less than and positive lookahead
+Demonstrates: Start with and End with markers
 
 */
 
@@ -26,8 +26,7 @@ console.log('\nSOLUTION:\n')
 
 const filtered = words.filter(
   word =>
-    word.match(/^(?=.*B)(?=.*X).*/)
-    && word.length < 5
+    word.match(/^Y.*Y$/)
 )
 
 console.log(filtered)
