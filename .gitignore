@@ -1,9 +1,9 @@
-# Project Name:   EHW APP: Scrape Upwork Job Details
+#  Challenge Name: Underdog Devs: Cohort 4 Admission
 # Main Prj File:  controller.php
 # 
 # This Filename:  .gitignore
 # Date Created:   01/19/22
-# Date Updated:   01/28/22
+# Date Updated:   10/12/22
 # Programmer:     Eric L. Hepperle
 # 
 # File Version:    1.00.00
@@ -94,6 +94,6 @@ public/assets/
 #_images/
 
 # TEMPORARILY:
-Readme.md
+#Readme.md
 #docs/
 
