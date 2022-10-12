@@ -39,6 +39,7 @@ function has5Vowels(arr) {
 
   console.log(filtered)
   console.log(`Total matches: ${filtered.length}\n`)
+
 }
 
 let hasAllVowels = has5Vowels(words)
@@ -46,7 +47,6 @@ console.log(hasAllVowels)
 
 console.log(`has5Vowels(words) is array: ${Array.isArray(has5Vowels(words))}`)
 console.log(`hasAllVowels is array: ${Array.isArray(hasAllVowels)}`)
-
 
 /**
  * 
@@ -57,6 +57,31 @@ function vowelsAlphabetical(arr) {
 
   arr.forEach((word, i) => {
     console.log(`word ${i}: ${word}`)
+
+    let len = word.length
+    let c = String.fromCharCode(64)
+
+    word.split('').forEach(char => {
+
+      // Is the character a vowel?
+      if (
+        char == 'A'
+        || char == 'E'
+        || char == 'I'
+        || char == 'O'
+        || char == 'U'
+      ) {
+        console.log(`${char}: VOWEL`)
+
+      } else {
+        console.log(char)
+
+      }
+
+    })
+
+
+
   })
 
   return arr // debugged for an hour or so, until I spotted that i was missing return statement
@@ -68,6 +93,7 @@ let vowels_in_alpha = vowelsAlphabetical(hasAllVowels)
 console.log(hasAllVowels.length)
 
 
+console.log(`vowels_in_alpha`)
 console.log(vowels_in_alpha)
 console.log(`Total matches: ${vowels_in_alpha.length}`)
 
