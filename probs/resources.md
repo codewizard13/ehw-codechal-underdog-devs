@@ -70,6 +70,17 @@ A **negative lookahead** can help you _<u>rule out specific words</u>_, and is k
 - https://stackoverflow.com/questions/5925738/which-regular-expression-operator-means-dont-match-this-character
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet
 
+### H
+
+Some regular expression resources to get challenge inspirations from:
+
+- Regex crossword https://regexcrossword.com/
+- Regex golf http://regex.alf.nu/
+- The Case for Regular Expressions https://technet.microsoft.com/en-us/magazine/ee835717.aspx
+- Regular Expressions http://www.regular-expressions.info/
+- The Many Uses of Regex http://www.rexegg.com/regex-uses.html
+- Regular Expression Examples https://en.wikipedia.org/wiki/Regular_expression#Examples
+
 #### GIT
 
 - https://stackoverflow.com/questions/12987907/git-how-to-commit-a-manually-deleted-file
