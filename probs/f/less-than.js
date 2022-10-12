@@ -3,7 +3,7 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the words that have a B and an X and are less than 5 letters long?
 Date Completed: 10/12/22
 
-Demonstrates: Greater than or equal to
+Demonstrates: Less than and positive lookahead
 
 */
 
