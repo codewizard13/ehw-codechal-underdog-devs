@@ -3,6 +3,8 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the words containing a Q but not a U?
 Date Completed: 10/12/22
 
+Demonstrates: Filter array containing pattern A, but NOT B
+
 */
 
 const fs = require('fs')
@@ -43,8 +45,6 @@ const filtered_regex = words.filter(
 
 console.log(filtered_regex)
 console.log(`Total matches: ${filtered_regex.length}`)
-
-// Filter array with multiple conditions including NOT:
 
 /* Sample q words without u
 qawwal
