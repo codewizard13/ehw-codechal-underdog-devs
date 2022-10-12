@@ -115,6 +115,7 @@ return True
 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 - https://www.dcode.fr/random-selection
+- https://stackoverflow.com/questions/64503733/how-can-i-extract-vowels-in-a-javascript-string
 
 #### GIT
 
