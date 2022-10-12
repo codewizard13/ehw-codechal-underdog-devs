@@ -19,45 +19,13 @@ const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
 
-console.log('\nSOLUTION WITH &&:\n')
+console.log('\nSOLUTION:\n')
 
 const filtered = words.filter(
   word =>
-    word.match(/Q/) &&
-    !word.match(/U/)
+    word.match(/CAT/)
+    && word.length == 5
 )
 
 console.log(filtered)
 console.log(`Total matches: ${filtered.length}`)
-
-
-/* Pure regex solution:
-    Uses positive lookahead to find all words with Q, then
-    negative lookahead to filter all the words with U
-*/
-
-console.log('\nSOLUTION WITH pure regex:\n')
-
-const filtered_regex = words.filter(
-  word =>
-    word.match(/^(?=.*Q)(?!.*U).*/)
-)
-
-console.log(filtered_regex)
-console.log(`Total matches: ${filtered_regex.length}`)
-
-/* Sample q words without u
-qawwal
-sheqel
-faqirs
-tariq
-cinqs
-coq
-seq
-quindar
-tranqs
-qwertys
-sheqalim
-qi
-qigong
-*/
