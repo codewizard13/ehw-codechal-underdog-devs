@@ -10,33 +10,42 @@ Working out the vowel processing code
 
 */
 
-let arr = ['QUADRIPOLE', 'QUADRISECTIONS', 'QUESTIONABILITY', 'RATATOUILLE', 'ARTERIOUS', 'BACTERIOUS', 'CAESIOUS', 'SEQUACIOUSLY', 'SEQUESTRATION', 'SUBCATEGORIZING', 'SUPERNATATION', 'SUPEROVULATING', 'SUSTENTATIONS', 'TAUTOMETRICAL', 'THIOSULPHATE', 'UNORDAINED', 'UNORGANISED', 'UNPROFITABLE', 'UNREASONINGLY', 'UTOPIANISED', 'UTOPIANISER', 'VARIOUSNESS', 'VITUPERATION'];
+// Demo array with 3 matching result in middle (ARTERIOUS, etc)
+let sampleArr = ['QUADRIPOLE', 'QUADRISECTIONS', 'QUESTIONABILITY', 'RATATOUILLE', 'ARTERIOUS', 'BACTERIOUS', 'CAESIOUS', 'SEQUACIOUSLY', 'SEQUESTRATION', 'SUBCATEGORIZING', 'SUPERNATATION', 'SUPEROVULATING', 'SUSTENTATIONS', 'TAUTOMETRICAL', 'THIOSULPHATE', 'UNORDAINED', 'UNORGANISED', 'UNPROFITABLE', 'UNREASONINGLY', 'UTOPIANISED', 'UTOPIANISER', 'VARIOUSNESS', 'VITUPERATION'];
 
-let matches = [];
 
-// foreach word in array
-arr.forEach((word, i) => {
-  // console.log(`word ${i}: ${word}`);
 
-  // Grab all vowels from word
-  this_vowels = word.match(/[AEIOU]/g)
+function vowelsAlphaArr(arr) {
 
-  // if first vowel in set isn't 'A' then jump to next word
-  if (this_vowels[0] !== 'A') { return }
+  let matches = [];
 
-  // console.log(`this_vowels = ${this_vowels}`)
+  // foreach word in array
+  arr.forEach((word, i) => {
+    // console.log(`word ${i}: ${word}`);
 
-  // Foreach vowel in vowel string 
-  for (j = 0; j < this_vowels.length; j++) {
-    console.log(`j: ${j} | this_vowels[j]: ${this_vowels[j]}`)
+    // Grab all vowels from word
+    this_vowels = word.match(/[AEIOU]/g)
 
-    if (this_vowels[1] != 'E') { return }
-    if (this_vowels[2] != 'I') { return }
-    if (this_vowels[3] != 'O') { return }
-    if (this_vowels[4] != 'U') { return }
-  }
+    // console.log(`this_vowels = ${this_vowels}`)
 
-  matches.push(word);
-}); // end foreach word
+    // Foreach vowel in vowel string 
+    for (j = 0; j < this_vowels.length; j++) {
+      // console.log(`j: ${j} | this_vowels[j]: ${this_vowels[j]}`)
 
-console.log(matches);
+      if (this_vowels[0] != 'A') { return }
+      if (this_vowels[1] != 'E') { return }
+      if (this_vowels[2] != 'I') { return }
+      if (this_vowels[3] != 'O') { return }
+      if (this_vowels[4] != 'U') { return }
+    }
+
+    matches.push(word);
+  }); // end foreach word
+
+  return matches
+}
+
+
+
+console.log(`\nRESULTS:\n`)
+console.log(vowelsAlphaArr(sampleArr))
