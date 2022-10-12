@@ -81,6 +81,18 @@ Some regular expression resources to get challenge inspirations from:
 - The Many Uses of Regex http://www.rexegg.com/regex-uses.html
 - Regular Expression Examples https://en.wikipedia.org/wiki/Regular_expression#Examples
 
+### J
+
+- https://stackoverflow.com/questions/19861286/words-with-vowels-in-alphabetical-order
+
+You can simply use a regular expression in your method :
+
+```java
+public static boolean containsVowels(String word) {
+    return Pattern.matches(".*a.*e.*i.*o.*u.*y.*", word);
+}
+```
+
 #### GIT
 
 - https://stackoverflow.com/questions/12987907/git-how-to-commit-a-manually-deleted-file
