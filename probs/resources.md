@@ -122,7 +122,31 @@ return True
 - https://www.samanthaming.com/tidbits/81-how-to-check-if-array-includes-a-value/
 - https://stackoverflow.com/questions/39966125/using-indexof-to-filter-an-array
 - **Function expressions:** https://www.javascripttutorial.net/es6/javascript-arrow-function/
-- 
+
+### L
+
+- https://stackoverflow.com/questions/33763768/loop-through-array-of-values-with-arrow-function
+
+In short:
+
+```javascript
+someValues.forEach((element) => {
+    console.log(element);
+});
+```
+
+If you care about index, then second parameter can be passed to receive the index of current element:
+
+```javascript
+someValues.forEach((element, index) => {
+    console.log(`Current index: ${index}`);
+    console.log(element);
+});
+```
+
+### M
+
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 
 ---
 
