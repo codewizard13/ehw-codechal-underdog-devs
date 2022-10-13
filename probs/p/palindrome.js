@@ -52,12 +52,14 @@ function isPalindrome(str) {
 
 }
 
-let palindromes = sampleArr.filter(word => isPalindrome(word))
+let palindromes = words.filter(word => isPalindrome(word))
+// palindromes.push('Malayalam') --> use to test handling of multiple matches
 
 console.log(`\nPalindromes Found (alphabetical order):\n`)
 
 let dict = {}
 
+// Build dictionary with lengths
 palindromes.forEach(function (pal, i) {
   dict[palindromes[i]] = pal.length
 })
@@ -77,7 +79,7 @@ let longest = palindromes.filter(
 )
 
 if (longest.length > 1) {
-  console.log(`The longest words with NO vowels are:`)
+  console.log(`The longest palindromes are:`)
   console.log(longest)
 } else {
   console.log(`The longest palindrome is: ${longest[0]}`)

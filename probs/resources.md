@@ -216,7 +216,7 @@ function objMap(obj, func) {
 let mappedObj = objMap(obj, (x) => x * x);
 ```
 
-- 
+- https://dev.to/nehasoni__/power-of-console-table-in-javascript-18n0
 
 
 ---

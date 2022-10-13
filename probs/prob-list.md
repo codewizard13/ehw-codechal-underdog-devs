@@ -26,5 +26,5 @@ For loops and if conditions
 - [x] What is the shortest word that contains all 5 vowels?
 - [X] What is the longest word that contains no vowels?
 - [x] Which of the letters Q, X, and Z is the least common?
-- [ ] What is the longest palindrome?
+- [x] What is the longest palindrome?
 - [ ] What are all of the letters that never appear consecutively in an English word? For example, we know that “U” isn’t an answer, because of the word VACUUM, and we know that “A” isn’t an answer, because of “AARDVARK”, but which letters never appear consecutively?
