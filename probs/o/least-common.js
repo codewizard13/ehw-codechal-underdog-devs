@@ -92,9 +92,11 @@ let interested = [
 ]
 
 console.log(`interested`)
-console.log(interested)
+console.table(interested)
 
 let least_common = interested.sort((a, b) => a[1] - b[1])
 
 console.log(`least_common`)
-console.log(least_common)
+console.log(least_common[0])
+
+console.log(`The least common of Q, X, and Z is: ${least_common[0][0]} with ${least_common[0][1]} occurences.`)
