@@ -120,6 +120,9 @@ return True
 ### K
 
 - https://www.samanthaming.com/tidbits/81-how-to-check-if-array-includes-a-value/
+- https://stackoverflow.com/questions/39966125/using-indexof-to-filter-an-array
+- **Function expressions:** https://www.javascripttutorial.net/es6/javascript-arrow-function/
+- 
 
 ---
 

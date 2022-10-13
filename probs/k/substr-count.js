@@ -41,11 +41,26 @@ const words = fileStr.split('\n') // make array
 /* */
 
 console.log('\nSOLUTION:\n')
+console.log(`needle: ${needle}`)
 
 filtered = words.filter(
   word =>
-    word.split('').includes(needle)
+    word.includes(needle) || word.indexOf(needle) > -1
 )
+
+/* Using foreach */
+
+// words.forEach((word, i) => {
+//   // out = word.split('').includes(needle) ? word : ''
+//   out = word.includes(needle) ? word : ''
+//   // out = word.split('')
+//   console.log(out)
+// })
 
 console.log(filtered)
 console.log(`Total matches: ${filtered.length}`)
+
+/* NOTE: I ran into issue because I mistakenly thought I needed to split
+    each word into an array string to use the includes() method.
+    Removing the ".split('')" call caused all to work perfectly
+*/
