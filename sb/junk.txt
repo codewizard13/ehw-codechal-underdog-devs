@@ -38,6 +38,7 @@ POWER
 SPY
 THY
 
+"BORROW OR ROB?", "BRANCH", "CYST", "DAMMIT, I'M MAD!", "DEIFIED", "DIPLOMATIC", "DO GEESE SEE GOD?"", "HAIRCUT", "HYMN", "LEVEL", "MOSQUITO", "MURDRUM", "NON", "POP", "POWER", "SPY", "THY"
 
 
 "Doc, note, I dissent. A fast never prevents a fatness. I diet on cod.", "Emil peed deep lime.", "Evar, go to grave.", "Go hang a salami, I'm a lasagna hog.", "Golf? No sir, prefer prison flog.", "Madam, in Eden, I’m Adam.", "Mr. Owl ate my metal worm.", "No lemon, no melon!"

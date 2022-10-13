@@ -33,12 +33,31 @@ const sampleArr = [
   "NON", "POP", "POWER", "SPY", "THY"
 ]
 
+const testStr = "Doc, note, I dissent. A fast never prevents a fatness. I diet on cod."
+
 // Is word a palindrome?
 
 function isPalindrome(str) {
-  re = /[\W_]/g; // or var re = /[^A-Za-z0-9]/g;
+
+  // Remove all non-alphanumeric chars and lowercase the string
+  let reg = /[\W_]/g; // or var re = /[^A-Za-z0-9]/g;
+  let stripped = str.toLowerCase().replace(reg, '')
+
+  let revStr = stripped.split('').reverse().join('')
+
+  // console.log(revStr)
+  return revStr === stripped
 
 }
+
+// console.log(`Original string:`)
+// console.log(testStr)
+
+let palindromes = sampleArr.filter(word => isPalindrome(word))
+
+console.log(`Palindromes:`)
+console.log(palindromes)
+
 
 
 

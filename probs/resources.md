@@ -182,6 +182,17 @@ function findShortestWordAmongMixedElements(arr){
 ### P
 
 - https://czechtheworld.com/best-palindromes/
+- https://www.freecodecamp.org/news/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7/
+
+Check for Palindromes With Built-In Functions
+For this solution, we will use several methods:
+
+1. The toLowerCase() method to return the calling string value converted to lowercase.
+2. The replace() method to return a new string with some or all matches of a pattern replaced by a replacement. We will use one of the RegExp we just created earlier.
+3. The split() method splits a String object into an array of strings by separating the string into sub strings.
+4. The reverse() method reverses an array in place. The first array element becomes the last and the last becomes the first.
+5. The join() method joins all elements of an array into a string
+
 - 
 
 
