@@ -147,6 +147,10 @@ someValues.forEach((element, index) => {
 ### M
 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+- https://www.codermen.com/find-longest-shortest-and-random-string-in-array-in-javascript/
+- https://stackoverflow.com/questions/40864915/find-the-shortest-string-in-array
+- https://www.browserling.com/tools/shortest-line
+- https://randomwordgenerator.com/
 
 ---
 
