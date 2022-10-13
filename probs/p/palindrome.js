@@ -33,6 +33,12 @@ const sampleArr = [
   "NON", "POP", "POWER", "SPY", "THY"
 ]
 
+// Is word a palindrome?
+
+function isPalindrome(str) {
+  re = /[\W_]/g; // or var re = /[^A-Za-z0-9]/g;
+
+}
 
 
 
