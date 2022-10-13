@@ -53,13 +53,31 @@ let wordsWithoutVowels = sampleArr.filter(
 
 console.log(`\nWORDS WITHOUT VOWELS\n`)
 console.log(wordsWithoutVowels)
-console.log(`\nTotal words with vowels: ${wordsWithoutVowels.length}`)
+console.log(`\nTotal words without vowels: ${wordsWithoutVowels.length}`)
 
-let longest = wordsWithoutVowels.reduce(
-  (a, b) => a.length >= b.length ? a : b
+// let longest = wordsWithoutVowels.reduce(
+//   (a, b) => a.length >= b.length ? a : b
+// )
+
+// Find the length of the the longest word
+let longest_length = wordsWithoutVowels.reduce(
+  (a, b) => a.length >= b.length ? a.length : b.length
 )
 
-console.log(`The longest word with NO vowels is: ${longest}`)
+console.log(`The longest word length is: ${longest_length}`)
+
+let longest = wordsWithoutVowels.filter(
+  word => word.length == longest_length
+)
+
+if (longest.length > 1) {
+  console.log(`The longest words with NO vowels are:`)
+  console.log(longest)
+} else {
+  console.log(`The longest word with NO vowels is: ${longest[0]}`)
+}
+
+
 
 /* NOTE: (?i)[^aeiou]+ regex works in PCRE (Perl/PHP), but not in JavaScript.
     This is the regex to find words without vowels: /\b([^AEIOU\s]+)\b/g

@@ -156,6 +156,17 @@ someValues.forEach((element, index) => {
 
 - https://scrabble.merriam.com/words-without-vowels
 - https://regex101.com/r/mT0qF3/1
+- https://codereview.stackexchange.com/questions/163085/function-to-find-the-shortest-word-in-an-array-where-not-every-element-is-a-str
+
+Probably the shortest way to do this is to use array.filter to only get the strings, array.sort to sort them by length, and get the first item of the resulting array.
+
+```javascript
+function findShortestWordAmongMixedElements(arr){
+  return arr.filter(e => typeof e === 'string').sort((a, b) => a.length - b.length)[0];
+}
+```
+
+- 
 
 
 ---
