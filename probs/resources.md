@@ -176,6 +176,13 @@ function findShortestWordAmongMixedElements(arr){
 - https://stackoverflow.com/questions/34901593/how-to-filter-an-array-from-all-elements-of-another-array
 - https://masteringjs.io/tutorials/fundamentals/filter-key
 - https://www.youtube.com/watch?v=rRgD1yVwIvE&t=1879s
+- https://stackoverflow.com/questions/237104/how-do-i-check-if-an-array-includes-a-value-in-javascript
+- https://errorsandanswers.com/javascript-equivalent-of-phps-in_array/
+
+### P
+
+- https://czechtheworld.com/best-palindromes/
+- 
 
 
 ---
