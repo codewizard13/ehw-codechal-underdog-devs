@@ -35,7 +35,7 @@ const sampleArr = [
 ]
 
 // Find all words without vowels
-let wordsWithoutVowels = sampleArr.filter(
+let wordsWithoutVowels = words.filter(
   word => word.match(/\b([^AEIOU\s]+)\b/g)
 )
 
