@@ -44,7 +44,7 @@ const words = fileStr.split('\n') // make array
 
 const sampleArr = [
   'BRANCH', 'DIPLOMATIC', 'HAIRCUT', 'SPY', 'CYST', 'THY',
-  'HYMN', 'GYMS', 'TRYST', 'MOSQUITO', 'POWER'
+  'HYMN', 'MOSQUITO', 'POWER'
 ]
 
 let wordsWithoutVowels = sampleArr.filter(
