@@ -35,8 +35,11 @@ const sampleArr = [
 
 const testStr = "Doc, note, I dissent. A fast never prevents a fatness. I diet on cod."
 
-// Is word a palindrome?
-
+/**
+ * Return true if string is palindrome
+ * @param string str 
+ * @returns boolean
+ */
 function isPalindrome(str) {
 
   // Remove all non-alphanumeric chars and lowercase the string
@@ -45,7 +48,6 @@ function isPalindrome(str) {
 
   let revStr = stripped.split('').reverse().join('')
 
-  // console.log(revStr)
   return revStr === stripped
 
 }
@@ -55,48 +57,41 @@ function isPalindrome(str) {
 
 let palindromes = sampleArr.filter(word => isPalindrome(word))
 
-console.log(`Palindromes Found:`)
+console.log(`\nPalindromes Found:\n`)
 console.log(palindromes)
 
-console.table(palindromes.map(p => p.length))
+let dict = {}
+palindromes.forEach(function (pal, i) {
+  console.log(`pal: ${pal}`)
+  console.log(`i: ${i}`)
+  dict[palindromes[i]] = pal.length
+
+})
+
+// forEach(char => countChars(dict, char))
+
+console.log('dict:')
+console.table(Object.entries(dict))
 
 
-// Find the length of the the longest word
-
-// let longest_length = palindromes.reduce(
-//   (a, b) => a.length >= b.length ? a.length : b.length
-// )
-
+// Find the length of the the longest palindrome
 let longest_length = palindromes.sort(
   (a, b) => b.length - a.length
 )[0].length
 
-console.log(`The longest word length is: ${longest_length}`)
+console.log(`The longest palindrome length is: ${longest_length}`)
 
-// Find the longest word(s)
+// Find the longest palindrome(s)
 let longest = palindromes.filter(
-  word => word.length == longest_length
+  pal => pal.length == longest_length
 )
 
 if (longest.length > 1) {
   console.log(`The longest words with NO vowels are:`)
   console.log(longest)
 } else {
-  console.log(`The longest word with NO vowels is: ${longest[0]}`)
+  console.log(`The longest palindrome is: ${longest[0]}`)
 }
-
-
-
-
-var arr = ["the", "quick", "brown", "fox"];
-
-console.log(arr);
-
-const resultArray = arr.map((element) => {
-  return element, element.length;
-});
-
-console.log(resultArray);
 
 
 
