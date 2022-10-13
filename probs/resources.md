@@ -166,7 +166,10 @@ function findShortestWordAmongMixedElements(arr){
 }
 ```
 
-- 
+### O
+
+- **Coding Challenge #40.1: Word Counter in JavaScript:** https://www.youtube.com/watch?v=unm0BLor8aE
+- https://pietschsoft.com/post/2015/09/05/javascript-basics-how-to-create-a-dictionary-with-keyvalue-pairs
 
 
 ---
