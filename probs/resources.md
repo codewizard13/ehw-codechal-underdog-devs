@@ -173,6 +173,9 @@ function findShortestWordAmongMixedElements(arr){
 - https://javascript.plainenglish.io/how-to-sort-an-object-by-key-or-property-name-in-javascript-a8c07b179901
 - https://stackoverflow.com/questions/1069666/sorting-object-property-by-values/37607084#37607084
 - **Object keys, values, and entries methods:** https://www.youtube.com/watch?v=VmicKaGcs5g
+- https://stackoverflow.com/questions/34901593/how-to-filter-an-array-from-all-elements-of-another-array
+- https://masteringjs.io/tutorials/fundamentals/filter-key
+- https://www.youtube.com/watch?v=rRgD1yVwIvE&t=1879s
 
 
 ---

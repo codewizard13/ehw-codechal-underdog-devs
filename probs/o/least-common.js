@@ -50,12 +50,13 @@ function countChars(kvp, str) {
 }
 
 
-sampleArr.join('').split('').forEach(char => countChars(dict, char))
+words.join('').split('').forEach(char => countChars(dict, char))
 
 console.log(`RESULTS:`)
 console.log(`sampleArr: ${sampleArr}`)
 console.log(`joinedArrayEls: ${sampleArr.join('')}`)
 
+console.log('Object.keys(dict).sort()')
 console.log(Object.keys(dict).sort())
 
 let entries = Object.entries(dict);
@@ -68,3 +69,27 @@ console.log(sortedByKeyAlpha)
 let sortedByValsLowToHigh = entries.sort((a, b) => a[1] - b[1]);
 console.log(`sortedByValsLowToHigh:`)
 console.log(sortedByValsLowToHigh)
+
+
+console.log(dict['Q'])
+
+console.log('dict:')
+console.log(dict)
+
+let objSlice = Object.keys(dict).
+  filter((key) => key = 'N')
+  .reduce((cur, key) => { return Object.assign(cur, { [key]: dict[key] }) }, {});
+
+console.log(`objSlice.Q:`)
+console.log(objSlice.Q)
+
+console.log(`dict.Q:`)
+console.log(dict.Q)
+
+// Create array of key-value pairs for Q, X, and Z
+let interested = [
+  ["Q", dict.Q], ["X", dict.X], ["Z", dict.Z]
+]
+
+console.log(`interested`)
+console.log(interested)
