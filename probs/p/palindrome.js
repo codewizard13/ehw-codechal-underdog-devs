@@ -52,27 +52,17 @@ function isPalindrome(str) {
 
 }
 
-// console.log(`Original string:`)
-// console.log(testStr)
-
 let palindromes = sampleArr.filter(word => isPalindrome(word))
 
-console.log(`\nPalindromes Found:\n`)
-console.log(palindromes)
+console.log(`\nPalindromes Found (alphabetical order):\n`)
 
 let dict = {}
+
 palindromes.forEach(function (pal, i) {
-  console.log(`pal: ${pal}`)
-  console.log(`i: ${i}`)
   dict[palindromes[i]] = pal.length
-
 })
-
-// forEach(char => countChars(dict, char))
-
 console.log('dict:')
 console.table(Object.entries(dict))
-
 
 // Find the length of the the longest palindrome
 let longest_length = palindromes.sort(
