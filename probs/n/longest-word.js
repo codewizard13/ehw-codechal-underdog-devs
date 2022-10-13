@@ -6,7 +6,7 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: What is the longest word that contains no vowels?
 Date Completed: 10/13/22
 
-Demonstrates: Shortest word
+Demonstrates: Longest word with no vowels, handle multiple matches
 
 N
 
@@ -26,19 +26,6 @@ const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
 
-// /**
-//  * 
-//  * Loop through word list and return strings containing
-//  *  all 5 vowels in any order
-//  */
-// function has5Vowels(arr) {
-//   return filtered = arr.filter(
-//     word =>
-//       // word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
-
-//   )
-// }
-
 // Sample array for testing with smaller word set
 // Result with sample array: 'SPY', 'CYST', 'THY', 'HYMN', 'GYMS', 'TRYST'
 
@@ -47,6 +34,7 @@ const sampleArr = [
   'HYMN', 'MOSQUITO', 'POWER'
 ]
 
+// Find all words without vowels
 let wordsWithoutVowels = sampleArr.filter(
   word => word.match(/\b([^AEIOU\s]+)\b/g)
 )
@@ -55,10 +43,6 @@ console.log(`\nWORDS WITHOUT VOWELS\n`)
 console.log(wordsWithoutVowels)
 console.log(`\nTotal words without vowels: ${wordsWithoutVowels.length}`)
 
-// let longest = wordsWithoutVowels.reduce(
-//   (a, b) => a.length >= b.length ? a : b
-// )
-
 // Find the length of the the longest word
 let longest_length = wordsWithoutVowels.reduce(
   (a, b) => a.length >= b.length ? a.length : b.length
@@ -66,6 +50,7 @@ let longest_length = wordsWithoutVowels.reduce(
 
 console.log(`The longest word length is: ${longest_length}`)
 
+// Find the longest word(s)
 let longest = wordsWithoutVowels.filter(
   word => word.length == longest_length
 )
@@ -77,10 +62,13 @@ if (longest.length > 1) {
   console.log(`The longest word with NO vowels is: ${longest[0]}`)
 }
 
+/* NOTES:
 
-
-/* NOTE: (?i)[^aeiou]+ regex works in PCRE (Perl/PHP), but not in JavaScript.
+  - (?i)[^aeiou]+ regex works in PCRE (Perl/PHP), but not in JavaScript.
     This is the regex to find words without vowels: /\b([^AEIOU\s]+)\b/g
+
+  - This code accounts for if there are more than one word matching the
+    longest length
 */
 
 
