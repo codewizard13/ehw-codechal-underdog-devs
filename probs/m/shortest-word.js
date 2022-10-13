@@ -40,7 +40,9 @@ function has5Vowels(arr) {
 
 const sampleArr = ['BRANCH', 'DIPLOMATIC', 'HAIRCUT', 'MOSQUITO', 'POWER', 'QUADRIPOLE', 'SUBCATEGORIZING', 'TELEPHONE', 'VITUPERATION']
 
-let shortest = sampleArr.reduce(
+console.log(has5Vowels(words))
+
+let shortest = has5Vowels(words).reduce(
   (a, b) => a.length <= b.length ? a : b
 )
 
