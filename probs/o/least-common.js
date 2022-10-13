@@ -6,7 +6,7 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: Which of the letters Q, X, and Z is the least common?
 Date Completed: 10/13/22
 
-Demonstrates: Frequency counter, array keys, dictionary
+Demonstrates: Frequency counter, array keys, dictionary, sort, compare
 
 O
 
@@ -93,3 +93,8 @@ let interested = [
 
 console.log(`interested`)
 console.log(interested)
+
+let least_common = interested.sort((a, b) => a[1] - b[1])
+
+console.log(`least_common`)
+console.log(least_common)
