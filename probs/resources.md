@@ -117,6 +117,12 @@ return True
 - https://www.dcode.fr/random-selection
 - https://stackoverflow.com/questions/64503733/how-can-i-extract-vowels-in-a-javascript-string
 
+### K
+
+- https://www.samanthaming.com/tidbits/81-how-to-check-if-array-includes-a-value/
+
+---
+
 #### GIT
 
 - https://stackoverflow.com/questions/12987907/git-how-to-commit-a-manually-deleted-file
