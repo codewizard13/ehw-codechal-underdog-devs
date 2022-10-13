@@ -38,16 +38,14 @@ function has5Vowels(arr) {
   )
 }
 
+// Created sample array for testing will smaller word set
 const sampleArr = ['BRANCH', 'DIPLOMATIC', 'HAIRCUT', 'MOSQUITO', 'POWER', 'QUADRIPOLE', 'SUBCATEGORIZING', 'TELEPHONE', 'VITUPERATION']
-
-console.log(has5Vowels(words))
 
 let shortest = has5Vowels(words).reduce(
   (a, b) => a.length <= b.length ? a : b
 )
 
 console.log(`The shortest word containing all 5 vowels is: ${shortest}`)
-// console.log(`\nTotal matches: ${filtered.length}`)
 
 /* NOTE: Approach was to use array.reduce(). Looks like this
     might be a bubble sort */

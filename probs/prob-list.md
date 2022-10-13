@@ -23,7 +23,7 @@ For loops and if conditions
 
 - [x] How many words contain the substring "TYPE”?
 - [x] Create and print an array containing all of the words that end in "GHTLY"
-- [ ] What is the shortest word that contains all 5 vowels?
+- [x] What is the shortest word that contains all 5 vowels?
 - [ ] What is the longest word that contains no vowels?
 - [ ] Which of the letters Q, X, and Z is the least common?
 - [ ] What is the longest palindrome?
