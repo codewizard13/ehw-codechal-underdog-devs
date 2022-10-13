@@ -40,10 +40,13 @@ const words = fileStr.split('\n') // make array
 // }
 
 // Created sample array for testing will smaller word set
-const sampleArr = ['BRANCH', 'DIPLOMATIC', 'HAIRCUT', 'MOSQUITO', 'POWER', 'QUADRIPOLE', 'SUBCATEGORIZING', 'TELEPHONE', 'VITUPERATION']
+const sampleArr = [
+  'BRANCH', 'DIPLOMATIC', 'HAIRCUT', 'SPY', 'CYST', 'THY',
+  'HYMN', 'GYMS', 'TRYST', 'MOSQUITO', 'POWER'
+]
 
-let wordsWithoutVowels = words.filter(
-  word => word.match(/(?i)[^aeiou]+/)
+let wordsWithoutVowels = sampleArr.filter(
+  word => word.match(/\b([^AEIOU\s]+)\b/g)
 )
 
 console.log(wordsWithoutVowels)
@@ -54,5 +57,9 @@ console.log(wordsWithoutVowels)
 
 // console.log(`The shortest word containing all 5 vowels is: ${shortest}`)
 
-// /* NOTE: Approach was to use array.reduce(). Looks like this
-//     might be a bubble sort */
+/* NOTE: (?i)[^aeiou]+ regex works in PCRE (Perl/PHP), but not in JavaScript.
+    This is the regex to find words without vowels: /\b([^AEIOU\s]+)\b/g
+*/
+
+// Result with sample array: 'SPY', 'CYST', 'THY', 'HYMN', 'GYMS', 'TRYST'
+

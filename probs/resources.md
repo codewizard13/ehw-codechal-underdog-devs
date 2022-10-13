@@ -152,6 +152,12 @@ someValues.forEach((element, index) => {
 - https://www.browserling.com/tools/shortest-line
 - https://randomwordgenerator.com/
 
+### N
+
+- https://scrabble.merriam.com/words-without-vowels
+- https://regex101.com/r/mT0qF3/1
+
+
 ---
 
 #### GIT
