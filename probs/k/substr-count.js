@@ -26,39 +26,16 @@ const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
 
-// /**
-//  *
-//  * Loop through word list and return strings containing
-//  *  all 5 vowels in any order
-//  */
-// function has5Vowels(arr) {
-//   return filtered = arr.filter(
-//     word =>
-//       word.match(/^(?=.*A)(?=.*E)(?=.*I)(?=.*O)(?=.*U).*/)
-//   )
-// }
-
-/* */
-
 console.log('\nSOLUTION:\n')
-console.log(`needle: ${needle}`)
+console.log(`\nneedle: ${needle}`)
 
 filtered = words.filter(
   word =>
     word.includes(needle) || word.indexOf(needle) > -1
 )
 
-/* Using foreach */
-
-// words.forEach((word, i) => {
-//   // out = word.split('').includes(needle) ? word : ''
-//   out = word.includes(needle) ? word : ''
-//   // out = word.split('')
-//   console.log(out)
-// })
-
 console.log(filtered)
-console.log(`Total matches: ${filtered.length}`)
+console.log(`\nTotal matches: ${filtered.length}`)
 
 /* NOTE: I ran into issue because I mistakenly thought I needed to split
     each word into an array string to use the includes() method.
