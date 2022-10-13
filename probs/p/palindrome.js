@@ -55,12 +55,48 @@ function isPalindrome(str) {
 
 let palindromes = sampleArr.filter(word => isPalindrome(word))
 
-console.log(`Palindromes:`)
+console.log(`Palindromes Found:`)
 console.log(palindromes)
 
+console.table(palindromes.map(p => p.length))
+
+
+// Find the length of the the longest word
+
+// let longest_length = palindromes.reduce(
+//   (a, b) => a.length >= b.length ? a.length : b.length
+// )
+
+let longest_length = palindromes.sort(
+  (a, b) => b.length - a.length
+)[0].length
+
+console.log(`The longest word length is: ${longest_length}`)
+
+// Find the longest word(s)
+let longest = palindromes.filter(
+  word => word.length == longest_length
+)
+
+if (longest.length > 1) {
+  console.log(`The longest words with NO vowels are:`)
+  console.log(longest)
+} else {
+  console.log(`The longest word with NO vowels is: ${longest[0]}`)
+}
 
 
 
+
+var arr = ["the", "quick", "brown", "fox"];
+
+console.log(arr);
+
+const resultArray = arr.map((element) => {
+  return element, element.length;
+});
+
+console.log(resultArray);
 
 
 

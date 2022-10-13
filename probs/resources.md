@@ -193,6 +193,29 @@ For this solution, we will use several methods:
 4. The reverse() method reverses an array in place. The first array element becomes the last and the last becomes the first.
 5. The join() method joins all elements of an array into a string
 
+- https://javascript.info/map-set
+- https://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays
+
+
+How about a one-liner in JS ES10 / ES2019 ?
+
+Making use of `Object.entries()` and `Object.fromEntries()`:
+
+```javascript
+let newObj = Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, v * v]));
+```
+
+The same thing written as a function:
+
+```javascript
+function objMap(obj, func) {
+  return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, func(v)]));
+}
+
+// To square each value you can call it like this:
+let mappedObj = objMap(obj, (x) => x * x);
+```
+
 - 
 
 
