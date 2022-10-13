@@ -170,6 +170,9 @@ function findShortestWordAmongMixedElements(arr){
 
 - **Coding Challenge #40.1: Word Counter in JavaScript:** https://www.youtube.com/watch?v=unm0BLor8aE
 - https://pietschsoft.com/post/2015/09/05/javascript-basics-how-to-create-a-dictionary-with-keyvalue-pairs
+- https://javascript.plainenglish.io/how-to-sort-an-object-by-key-or-property-name-in-javascript-a8c07b179901
+- https://stackoverflow.com/questions/1069666/sorting-object-property-by-values/37607084#37607084
+- **Object keys, values, and entries methods:** https://www.youtube.com/watch?v=VmicKaGcs5g
 
 
 ---

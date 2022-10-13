@@ -42,18 +42,26 @@ const dict = {}
 */
 
 // kvp = key-value pair, another term for dictionary
-function updateDict(kvp, str) {
+function countChars(kvp, str) {
 
   if (kvp[str] === undefined) { kvp[str] = 1 }
   else { kvp[str]++ }
 
 }
 
+
+sampleArr.join('').split('').forEach(char => countChars(dict, char))
+
 console.log(`RESULTS:`)
-
-sampleArr.join('').split('').forEach(word => updateDict(dict, word))
-
 console.log(`sampleArr: ${sampleArr}`)
 console.log(`joinedArrayEls: ${sampleArr.join('')}`)
 
-console.log(dict)
+console.log(Object.keys(dict).sort())
+
+let entries = Object.entries(dict);
+
+// let sorted = entries.sort((a, b) => a[1] - b[1]);
+let sortedByKeyAlpha = entries.sort();
+
+console.log(`sortedByKeyAlpha:`)
+console.log(sortedByKeyAlpha)
