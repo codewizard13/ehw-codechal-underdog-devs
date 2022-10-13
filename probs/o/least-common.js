@@ -41,7 +41,14 @@ const dict = {}
 
 */
 
-// kvp = key-value pair, another term for dictionary
+/**
+ * Builds dictionary of key-value pairs as object.
+ * 
+ * Format: { A: 23, Z: 434, P: 77 }
+ * 
+ * @param dict kvp 
+ * @param string str 
+ */
 function countChars(kvp, str) {
 
   if (kvp[str] === undefined) { kvp[str] = 1 }
@@ -49,54 +56,27 @@ function countChars(kvp, str) {
 
 }
 
-
+// Join words array into string, then split into chars
+//  and then count occurences of each char
 words.join('').split('').forEach(char => countChars(dict, char))
 
-console.log(`RESULTS:`)
-console.log(`sampleArr: ${sampleArr}`)
-console.log(`joinedArrayEls: ${sampleArr.join('')}`)
 
-console.log('Object.keys(dict).sort()')
-console.log(Object.keys(dict).sort())
-
+// Convert object to array
 let entries = Object.entries(dict);
 
-// let sorted = entries.sort((a, b) => a[1] - b[1]);
+// Two sort options: alphabetically by key, and low-high by value
 let sortedByKeyAlpha = entries.sort();
-console.log(`sortedByKeyAlpha:`)
-console.log(sortedByKeyAlpha)
-
 let sortedByValsLowToHigh = entries.sort((a, b) => a[1] - b[1]);
-console.log(`sortedByValsLowToHigh:`)
-console.log(sortedByValsLowToHigh)
-
-
-console.log(dict['Q'])
-
-console.log('dict:')
-console.log(dict)
-
-let objSlice = Object.keys(dict).
-  filter((key) => key = 'N')
-  .reduce((cur, key) => { return Object.assign(cur, { [key]: dict[key] }) }, {});
-
-console.log(`objSlice.Q:`)
-console.log(objSlice.Q)
-
-console.log(`dict.Q:`)
-console.log(dict.Q)
 
 // Create array of key-value pairs for Q, X, and Z
 let interested = [
   ["Q", dict.Q], ["X", dict.X], ["Z", dict.Z]
 ]
 
-console.log(`interested`)
-console.table(interested)
-
 let least_common = interested.sort((a, b) => a[1] - b[1])
 
-console.log(`least_common`)
-console.log(least_common[0])
+console.log(`RESULTS:`)
+console.log(`\nFrequency Table:\n`)
+console.table(interested)
 
 console.log(`The least common of Q, X, and Z is: ${least_common[0][0]} with ${least_common[0][1]} occurences.`)
