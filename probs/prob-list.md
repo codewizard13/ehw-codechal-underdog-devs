@@ -17,7 +17,7 @@ For loops and if conditions
 - [x] What are all of the words that both start and end with a Y?
 - [x] What are all of the words with no vowel and not even a Y? **GOTCHA: Negated character classes not working with caret in match()**
 - [x] What are all of the words that have all 5 vowels, in any order?
-- [ ] What are all of the words that have all 5 vowels, in alphabetical order?
+- [x] What are all of the words that have all 5 vowels, in alphabetical order?
 
 **Setting up storage to use during a for loop, including counters and arrays:**
 
