@@ -6,7 +6,8 @@ Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the letters that never appear consecutively in an English word?
 Date Completed: 10/14/22
 
-Details: For example, we know that “U” isn’t an answer, because of the word VACUUM, and we know that “A” isn’t an answer, because of “AARDVARK”, but which letters never appear consecutively?
+Details: For example, we know that “U” isn’t an answer, because of the word VACUUM, and we know that
+“A” isn’t an answer, because of “AARDVARK”, but which letters never appear consecutively?
 
 Demonstrates: Consecutive letters
 
@@ -59,43 +60,50 @@ Define alphabet / character set
 */
 
 
-// reg = /^(?=.*[A-Z]+).*/g
-// reg = /BRA/g
-reg = /([A-Z])\1/
 
-// /^ (?=.* Q)(?!.* U).* /
 
-matches = words.filter(word => !word.match(reg))
-console.log(`\nMATCHES:\n`)
-console.log(matches)
 
-console.log(`\nTOTAL WORDS IN SOURCE ARRAY: ${words.length}`)
-console.log(`\nTOTAL WORDS IN MATCHES ARRAY: ${matches.length}`)
 
-// let testing = matches.filter(word => word.match(/^ABA/))
-let testing = []
+function getAllWordsWithNoConsecutiveChars(arr) {
 
-// Sort matches alphabetically
-let sorted = matches.sort()
-console.log(`\nSORTED:\n`)
-console.log(sorted)
+  let out = []
+  out.lettersNonConsec = []
+  out.sortedWordsNoConsec = []
+  out.groupedByLetter = []
 
-let grouped = []
+  // reg = /^(?=.*[A-Z]+).*/g
+  // reg = /BRA/g
+  reg = /([A-Z])\1/
 
-// Foreach letter in alphabet create object in testing array
-abc.split('').forEach(ltr => {
-  let obj = {}
-  obj.letter = ltr
+  matches = words.filter(word => !word.match(reg))
 
-  // find all words starting with ltr
-  obj.results = sorted.filter(word => word.match(RegExp(`^${ltr}`)))
+  console.log(`\nTOTAL WORDS IN ${filename}: ${words.length}`)
+  console.log(`TOTAL WORDS IN MATCHES ARRAY: ${matches.length}\n`)
 
-  testing.push(obj)
-})
 
-console.log(`\nTESTING: ${testing.length}\n`)
-console.table(testing)
+
+  // Foreach letter in alphabet create object in out array
+  abc.split('').forEach(ltr => {
+    let obj = {}
+    obj.letter = ltr
+
+    // find all words starting with ltr
+    obj.results = matches.sort().filter(word => word.match(RegExp(`^${ltr}`)))
+
+    out.groupedByLetter.push(obj)
+  })
+
+  out.sortedWordsNoConsec = {}
+  out.sortedWordsNoConsec = matches.sort()
+
+  return out
+
+}
+
+let noConsec = getAllWordsWithNoConsecutiveChars(sampleArr)
+
+console.log(`\n**** E X T R A  C R E D I T ****\n`)
+console.log(`Here are all the words with NO CONSECUTIVE letters:`)
+console.table(noConsec.groupedByLetter)
 
 console.log('END')
-
-
