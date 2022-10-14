@@ -22,6 +22,8 @@ let filename = '../sowpods.txt'
 let filtered = []
 let needle = 'TYPE'
 
+const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
 // Read file into an array of words
 
 const buffer = fs.readFileSync(filename)
@@ -34,26 +36,6 @@ const sampleArr = [
   "HYMN", "LEVEL", "MOSQUITO", "MURDRUM",
   "NON", "POP", "POWER", "SPY", "THY"
 ]
-
-/* My first approach is can I use a DYNAMIC REGEX? */
-
-// let dynReg = new RegExp(`${char}+`)
-
-// // Loop through all the letters in alphabetical order
-// const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-// abc.split('').forEach((char, i) => {
-//   console.log(`char ${i}: ${char}`)
-// });
-
-// let result = sampleArr.filter(word => {
-
-//   word.match(dynReg)
-// })
-
-// console.log(result)
-
-
 
 
 /* ALGORITHM:
@@ -77,27 +59,6 @@ Define alphabet / character set
 */
 
 
-
-
-const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-
-// // Loop through each word
-// sampleArr.forEach(word => {
-
-//   abc.split('').forEach((abc, i) => {
-
-//     // console.log(`abc ${i}: ${abc}`)
-
-//     // let dynReg = new RegExp(`${abc}+`)
-
-//     if (word.match(/.*[A-Z]+.*/)) {
-//       matches.push(word)
-//       console.log(`No consecutive letters found in ${word}`)
-//     }
-//   });
-// })
-
 // reg = /^(?=.*[A-Z]+).*/g
 // reg = /BRA/g
 reg = /([A-Z])\1/
@@ -113,13 +74,6 @@ console.log(`\nTOTAL WORDS IN MATCHES ARRAY: ${matches.length}`)
 
 // let testing = matches.filter(word => word.match(/^ABA/))
 let testing = []
-// testing = matches.filter(word => {
-//   return abc.split('').forEach(ch => {
-//     let dynReg = RegExp(`^${ch}`)
-//     word.match(dynReg)
-//     // console.log(dynReg)
-//   });
-// })
 
 // Sort matches alphabetically
 let sorted = matches.sort()
@@ -127,12 +81,6 @@ console.log(`\nSORTED:\n`)
 console.log(sorted)
 
 let grouped = []
-// Group matches by starting letter
-// sorted.forEach(word => {
-
-//   let obj = {}
-
-// })
 
 // Foreach letter in alphabet create object in testing array
 abc.split('').forEach(ltr => {
@@ -145,64 +93,9 @@ abc.split('').forEach(ltr => {
   testing.push(obj)
 })
 
-
-
-
-
 console.log(`\nTESTING: ${testing.length}\n`)
 console.table(testing)
 
 console.log('END')
 
 
-// const testStr = "Doc, note, I dissent. A fast never prevents a fatness. I diet on cod."
-
-// /**
-//  * Return true if string is palindrome
-//  * @param string str
-//  * @returns boolean
-//  */
-// function isPalindrome(str) {
-
-//   // Remove all non-alphanumeric chars and lowercase the string
-//   let reg = /[\W_]/g; // or var re = /[^A-Za-z0-9]/g;
-//   let stripped = str.toLowerCase().replace(reg, '')
-
-//   let revStr = stripped.split('').reverse().join('')
-
-//   return revStr === stripped
-
-// }
-
-// let palindromes = words.filter(word => isPalindrome(word))
-// // palindromes.push('Malayalam') --> use to test handling of multiple matches
-
-// console.log(`\nPalindromes Found (alphabetical order):\n`)
-
-// let dict = {}
-
-// // Build dictionary with lengths
-// palindromes.forEach(function (pal, i) {
-//   dict[palindromes[i]] = pal.length
-// })
-// console.log('dict:')
-// console.table(Object.entries(dict))
-
-// // Find the length of the the longest palindrome
-// let longest_length = palindromes.sort(
-//   (a, b) => b.length - a.length
-// )[0].length
-
-// console.log(`The longest palindrome length is: ${longest_length}`)
-
-// // Find the longest palindrome(s)
-// let longest = palindromes.filter(
-//   pal => pal.length == longest_length
-// )
-
-// if (longest.length > 1) {
-//   console.log(`The longest palindromes are:`)
-//   console.log(longest)
-// } else {
-//   console.log(`The longest palindrome is: ${longest[0]}`)
-// }
