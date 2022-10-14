@@ -222,6 +222,7 @@ let mappedObj = objMap(obj, (x) => x * x);
 
 - **JavaScript Problem: Using Dynamic Data in a Regular Expression:** https://www.youtube.com/watch?v=_vNO4fxA1fw
 - https://stackoverflow.com/questions/30802973/is-it-possible-to-loop-through-a-regex-range-using-javascript
+- https://stackoverflow.com/questions/69014305/regex-for-searching-for-2-consecutive-letters-that-are-in-a-specific-location#
 
 ---
 

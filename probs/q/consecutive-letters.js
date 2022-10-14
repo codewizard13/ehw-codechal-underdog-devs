@@ -39,12 +39,12 @@ const sampleArr = [
 
 // let dynReg = new RegExp(`${char}+`)
 
-// Loop through all the letters in alphabetical order
-const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+// // Loop through all the letters in alphabetical order
+// const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-abc.split('').forEach((char, i) => {
-  console.log(`char ${i}: ${char}`)
-});
+// abc.split('').forEach((char, i) => {
+//   console.log(`char ${i}: ${char}`)
+// });
 
 // let result = sampleArr.filter(word => {
 
@@ -79,12 +79,37 @@ Define alphabet / character set
 
 
 
+const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
+// // Loop through each word
+// sampleArr.forEach(word => {
 
+//   abc.split('').forEach((abc, i) => {
 
+//     // console.log(`abc ${i}: ${abc}`)
 
+//     // let dynReg = new RegExp(`${abc}+`)
 
+//     if (word.match(/.*[A-Z]+.*/)) {
+//       matches.push(word)
+//       console.log(`No consecutive letters found in ${word}`)
+//     }
+//   });
+// })
+
+// reg = /^(?=.*[A-Z]+).*/g
+// reg = /BRA/g
+reg = /([A-Z])\1/
+
+// /^ (?=.* Q)(?!.* U).* /
+
+matches = sampleArr.filter(word => word.match(reg))
+console.log(`\nMATCHES:\n`)
+console.log(matches)
+
+console.log(`\nTOTAL WORDS IN SOURCE ARRAY: ${sampleArr.length}`)
+console.log(`\nTOTAL WORDS IN MATCHES ARRAY: ${matches.length}`)
 
 
 
