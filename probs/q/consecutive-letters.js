@@ -59,11 +59,6 @@ Define alphabet / character set
 
 */
 
-
-
-
-
-
 function getAllWordsWithNoConsecutiveChars(arr) {
 
   let out = []
@@ -75,13 +70,15 @@ function getAllWordsWithNoConsecutiveChars(arr) {
   // reg = /BRA/g
   reg = /([A-Z])\1/
 
-  matches = words.filter(word => !word.match(reg))
+  matches = arr.filter(word => !word.match(reg))
   sorted = matches.sort()
 
-  console.log(`\nTOTAL WORDS IN ${filename}: ${words.length}`)
+  console.log(`\nTOTAL WORDS IN ${filename}: ${arr.length}`)
   console.log(`TOTAL WORDS IN MATCHES ARRAY: ${matches.length}\n`)
 
   // obj.lettersNonConsec = sorted.filter()
+  // Join word as string then process
+  // arr
 
 
   // Foreach letter in alphabet create object in out array
