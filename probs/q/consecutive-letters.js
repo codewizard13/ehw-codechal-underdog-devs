@@ -104,14 +104,12 @@ reg = /([A-Z])\1/
 
 // /^ (?=.* Q)(?!.* U).* /
 
-matches = sampleArr.filter(word => word.match(reg))
+matches = words.filter(word => !word.match(reg))
 console.log(`\nMATCHES:\n`)
 console.log(matches)
 
-console.log(`\nTOTAL WORDS IN SOURCE ARRAY: ${sampleArr.length}`)
+console.log(`\nTOTAL WORDS IN SOURCE ARRAY: ${words.length}`)
 console.log(`\nTOTAL WORDS IN MATCHES ARRAY: ${matches.length}`)
-
-
 
 
 
