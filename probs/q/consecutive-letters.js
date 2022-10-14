@@ -111,11 +111,48 @@ console.log(matches)
 console.log(`\nTOTAL WORDS IN SOURCE ARRAY: ${words.length}`)
 console.log(`\nTOTAL WORDS IN MATCHES ARRAY: ${matches.length}`)
 
+// let testing = matches.filter(word => word.match(/^ABA/))
+let testing = []
+// testing = matches.filter(word => {
+//   return abc.split('').forEach(ch => {
+//     let dynReg = RegExp(`^${ch}`)
+//     word.match(dynReg)
+//     // console.log(dynReg)
+//   });
+// })
+
+// Sort matches alphabetically
+let sorted = matches.sort()
+console.log(`\nSORTED:\n`)
+console.log(sorted)
+
+let grouped = []
+// Group matches by starting letter
+// sorted.forEach(word => {
+
+//   let obj = {}
+
+// })
+
+// Foreach letter in alphabet create object in testing array
+abc.split('').forEach(ltr => {
+  let obj = {}
+  obj.letter = ltr
+
+  // find all words starting with ltr
+  obj.results = sorted.filter(word => word.match(RegExp(`^${ltr}`)))
+
+  testing.push(obj)
+})
 
 
 
 
 
+console.log(`\nTESTING: ${testing.length}\n`)
+console.table(testing)
+
+console.log('END')
 
 
 // const testStr = "Doc, note, I dissent. A fast never prevents a fatness. I diet on cod."
