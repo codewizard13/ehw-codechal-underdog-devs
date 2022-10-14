@@ -53,11 +53,18 @@ abc.split('').forEach((char, i) => {
 
 // console.log(result)
 
+
+
+
 /* ALGORITHM:
 
-    Foreach word,
+Initialize results / matches array
 
-      Foreach char/letter,
+Define alphabet / character set
+
+    Foreach word in words array,
+
+      Foreach char/letter in alphabet,
 
         if char appears consecutively
 
