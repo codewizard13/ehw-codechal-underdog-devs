@@ -218,6 +218,10 @@ let mappedObj = objMap(obj, (x) => x * x);
 
 - https://dev.to/nehasoni__/power-of-console-table-in-javascript-18n0
 
+### Q
+
+- **JavaScript Problem: Using Dynamic Data in a Regular Expression:** https://www.youtube.com/watch?v=_vNO4fxA1fw
+- https://stackoverflow.com/questions/30802973/is-it-possible-to-loop-through-a-regex-range-using-javascript
 
 ---
 

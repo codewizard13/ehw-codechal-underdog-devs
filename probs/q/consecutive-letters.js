@@ -35,11 +35,39 @@ const sampleArr = [
   "NON", "POP", "POWER", "SPY", "THY"
 ]
 
+/* My first approach is can I use a DYNAMIC REGEX? */
 
+// let dynReg = new RegExp(`${char}+`)
 
+// Loop through all the letters in alphabetical order
+const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+abc.split('').forEach((char, i) => {
+  console.log(`char ${i}: ${char}`)
+});
 
+// let result = sampleArr.filter(word => {
 
+//   word.match(dynReg)
+// })
+
+// console.log(result)
+
+/* ALGORITHM:
+
+    Foreach word,
+
+      Foreach char/letter,
+
+        if char appears consecutively
+
+          return
+
+      Add word to results array
+
+    Display sorted array
+
+*/
 
 
 
