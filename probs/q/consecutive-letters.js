@@ -76,10 +76,12 @@ function getAllWordsWithNoConsecutiveChars(arr) {
   reg = /([A-Z])\1/
 
   matches = words.filter(word => !word.match(reg))
+  sorted = matches.sort()
 
   console.log(`\nTOTAL WORDS IN ${filename}: ${words.length}`)
   console.log(`TOTAL WORDS IN MATCHES ARRAY: ${matches.length}\n`)
 
+  // obj.lettersNonConsec = sorted.filter()
 
 
   // Foreach letter in alphabet create object in out array
@@ -87,14 +89,18 @@ function getAllWordsWithNoConsecutiveChars(arr) {
     let obj = {}
     obj.letter = ltr
 
-    // find all words starting with ltr
-    obj.results = matches.sort().filter(word => word.match(RegExp(`^${ltr}`)))
+    // dynamic regex
+    let dynReg = RegExp(`^${ltr}`)
+
+    // find all words starting with current ltr
+    obj.results = sorted.filter(word => word.match(dynReg))
 
     out.groupedByLetter.push(obj)
+
+
   })
 
-  out.sortedWordsNoConsec = {}
-  out.sortedWordsNoConsec = matches.sort()
+  out.sortedWordsNoConsec = sorted
 
   return out
 
