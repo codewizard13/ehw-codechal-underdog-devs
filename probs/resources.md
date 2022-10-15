@@ -224,6 +224,29 @@ let mappedObj = objMap(obj, (x) => x * x);
 - https://stackoverflow.com/questions/30802973/is-it-possible-to-loop-through-a-regex-range-using-javascript
 - https://stackoverflow.com/questions/69014305/regex-for-searching-for-2-consecutive-letters-that-are-in-a-specific-location#
 - https://stackoverflow.com/questions/25287177/match-pattern-anywhere-in-string
+- https://www.designcise.com/web/tutorial/how-to-extract-consecutive-characters-in-a-javascript-string
+
+
+To match consecutively repeating characters in a string, you can simply use a regular expression that uses a backreference to the same character that's matched in a capturing group.
+
+For example, to match letters that appear consecutively in a string, you can do the following:
+
+```javascript
+const str = 'aabbcccdde';
+const pattern = /([a-z])\1+/g;
+const matches = str.match(pattern);
+
+console.log(matches); // ['aa', 'bb', 'ccc', 'dd']
+```
+
+In the example above, the capturing group matches characters a-z only once. Then right after, using a backreference to the capturing group (i.e. \1 — which refers to the first capturing group), the same character is matched again, one or more times. As a result, it matches characters that appear in the string consecutively.
+
+- https://www.cloudbees.com/blog/git-switch-branch-everything-to-know
+- https://www.folkstalk.com/2022/09/regex-not-contains-with-code-examples.html
+- https://stackoverflow.com/questions/64930323/javascript-how-can-i-check-if-an-array-contains-elements-in-common-with-a-secon
+- https://stackoverflow.com/questions/28654091/javascript-function-to-automatically-count-consecutive-letters-in-a-string
+- https://stackoverflow.com/questions/39556678/number-of-the-binary-strings-without-consecutive-zeroes-of-a-certain-length-corr
+- https://stackoverflow.com/questions/74074917/regex-for-strings-without-consecutive-letters
 
 ---
 
