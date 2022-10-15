@@ -247,6 +247,11 @@ In the example above, the capturing group matches characters a-z only once. Then
 - https://stackoverflow.com/questions/28654091/javascript-function-to-automatically-count-consecutive-letters-in-a-string
 - https://stackoverflow.com/questions/39556678/number-of-the-binary-strings-without-consecutive-zeroes-of-a-certain-length-corr
 - https://stackoverflow.com/questions/74074917/regex-for-strings-without-consecutive-letters
+- https://stackoverflow.com/questions/72590507/regex-for-2-or-more-consecutive-letters-numbers
+- https://stackoverflow.com/questions/28654091/javascript-function-to-automatically-count-consecutive-letters-in-a-string
+- https://docs.python.org/3/library/itertools.html?highlight=itertools%20product#itertools.groupby
+- https://stackoverflow.com/search?q=consecutive+letters+%5Bjavascript%5D
+- https://stackoverflow.com/questions/11731072/dividing-an-array-by-filter-function
 
 ---
 
@@ -255,5 +260,6 @@ In the example above, the capturing group matches characters a-z only once. Then
 - https://stackoverflow.com/questions/12987907/git-how-to-commit-a-manually-deleted-file
 - https://careerkarma.com/blog/git-nothing-added-to-commit-but-untracked-files-present/
 - https://devconnected.com/how-to-git-add-all-files/
+- https://stackoverflow.com/questions/55452869/git-checkout-a-single-file-from-another-branch-and-put-in-different-folder
 
 
