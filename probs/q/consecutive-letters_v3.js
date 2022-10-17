@@ -1,10 +1,10 @@
 /* 
 
-Filename: consecutive-letters-v2.js
+Filename: consecutive-letters_v3.js
 
 Programmer: Eric Hepperle
 Assignment: Wordplay: What are all of the letters that never appear consecutively in an English word?
-Date Completed: 10/14/22
+Date Completed: 10/17/22
 
 Details: For example, we know that “U” isn’t an answer, because of the word VACUUM, and we know that
 “A” isn’t an answer, because of “AARDVARK”, but which letters never appear consecutively?
