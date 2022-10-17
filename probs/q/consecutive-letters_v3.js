@@ -41,7 +41,9 @@ const sampleArr = [
 ];
 
 // Add more words to sampleArray on the fly
-sampleArr.push("COCCOON", "MISSISSIPPI")
+sampleArr.push("COCCOON", "MISSISSIPPI", "NAADDAA", "HAWAII",
+  "SWEETTOOTHED", "SUPERROOMMATE"
+)
 
 // assignment so we only have to change word list source in one place
 wordlist = sampleArr
@@ -56,6 +58,7 @@ let pattern = /([A-Z])\1+/g
 // Use set() method to get unique values
 let consecLetters = new Set(joinedWordList.match(pattern).sort())
 
+console.log(`\nConsecutive letter pairs found in the word list:\n`)
 
 console.log(...consecLetters)
 
@@ -68,14 +71,5 @@ joinedWordList = sampleArr.join(" ").toUpperCase();
 const paired = new Set(joinedWordList.match(/([A-Z])(?=\1)/g));
 const nonConsecLetters = [...alphabet].filter(ch => !paired.has(ch));
 
+console.log(`\nALL the letters that are NOT FOUND CONSECUTIVELY:\n`)
 console.log(...nonConsecLetters);
-
-
-// console.log(`Here are the letters that are not found consecutively in the word list:`)
-// console.log(noConsec.lettersNonConsec)
-
-// console.log(`\n**** E X T R A  C R E D I T ****\n`)
-// console.log(`Here are all the words with NO CONSECUTIVE letters:`)
-// console.table(noConsec.groupedByLetter)
-
-// console.log('END')

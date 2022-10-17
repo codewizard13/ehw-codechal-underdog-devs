@@ -252,6 +252,9 @@ In the example above, the capturing group matches characters a-z only once. Then
 - https://docs.python.org/3/library/itertools.html?highlight=itertools%20product#itertools.groupby
 - https://stackoverflow.com/search?q=consecutive+letters+%5Bjavascript%5D
 - https://stackoverflow.com/questions/11731072/dividing-an-array-by-filter-function
+- https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+- https://stackoverflow.com/questions/74074917/regex-for-strings-without-consecutive-letters
+- 
 
 ---
 
