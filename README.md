@@ -73,9 +73,13 @@ For loops and if conditions
 * JavaScript
 * ES6 / ECMAScript 2015
 * Vanilla JavaScript
+* JavaScript Array Methods
+* has(), forEach(), includes(), filter()
+* Regular Expressions
+* Set()
 
 ## TAGS
-`JavaScript` `ES6` `Code Challenge` `Vanilla JavaScript`
+`JavaScript` `ES6` `Code Challenge` `Vanilla JavaScript` `JavaScript Array Methods` `Modern JavaScript` `ECMAScript 2015` `ES2015` `Regex` `Regular Expressions`
 
 ## VOCAB
 - N/A
