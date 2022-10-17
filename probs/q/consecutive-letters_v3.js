@@ -46,7 +46,7 @@ sampleArr.push("COCCOON", "MISSISSIPPI", "NAADDAA", "HAWAII",
 )
 
 // assignment so we only have to change word list source in one place
-wordlist = sampleArr
+wordlist = words
 
 // Join words on space to avoid false matches where end of word and beginning
 //  of next word are same letter
