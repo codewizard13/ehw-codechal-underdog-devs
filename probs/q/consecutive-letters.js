@@ -76,8 +76,6 @@ function getAllWordsWithNoConsecutiveChars(arr) {
   console.log(`\nTOTAL WORDS IN ${filename}: ${arr.length}`)
   console.log(`TOTAL WORDS IN MATCHES ARRAY: ${matches.length}\n`)
 
-  // obj.lettersNonConsec = sorted.filter()
-
   // Join word as string then process; For each letter, if consecutives found anywhere,
   //  go to next letter; If no consecutives found, add letter to out.lettersNoConsec
   haystack = arr.join('')
@@ -96,13 +94,6 @@ function getAllWordsWithNoConsecutiveChars(arr) {
     // find all words starting with current ltr
     obj.results = sorted.filter(word => word.match(reg_startsWith))
 
-    // // find all letters non consecutive
-    // if (!haystack.match(reg_consec)) {
-
-    //   out.lettersNonConsec.push(ltr)
-
-    // }
-
     out.groupedByLetter.push(obj)
 
   })
@@ -114,7 +105,6 @@ function getAllWordsWithNoConsecutiveChars(arr) {
 }
 
 let noConsec = getAllWordsWithNoConsecutiveChars(sampleArr)
-// let noConsec = getAllWordsWithNoConsecutiveChars(words)
 
 console.log(`Here are the letters that are not found consecutively in the word list:`)
 console.log(noConsec.lettersNonConsec)
