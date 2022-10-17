@@ -34,64 +34,28 @@ const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
 
 const sampleArr = [
-  "BORROW", "BRANCH", "CYST", "DAMMIT",
-  "DEIFIED", "DIPLOMATIC", "GEESE", "HAIRCUT",
-  "HYMN", "LEVEL", "MOSQUITO", "MURDRUM",
-  "NON", "POP", "POWER", "GOD", "THY"
-]
+  "BORROW", "BRANCH", "CYST", "DEIFIED", "DIPLOMATIC",
+  "GEESE", "HAIRCUT", "HYMN", "LEVEL", "MOSQUITO",
+  "MURDRUM", "NON", "POP", "POWER", "GOD", "THY", "COCCOON"
+];
 
-
-/* ALGORITHM:
-
-Join wordlist into string with spaces
-
-FOREACH WORD
-
-  FOREACH letter in alphabet
-
-    If letter is in current word twice
-
-      IF consecutive letter instance for letter already has a value
-        increment value
-      Else
-        add value and initialize as 1
-
-*/
-
-
-
-/* FORMAT:
-
-[
-  { letter: A; consecutiveLetterInstances: 1 }
-  { letter: B; consecutiveLetterInstances: 27 }
-  { letter: C; consecutiveLetterInstances: 0 }
-]
-
-*/
-
+// assignment so we only have to change word list source in one place
 wordlist = sampleArr
 
 let joinedWordList = wordlist.join('')
+let pattern = /([A-Z])\1+/g // regex to match consecutive letter instances
 
-console.log(joinedWordList)
+// Join words on space to avoid false matches where end of word and beginning
+//  of next word are same letter
+let consecLetters = wordlist.join(' ').match(pattern).sort()
 
-let pattern = /([A-Z])\1+/g
-
-doubleLettersFound = joinedWordList.match(pattern)
-
-let singleDoubleLettersFound = doubleLettersFound.filter(el => el.split('')[0]
-  // console.log(el)
-)
-
-console.log(singleDoubleLettersFound)
+console.log(consecLetters)
 
 
 
+const allwords = sampleArr.join(" ").toUpperCase();
+const paired = new Set(allwords.match(/([A-Z])(?=\1)/g));
+const result = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+  .filter(ch => !paired.has(ch));
 
-var pcNumbers = [1, 2, 3, 4, 5];
-var userNumbers = [1, 2, 7, 8, 9];
-var commonNumbers = pcNumbers.filter(i => userNumbers.includes(i));
-console.log(commonNumbers);
-
-// let singleDoubleLettersFound = 
+console.log(...result);
