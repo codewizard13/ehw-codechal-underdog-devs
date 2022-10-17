@@ -33,28 +33,38 @@ const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const words = fileStr.split('\n') // make array
 
+// Sample array for quick testing
 const sampleArr = [
   "BORROW", "BRANCH", "CYST", "DEIFIED", "DIPLOMATIC",
   "GEESE", "HAIRCUT", "HYMN", "LEVEL", "MOSQUITO",
-  "MURDRUM", "NON", "POP", "POWER", "GOD", "THY", "COCCOON"
+  "MURDRUM", "NON", "POP", "POWER", "GOD", "THY"
 ];
+
+sampleArr.push("COCCOON", "MISSISSIPPI")
 
 // assignment so we only have to change word list source in one place
 wordlist = sampleArr
 
-let joinedWordList = wordlist.join('')
-let pattern = /([A-Z])\1+/g // regex to match consecutive letter instances
-
 // Join words on space to avoid false matches where end of word and beginning
 //  of next word are same letter
-let consecLetters = wordlist.join(' ').match(pattern).sort()
+let joinedWordList = wordlist.join(' ')
 
-console.log(consecLetters)
+// regex to match consecutive letter instances
+let pattern = /([A-Z])\1+/g
+
+// Use set() method to get unique values
+let consecLetters = new Set(joinedWordList.match(pattern).sort())
 
 
+console.log(...consecLetters)
 
-const allwords = sampleArr.join(" ").toUpperCase();
-const paired = new Set(allwords.match(/([A-Z])(?=\1)/g));
+// This may be overkill, but it ensures all letters are uppercase
+joinedWordList = sampleArr.join(" ").toUpperCase();
+
+// Slightly different version of the regex above, but for the same purpose.
+//  This regex was advised in a forum post so I don't want mess with it
+//  because it works
+const paired = new Set(joinedWordList.match(/([A-Z])(?=\1)/g));
 const result = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
   .filter(ch => !paired.has(ch));
 
