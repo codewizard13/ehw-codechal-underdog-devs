@@ -66,10 +66,9 @@ joinedWordList = sampleArr.join(" ").toUpperCase();
 //  This regex was advised in a forum post so I don't want mess with it
 //  because it works
 const paired = new Set(joinedWordList.match(/([A-Z])(?=\1)/g));
-const result = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
-  .filter(ch => !paired.has(ch));
+const nonConsecLetters = [...alphabet].filter(ch => !paired.has(ch));
 
-console.log(...result);
+console.log(...nonConsecLetters);
 
 
 // console.log(`Here are the letters that are not found consecutively in the word list:`)
