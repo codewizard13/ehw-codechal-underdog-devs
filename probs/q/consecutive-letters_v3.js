@@ -40,6 +40,7 @@ const sampleArr = [
   "MURDRUM", "NON", "POP", "POWER", "GOD", "THY"
 ];
 
+// Add more words to sampleArray on the fly
 sampleArr.push("COCCOON", "MISSISSIPPI")
 
 // assignment so we only have to change word list source in one place
@@ -69,3 +70,13 @@ const result = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
   .filter(ch => !paired.has(ch));
 
 console.log(...result);
+
+
+// console.log(`Here are the letters that are not found consecutively in the word list:`)
+// console.log(noConsec.lettersNonConsec)
+
+// console.log(`\n**** E X T R A  C R E D I T ****\n`)
+// console.log(`Here are all the words with NO CONSECUTIVE letters:`)
+// console.table(noConsec.groupedByLetter)
+
+// console.log('END')
