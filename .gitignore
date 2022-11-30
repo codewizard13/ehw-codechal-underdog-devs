@@ -93,6 +93,10 @@ public/assets/
 #images/
 #_images/
 
+# Ignore Sandbox folders
+sb/
+sandbox/
+
 # TEMPORARILY:
 #Readme.md
 #docs/
