@@ -56,10 +56,11 @@ const fs = require('fs')
 
 const results = []
 
-let filename = '../docs/countries.txt'
+let filename = '../../../docs/countries.txt'
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const countries = fileStr.split('\n') // make array
 
 //
 
+console.log({countries})
