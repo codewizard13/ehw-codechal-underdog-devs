@@ -1,3 +1,5 @@
-import Init from '../modules/Init'
+import init from '../modules/init.js'
 
-console.log(Init)
+
+
+console.log(init)

@@ -1,8 +1,10 @@
 const countriesFile = '../docs/countries.txt'
 
-
 console.log(countriesFile)
 
-const initArray = [countriesFile]
+const init = {
+  countriesFile: countriesFile,
+  fruit: "apple"
+}
 
-export default initArray
+export default init
