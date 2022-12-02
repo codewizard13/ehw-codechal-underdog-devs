@@ -33,26 +33,17 @@ var twoSum = function (nums, target) {
 
   const results = []
   // const options = {}
-
-  console.table([...nums, target])
-
-  // let index2 = 0
-
-  console.log("nums.length:", nums.length)
-
-  // Nested for loop
-  for (i = 0; i < nums.length; i++) {
-
-    console.log("i:", i)
-
-    // as long as there is a 'next' num
-    if (nums[i + 1] !== undefined) {
-      if (nums[i] + nums[i+1] === target) {
-      console.log(`nums[${i}] + nums[${i+1}] === ${target}`)
+  
+  const numsToFind = new Map();
+  for(let i = 0; i < nums.length; i++) {
+      const thisNum = nums[i];
+      if (numsToFind.has(thisNum)) {
+          return [numsToFind.get(thisNum), i];
+      } else {
+          numsToFind.set(target - thisNum, i);
       }
-    }
-
   }
+
 
   return results
 
