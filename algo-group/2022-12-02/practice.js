@@ -15,7 +15,8 @@ console.log("HI")
 
 sampleSet = [
   [[2, 7, 11, 15], 9],
-  [ [3,2,4], 6],
+  [[3, 2, 4], 6],
+  [[3,3], 6]
 ]
 
 /**
@@ -31,14 +32,19 @@ var twoSum = function (nums, target) {
 
   let index2 = 0
 
+  console.log("nums.length:", nums.length)
+
   // Nested for loop
-  for (i=0; i<nums; i++) {
+  for (i = 0; i < nums.length; i++) {
 
     console.log("i:", i)
 
-    if () {
-
-    })
+    // as long as there is a 'next' num
+    if (nums[i + 1] !== undefined) {
+      if (nums[i] + nums[i+1] === target) {
+      console.log(`nums[${i}] + nums[${i+1}] === ${target}`)
+      }
+    }
 
   }
 
@@ -49,7 +55,7 @@ var twoSum = function (nums, target) {
 function testValues(inputSet) {
 
   inputSet.forEach(set => {
-    twoSum(set)
+    twoSum(set[0], set[1])
   })
 
 }
