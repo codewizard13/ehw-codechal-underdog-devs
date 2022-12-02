@@ -59,6 +59,10 @@ var twoSum = function (nums, target) {
 }
 
 
+// HOMEWORK: Read up / learn about hashmaps
+
+
+
 
 
 function testValues(inputSet) {
