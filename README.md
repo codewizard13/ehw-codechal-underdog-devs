@@ -1,15 +1,23 @@
-| INFO PROPERTY  | VALUE                                 |
-| -------------- | ------------------------------------- |
-| Challenge Name | **Underdog Devs: Cohort 4 Admission** |
-| File Name      | README.md                             |
-| Date Created   | 10/12/22                              |
-| Date Modified  | --                                    |
-| Version        | 0.0.1                                 |
-| Programmer     | **Eric Hepperle**                     |
+| INFO PROPERTY | VALUE             |
+| ------------- | ----------------- |
+| Project Name  | **Underdog Devs** |
+| File Name     | README.md         |
+| Date Created  | 10/12/22          |
+| Date Modified | 12/04/22          |
+| Version       | 0.0.1             |
+| Programmer    | **Eric Hepperle** |
 
 ### TECHNOLOGIES
 
+<img align="left" alt="HTML5" title="HTML5" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" style="padding-right:10px;" />
+
+<img align="left" alt="CSS3" title="CSS3" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="padding-right:10px;" />
+
 <img align="left" alt="JavaScript" title="JavaScript" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:10px;" />
+
+<img align="left" alt="PHP" title="PHP" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" style="padding-right:10px;" />
+
+<img align="left" alt="MySQL" title="MySQL" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" style="padding-right:10px;" />
 
 <img align="left" alt="Git" title="Git" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" style="padding-right:10px;" />
 
