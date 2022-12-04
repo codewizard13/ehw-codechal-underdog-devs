@@ -1,5 +1,22 @@
 import init from '../../../modules/init.js'
+// import fs from 'fs'
+// import * as fs from 'fs.js'
 
-console.log(init.fileCountries)
+// const fs = require('fs')
 
-init.slurpFile()
+let filename = init.fileCountries
+
+function slurpFile (filename) {
+
+  console.log(filename)
+
+  // const fs = require('fs')
+
+
+  const buffer = fs.readFileSync(filename)
+  const fileStr = buffer.toString()
+  const wordsArray = fileStr.split('\n') // make array
+
+  return wordsArray
+
+}
