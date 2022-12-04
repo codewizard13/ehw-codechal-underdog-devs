@@ -1,10 +1,17 @@
-const countriesFile = '../docs/countries.txt'
+const pathDocs = '../docs'
 
-console.log(countriesFile)
+const fileCountries = `${pathDocs}/countries.txt`
+const fileBabyNames2022 = `${pathDocs}/countries.txt`
+const fileBabyNames1880 = `${pathDocs}/countries.txt`
+
+// console.log(fileCountries)
 
 const init = {
-  countriesFile: countriesFile,
-  fruit: "apple"
+  fileCountries, fileBabyNames1880, fileBabyNames2022,
+  slurpFile: () => {
+    console.log("HI")
+  }
+  
 }
 
 export default init
