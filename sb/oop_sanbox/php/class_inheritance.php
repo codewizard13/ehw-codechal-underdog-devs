@@ -1,4 +1,5 @@
 <?php
+// Eric Hepperle 2022-12-05
 
 class User {
 
@@ -15,7 +16,13 @@ class User {
 
 class Customer extends User {
 
+  var $city;
+  var $state;
+  var $country;
 
+  function location() {
+    return $this->city . ", " . $this->state. ", " . $this->country;
+  }
 
 }
 
@@ -28,9 +35,15 @@ $c = new Customer;
 $c->first_name = 'George';
 $c->last_name = 'Costanza';
 $c->username = 'gcostanza';
+$c->city = 'New York';
+$c->state = 'New York';
+$c->country = 'United States';
 
 echo $u->full_name() . "<br>";
 echo $c->full_name() . "<br>";
+
+echo $c->location() . "<br>";
+// echo $u->location() . "<br>"; // no method error
 
 echo get_parent_class($u) . "<br>";
 echo get_parent_class($c) . "<br>";
