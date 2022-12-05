@@ -1,30 +1,45 @@
 <?php
 // Eric Hepperle 2022-12-05
 
-class User {
+class User
+{
+
+  var $is_admin = false;
 
   var $first_name;
   var $last_name;
   var $username;
 
-  function full_name() {
+  function full_name()
+  {
     return $this->first_name . " " . $this->last_name;
   }
-
 }
 
 
-class Customer extends User {
+class Customer extends User
+{
 
   var $city;
   var $state;
   var $country;
 
-  function location() {
-    return $this->city . ", " . $this->state. ", " . $this->country;
+  function location()
+  {
+    return $this->city . ", " . $this->state . ", " . $this->country;
   }
-
 }
+
+class AdminUser extends User
+{
+  var $is_admin = true;
+
+  function full_name()
+  {
+    return $this->first_name . " " . $this->last_name . " (Admin)";
+  }
+}
+
 
 $u = new User;
 $u->first_name = 'Jerry';
@@ -53,4 +68,14 @@ if (is_subclass_of($c, 'User')) {
 }
 
 $parents = class_parents($c);
+echo implode(', ', $parents) . "<br>";
+
+$a = new AdminUser;
+$a->first_name = "John";
+$a->last_name = "Schneider";
+$a->username = 'jschneider';
+
+echo $a->full_name() . "<br>";
+echo get_parent_class($a) . "<br>";
+$parents = class_parents($a);
 echo implode(', ', $parents) . "<br>";
