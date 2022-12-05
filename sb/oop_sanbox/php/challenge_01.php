@@ -42,9 +42,9 @@ class Bicycle
   }
 
 
-  function set_weight_lbs()
+  function set_weight_lbs($value)
   {
-    $this->weight_lbs = $this->weight_kg * $this->kgToLbs;
+    $this->weight_kg = floatval($value) / $this->kgToLbs;
   }
 
 }
@@ -75,3 +75,7 @@ echo $trek->weight_kg . "<br />";
 echo $trek->weight_lbs() . "<br/>";
 // notice that one is a property and the other a method
 
+$trek->set_weight_lbs(2);
+
+echo $trek->weight_kg . "<br />";
+echo $trek->weight_lbs() . "<br/>";
