@@ -94,8 +94,8 @@ public/assets/
 #_images/
 
 # Ignore Sandbox folders
-sb/
-sandbox/
+# sb/
+# sandbox/
 
 # TEMPORARILY:
 #Readme.md
