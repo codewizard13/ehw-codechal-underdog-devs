@@ -1,6 +1,8 @@
 <?php
 
 /*
+CHALLENGE 01:
+
 Define bicycle class
 
 Properties: brand, model, year, description, weight_kg
@@ -24,9 +26,8 @@ class Bicycle
   var $brand;
   var $model;
   var $year;
-  var $description;
-  var $weight_kg;
-  var $weight_lbs;
+  var $description = 'Used bicycle';
+  var $weight_kg = 0.0;
 
   var $kgToLbs = 2.2046226218;
 
@@ -35,28 +36,9 @@ class Bicycle
     return $this->brand . " " . $this->model . " (" . $this->year . ")";
   }
 
-  // function weight_lbs()
-  // {
-  //   // if (null !== $this->weight_lbs() ) {
-  //   if ($this->weight_lbs) {
-  //     return $this->weight_lbs;
-  //   } else {
-  //     return $this->set_weight_lbs($this->weight_kg);
-  //   }
-  // }
-
-  // // function set_weight_lbs($weight_kg) {
-  // function set_weight_lbs() {
-  //   if ($this->weight_kg) {
-  //     $this->weight_lbs = $this->weight_kg * $this->kgToLbs;
-  //   } else {
-  //     return "Weight KG is not set<br/>";
-  //   }
-  // }
-
   function weight_lbs()
   {
-      return $this->weight_kg * $this->kgToLbs;
+      return floatval($this->weight_kg) * $this->kgToLbs;
   }
 
 
@@ -64,7 +46,7 @@ class Bicycle
   {
     $this->weight_lbs = $this->weight_kg * $this->kgToLbs;
   }
-  
+
 }
 
 $bicycle1 = new Bicycle;
@@ -74,13 +56,22 @@ $bicycle1->year = 1998;
 $bicycle1->description = "A nice, swifit bicycle for pedestrian living.";
 $bicycle1->weight_kg = 12;
 
+$trek = new Bicycle;
+$trek->brand =  'Trek';
+$trek->model = 'Emonda';
+$trek->year = '2017';
+$trek->weight_kg = 1.0;
 
-$object_vars = get_object_vars($bicycle1);
+$cd = new Bicycle;
+$cd->brand = 'Cannondale';
+$cd->model = 'Synapse';
+$cd->year = '2016';
+$cd->weight_kg = 8.0;
 
-echo "<h3>Bicycle1:</h3>";
-// echo "Object Vars: " . implode(', ', $object_vars) . "<br/>";
-echo "Name: " . $bicycle1->name() . "<br>";
-echo "Object Vars: ";
-var_dump($object_vars);
-echo "Bicycle Model: " . $bicycle1->model . "<br/>";
-echo "Bicycle Weight : " . $bicycle1->weight_kg . " (kg) / " . $bicycle1->weight_lbs() . " (lbs)<br />";
+echo $trek->name() . "<br/>";
+echo $cd->name() . "<br/>";
+
+echo $trek->weight_kg . "<br />";
+echo $trek->weight_lbs() . "<br/>";
+// notice that one is a property and the other a method
+
