@@ -19,8 +19,10 @@ let filename = '../../../docs/countries.txt'
 // Read file into an array of words
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
-// const countries = fileStr.split('\n') // make array
-let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
+const countries = fileStr.split('\n') // make array
+// let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
+
+console.log({countries})
 
 
 
@@ -49,31 +51,24 @@ const results = []
 
 const vowels = ["A", "E", "I", "O", "U"]
 
+console.log(`countries.length: ${countries.length}`)
+
 for (let i=0; i < countries.length; i++) {
 
-  let country = countries[i]
+  let country = countries[i].toUpperCase()
   let firstChar = country[0].toUpperCase()
   let lastChar = country[country.length-1].toUpperCase()
 
+  console.group()
+
   console.log(`firstChar:`, firstChar, `lastChar:`, lastChar)
 
-  // // Loop through each vowel
-  // for (let j=0; j < vowels.length; j++) {
+  if (! isVowel(firstChar)) { break }
+  if (! isVowel(lastChar)) { break }
 
-    // let currentVowel = vowels[j]
-
-    // console.log(isVowel(firstChar))
-    // console.log(`firstChar [${firstChar}] is a vowel`)
-
-    if (! isVowel(firstChar)) { break }
-    if (! isVowel(lastChar)) { break }
-
-    results.push(country)
-
-  // }
+  results.push(country)
 
 }
-const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 console.log(`\n`, results)
 
@@ -87,4 +82,3 @@ function isVowel(char) {
 
 }
 
-console.log(vowels.indexOf("U"))
