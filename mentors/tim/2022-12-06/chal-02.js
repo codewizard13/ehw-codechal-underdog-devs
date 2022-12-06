@@ -11,6 +11,7 @@ Challenge:
 Eric Hepperle
 2022-11-23
 
+V2
 
 */
 
@@ -30,46 +31,12 @@ const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const countries = fileStr.split('\n') // make array
 
-console.log(countries)
-
-/*
-ALGO:
-
-declare empty results array
-
-Loop through each country name
-
-  IF country has at least one vowel
-
-    OF the set of available vowels we are checking,
-     do more than one members of the set appear in name
-     
-     - START at index 0 (left) of country name and work right
-     - WHEN we encounter a vowel record which vowel was found
-
-    FOR each vowel in vowel array
-
-      IF current char of country name matches current vowel
-
-        RECORD /store which vowel was found
-        - boolean foundA
-        - foundE
-        - foundI ...   
-
-
-        THEN check if next vowel present
-
-     IF ONLY ONE vowel was found
-     - ! 
-     
-        ADD current country to results array
-
-*/
+// console.log(countries)
 
 ///
 
 /*
-ALGO: V3
+ALGO: V4
 
 declare empty results array
 declare vowels array A, E, I, O, U
@@ -113,7 +80,9 @@ let found = [] // push each unique vowel onto here
 
 countries.forEach((country, i) => {
 
-  // this could be a function
+  // (this could be a function)
+  // Loop through each vowel. If found in current
+  //   country name
   for (let j=0; j < vowels.length; j++) {
 
     let vowel = vowels[j]
