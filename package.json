@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/codewizard13/ehw-codechal-underdog-devs/issues"
   },
-  "homepage": "https://github.com/codewizard13/ehw-codechal-underdog-devs#readme"
+  "homepage": "https://github.com/codewizard13/ehw-codechal-underdog-devs#readme",
+  "type": "module"
 }
