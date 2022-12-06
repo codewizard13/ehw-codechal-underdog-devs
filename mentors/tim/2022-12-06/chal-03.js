@@ -11,7 +11,7 @@ Challenge:
 Eric Hepperle
 2022-11-23
 
-V2
+V3
 
 */
 
@@ -26,52 +26,14 @@ let needle = 'TYPE'
 const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 // Read file into an array of words
-
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 // const countries = fileStr.split('\n') // make array
-// let countries = ["Albania", "Uganda", "Togo"]
-let countries = ["Togo"]
+let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
+// let countries = ["Togo"]
+// let countries = ["Uganda"]
 
-// console.log(countries)
 
-///
-
-/*
-ALGO: V4
-
-declare empty results array
-declare vowels array A, E, I, O, U
-
-creat object to store found vowel results
-Add the following to the object as properties
-This is basically a results dictionary
-
-let foundA = false
-let foundE = false
-let foundI = false
-let foundO = false
-let foundU = false
-
-WHILE we haven't yet reached end of countries file
-
-  STORE current country as "country"
-
-  LOOP through each vowel in vowels array
-
-    IF country contains vowel
-
-      LET boolean found<thisVowel> = true
-
-    |
-
-  |
-
-  // Before iterating on next word
-  IF 
-
-|
-*/
 
 
 const results = []
@@ -80,9 +42,16 @@ const vowels = ["A", "E", "I", "O", "U"]
 
 let found = [] // push each unique vowel onto here
 
+console.log({countries})
+
+
+// For each country name,
 for (let i = 0; i < countries.length; i++) {
 
   let country = countries[i]
+
+  console.log("Clearing found[] ...")
+  found = []
 
   // (this could be a function)
   // Loop through each vowel,
@@ -90,41 +59,31 @@ for (let i = 0; i < countries.length; i++) {
 
     let vowel = vowels[j]
 
+    if (found.length >= 2) {
+      console.warn(`Breaking and moving to next country name ...`)
+      break; // next country
+    }
+
+
+    console.log(`${country}.indexOf(${vowel}): `, country.indexOf(vowel))
+
+    // IF vowel found in country name
+    if (country.toUpperCase().indexOf(vowel.toUpperCase()) !== -1) {
+      found.push(vowel)
+    }
+
+    console.log({found})
     console.log(`found.length: ${found.length}`)
 
-    // If current vowel found in current country name
-    //  AND found.length < 2
+  } // end vowels loop
 
-    if (found.length >= 2) {
+  if (found.length === 1) {
+    results.push(country)
+  }
 
-      break; // jump to next name
+} // end countries loop
 
-    }
-
-    if (country.indexOf(vowel) !== -1) {
-
-      console.log(`IN [${country}]: found ${vowel} at index [`, country.indexOf(vowel), `]`)
-      // add vowel to found array
-      found.push(vowel)
-      console.log(`-- Pushed ${vowel} onto found. found`, found)
-    }
-
-  } //
-
-  results.push(country)
-
-}
-
+console.log(`\nResults:`)
 console.table(results)
 
-// TAKEAWAYS #HOMEWORK:
-//
-// Breaking down problems and communicating technically
-// Data modeling -related
-
-
-// let countriesWithoutVowels = countries.filter(country => country.match(/AEIOU/))
-// let countriesWithoutVowels = countries.filter(country => country.toUpperCase().match(/[AEIOU]/))
-
 console.log("countries.length:", countries.length)
-// console.log("countriesWithoutVowels.length:", countriesWithoutVowels.length)
