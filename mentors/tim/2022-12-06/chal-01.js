@@ -11,3 +11,8 @@ Eric Hepperle
 
 
 */
+
+console.log("hi")
+
+// import init from './modules/init.js'
+// console.log({init})

@@ -1,0 +1,23 @@
+{
+  "name": "2022-ehw-codechal-underdog-devs",
+  "version": "1.0.0",
+  "description": "Eric Hepperle's Underdog Devs main repo",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codewizard13/ehw-codechal-underdog-devs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codewizard13/ehw-codechal-underdog-devs/issues"
+  },
+  "homepage": "https://github.com/codewizard13/ehw-codechal-underdog-devs#readme"
+}
