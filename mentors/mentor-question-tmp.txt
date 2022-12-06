@@ -1,39 +1,8 @@
-ALGORITHM:
-
-DEFINE empty results array (results)
-DEFINE array with all the vowels (vowels)
-DEFINE empty array to hold all the vowels we found (found)
-
-LOOP through each country name,
-
-  DEFINE country as countries[i]
-
-  SET/RESET found array to empty
-
-
-  LOOP through all the vowels in vowels array
-
-    DEFINE vowel as the current index of vowels array
-
-    IF there are 2 or more vowels in found array
-
-      STOP PROCESSING and jump to next country name
-
-    END
-
-    CONVERT country name and vowel to uppercase in order to compare
-    IF country name contains the current vowel
-
-      PUSH vowel onto found array
-
-    END
-
-  END vowels loop
-
-  ONLY IF there was only one unique vowel found
-
-    PUSH current country name onto results array
-
-END countries loop
-
-OUTPUT results
+$ git push
+To https://github.com/codewizard13/ehw-codechal-underdog-devs.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/codewizard13/ehw-codechal-underdog-devs.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
