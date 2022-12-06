@@ -25,26 +25,6 @@ const countries = fileStr.split('\n') // make array
 console.log({countries})
 
 
-
-/*
-ALGORITHM:
-
-DEFINE empty results array (results)
-DEFINE array of vowels as "A", "E", "I", "O", "U"
-
-LOOP through countries array
-
-  IF country name begins with vowel (country[0] is included in vowels array)
-    AND country name ends with vowel (country[country.length -1] is included in vowels array)
-
-    ADD country name to results array
-
-  END
-
-END countries loop
-
-*/
-
 // console.log({countries})
 
 const results = []
@@ -82,3 +62,27 @@ function isVowel(char) {
 
 }
 
+
+
+
+
+
+
+/*
+ALGORITHM:
+
+DEFINE empty results array (results)
+DEFINE array of vowels as "A", "E", "I", "O", "U"
+
+LOOP through countries array
+
+  IF country name begins with vowel (country[0] is included in vowels array)
+    AND country name ends with vowel (country[country.length -1] is included in vowels array)
+
+    ADD country name to results array
+
+  END
+
+END countries loop
+
+*/
