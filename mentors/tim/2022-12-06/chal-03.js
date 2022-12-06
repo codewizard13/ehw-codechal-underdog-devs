@@ -28,8 +28,8 @@ const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 // Read file into an array of words
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
-// const countries = fileStr.split('\n') // make array
-let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
+const countries = fileStr.split('\n') // make array
+// let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
 // let countries = ["Togo"]
 // let countries = ["Uganda"]
 
