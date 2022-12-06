@@ -20,12 +20,20 @@ let filename = '../../../docs/countries.txt'
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const countries = fileStr.split('\n') // make array
-// let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
+// let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper", "Afghanistan"]
 
 console.log({countries})
 
 
 // console.log({countries})
+
+
+function isVowel(char) {
+  if (vowels.indexOf(char) !== -1) {
+    return true
+  }
+  return false
+}
 
 const results = []
 
@@ -39,12 +47,11 @@ for (let i=0; i < countries.length; i++) {
   let firstChar = country[0].toUpperCase()
   let lastChar = country[country.length-1].toUpperCase()
 
-  console.group()
+  console.log()
+  console.log(`country:`, country, ` -- firstChar:`, firstChar, `| lastChar:`, lastChar)
 
-  console.log(`firstChar:`, firstChar, `lastChar:`, lastChar)
-
-  if (! isVowel(firstChar)) { break }
-  if (! isVowel(lastChar)) { break }
+  if (! isVowel(firstChar)) { continue }
+  if (! isVowel(lastChar)) { continue }
 
   results.push(country)
 
@@ -52,15 +59,7 @@ for (let i=0; i < countries.length; i++) {
 
 console.log(`\n`, results)
 
-function isVowel(char) {
 
-  if (vowels.indexOf(char) !== -1) {
-    return true
-  }
-
-  return false
-
-}
 
 
 
