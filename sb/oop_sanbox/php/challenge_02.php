@@ -31,12 +31,21 @@ class Book {
 
   var $is_fiction = false;
 
-  var $css_styles = [
+  protected $css_styles = [
     "min-height" => "2rem",
     "padding" => "1rem",
     "border-radius" => ".3rem",
     "font-family" => "serif"
   ];
+
+  
+  public function __construct($title, $author, $year, $isbn)
+  {
+    $this->title = $title;
+    $this->author = $author;
+    $this->year = $year;
+    $this->isbn = $isbn;
+  }
 
   function style_string() {
 
@@ -83,7 +92,15 @@ class FictionBook extends Book {
   var $formats = [];
   var $length_type = 'novel';
 
-  $css_styles['font-family'] = "serif";
+  public function __construct($title, $author, $year, $isbn)
+  {
+    // parent::style_string();
+    parent::__construct( $title, $author, $year, $isbn  );
+    
+    $this->css_styles['font-family'] = "serif";
+    
+  }
+
 
 }
 
