@@ -1,1 +1,3 @@
 Tim helped me figure out how to troubleshoot / test Leetcode 3109 (self-selected) eric/2022-11-21/chal_01.js
+
+/eric-selected\2022-11-21\leetcode-decrypt-str-6.js
