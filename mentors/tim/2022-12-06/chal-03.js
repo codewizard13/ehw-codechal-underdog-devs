@@ -17,61 +17,45 @@ V3
 
 const fs = require('fs')
 
-let matches = []
-let reg = /GHTLY/
 let filename = '../../../docs/countries.txt'
-let filtered = []
-let needle = 'TYPE'
-
-const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 // Read file into an array of words
 const buffer = fs.readFileSync(filename)
 const fileStr = buffer.toString()
 const countries = fileStr.split('\n') // make array
+
+// SAMPLE COUNTRIES ARRAYS FOR TESTING:
 // let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
 // let countries = ["Togo"]
 // let countries = ["Uganda"]
 
-
 const results = []
 
 const vowels = ["A", "E", "I", "O", "U"]
+// vowels.push("Y") // add Y on for testing
 
 let found = [] // push each unique vowel onto here
-
-console.log({countries})
-
 
 // For each country name,
 for (let i = 0; i < countries.length; i++) {
 
   let country = countries[i]
 
-  console.log("Clearing found[] ...")
   found = []
 
-  // (this could be a function)
   // Loop through each vowel,
   for (let j = 0; j < vowels.length; j++) {
 
     let vowel = vowels[j]
 
     if (found.length >= 2) {
-      console.warn(`Breaking and moving to next country name ...`)
       break; // next country
     }
-
-
-    console.log(`${country}.indexOf(${vowel}): `, country.indexOf(vowel))
 
     // IF vowel found in country name
     if (country.toUpperCase().indexOf(vowel.toUpperCase()) !== -1) {
       found.push(vowel)
     }
-
-    console.log({found})
-    console.log(`found.length: ${found.length}`)
 
   } // end vowels loop
 
@@ -83,8 +67,8 @@ for (let i = 0; i < countries.length; i++) {
 
 console.log(`\nResults:`)
 console.table(results)
+console.log(`There were a total of`,  results.length, `matches of`,countries.length, `countries.`)
 
-console.log("countries.length:", countries.length)
 
 
 
