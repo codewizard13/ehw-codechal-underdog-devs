@@ -1,17 +1,14 @@
 /*
-MENTOR Tim:
+MENTOR Jacob:
 
 Challenge:
 
 
-[ ] What countries use only one vowel in their name (the vowel can be used multiple times)
-    - For example, if the word “BEEKEEPER” were a country, it would be an answer, because it only uses “E”.
-
 
 Eric Hepperle
-2022-12-06
+2022-12-07
 
-V3
+V1
 
 */
 

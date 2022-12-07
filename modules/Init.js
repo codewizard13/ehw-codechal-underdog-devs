@@ -9,6 +9,33 @@ const fileBabyNames1880 = `${pathDocs}/baby_names_1880_short.txt`
 
 const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+const msgStyles = {
+  error:
+    `color: red;` +
+    `font-weight: bold;` +
+    'font-size: 1.3em'
+  ,
+  correct:
+    `color: green;` +
+    `font-weight: bold;` +
+    'font-size: 1.3em'
+  ,
+  warn:
+    `color: orange;` +
+    `font-weight: bold;` +
+    'font-size: 1.3em'
+  ,
+  bgYellow:
+    `background: #ffffb3;` +
+    `padding: 1em;` +
+    `font-weight: bold;`
+  ,
+  bgAlice:
+    `background: aliceblue;` +
+    `padding: 1em;` +
+    `font-weight: bold;`
+  ,
+}
 
 // console.log(fileCountries)
 
