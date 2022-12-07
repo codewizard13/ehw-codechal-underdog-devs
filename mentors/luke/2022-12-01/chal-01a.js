@@ -74,7 +74,7 @@ function main() {
 
   // Output results
   console.table(shortestCountryNames)
-  console.log(`There were`, shortestCountryNames.length, `of`, countries.length, `countries\n that had the shortest country length of`, shortestLength)
+  console.log(`There were`, shortestCountryNames.length, `of`, countries.length, `countries that had\n the shortest country length of`, shortestLength)
 
 }
 
@@ -91,25 +91,44 @@ main()
 /*
 ALGORITHM:
 
-declare empty shortest array
+DEFINE PATH to countries file (countriesPath)
+SLURP countries file into array (countries)
+DEFINE global shortest length variable and initialize to zero (shortestLength)
 
-strong shortestLength = ''
 
-slurp countries file into countries array
+// Determine shortest name length
+LOOP through every country in countries
 
-// Determine shortest length
-foreach country
+  IF this is the first country name
 
-  if first country
-    set shortest to this country
-  else
-    
-    if (country.length < shortest.length)
+    SET shortest length to current country name length
 
-    }
+  OTHERWISE
 
-  }
+    IF current country name length is LESS than the shortest length so far,
 
-}
+      SET shortest length to current country name length
 
+    END
+
+  END
+
+END lines loop
+
+
+// Find countries with name length equal to shortest length
+DEFINE filtered results array (filtered)
+
+LOOP through each country name
+
+  IF current country name length equals shortest length
+
+    ADD country to filtered results
+
+  END
+
+END second loop through country names
+
+
+RETURN filtered results matches
 */
