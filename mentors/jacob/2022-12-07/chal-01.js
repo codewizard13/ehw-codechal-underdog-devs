@@ -37,3 +37,5 @@ slurp countries file into array of strings
 Return / output results
 
 */
+
+console.log({ countries })

@@ -22,11 +22,7 @@ const fileStr = buffer.toString()
 const countries = fileStr.split('\n') // make array
 // let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper", "Afghanistan"]
 
-console.log({countries})
-
-
-// console.log({countries})
-
+// console.log({ countries })
 
 function isVowel(char) {
   if (vowels.indexOf(char) !== -1) {
@@ -39,30 +35,24 @@ const results = []
 
 const vowels = ["A", "E", "I", "O", "U"]
 
-console.log(`countries.length: ${countries.length}`)
-
-for (let i=0; i < countries.length; i++) {
+for (let i = 0; i < countries.length; i++) {
 
   let country = countries[i].toUpperCase()
   let firstChar = country[0].toUpperCase()
-  let lastChar = country[country.length-1].toUpperCase()
+  let lastChar = country[country.length - 1].toUpperCase()
 
-  console.log()
-  console.log(`country:`, country, ` -- firstChar:`, firstChar, `| lastChar:`, lastChar)
+  // console.log()
+  // console.log(`country:`, country, ` -- firstChar:`, firstChar, `| lastChar:`, lastChar)
 
-  if (! isVowel(firstChar)) { continue }
-  if (! isVowel(lastChar)) { continue }
+  if (!isVowel(firstChar)) { continue }
+  if (!isVowel(lastChar)) { continue }
 
   results.push(country)
 
 }
 
-console.log(`\n`, results)
-
-
-
-
-
+console.table(results)
+console.log(`Out of`, countries.length, `countries`, results.length, `matched the condition.`)
 
 
 
