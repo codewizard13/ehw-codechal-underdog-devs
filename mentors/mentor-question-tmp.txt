@@ -1,0 +1,7 @@
+f("hello") => "HELLO"
+
+f("../../../docs/countries.txt") => ["Egypt", "United States", ...]
+
+const process = require('process');
+
+process.argv[1]
