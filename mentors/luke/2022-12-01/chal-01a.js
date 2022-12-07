@@ -74,7 +74,8 @@ function main() {
 
   // Output results
   console.table(shortestCountryNames)
-  console.log(`There were`, shortestCountryNames.length, `of`, countries.length, `countries that had\n the shortest country length of`, shortestLength)
+  console.log(`There were`, shortestCountryNames.length, `of`, countries.length, `countries that had`)
+  console.log(`the shortest country length of`, shortestLength)
 
 }
 
