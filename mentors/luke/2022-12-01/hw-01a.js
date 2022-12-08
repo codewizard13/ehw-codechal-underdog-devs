@@ -43,23 +43,28 @@ function filenameToLines(filename) {
  */
 function shortestLines(lines) {
 
-  lines.forEach((line, i) => {
+  let shortestLines = []
 
-    // console.log(`${line}.length`, line.length)
+  let shortestLength = 0
+
+  lines.forEach((line, i) => {
 
     if (i === 0) {
       shortestLength = line.length
-    } else {
-      if (line.length < shortestLength) {
-        shortestLength = line.length
-      }
+      shortestLines.push(line)
+    } else if (line.length < shortestLength) {
+      shortestLength = line.length
+      shortestLines = [line] // clear shortest array
+    } else if (line.length === shortestLength) {
+      shortestLines.push(line)
     }
 
   })
 
-  const filtered = lines.filter(line => line.length === shortestLength)
+  // const filtered = lines.filter(line => line.length === shortestLength)
+  // return filtered
 
-  return filtered
+  return shortestLines
 }
 
 
@@ -94,6 +99,7 @@ DEFINE PATH to countries file (countriesPath)
 SLURP countries file into array (countries)
 DEFINE global shortest length variable and initialize to zero (shortestLength)
 
+DEFINE array shortestCountries
 
 // Determine shortest name length
 LOOP through every country in countries
@@ -107,12 +113,47 @@ LOOP through every country in countries
     IF current country name length is LESS than the shortest length so far,
 
       SET shortest length to current country name length
+      clear shortestCountries array
+
+      IF we have a next value (line) in array          
+      
+      ELSE length is > or = current length
+
+        store current item somewhere, shortestCountries
+
+
+      7, 7, 11, 4
+        
 
     END
 
   END
 
 END lines loop
+
+
+IF first item
+
+  add current country to shortestCountries
+
+IF current country.length < shortestCountries[0].length
+
+  clear shortestCountries
+
+  add current country to shortestCountries
+
+ELSE IF CURRENT country length equals shortest length
+
+    add current country to shortestCountries
+
+ELSE
+
+  continue
+
+
+
+
+
 
 
 // Find countries with name length equal to shortest length
