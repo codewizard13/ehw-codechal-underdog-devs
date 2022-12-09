@@ -71,12 +71,18 @@ function main()
   echo '<ul>';
   for ($i=0; $i < count($babyNames2020); $i++) {
 
-    echo "<li>{$i}: " . $babyNames2020[$i] . '</li>';
-    
-    if (isset($scrabbleWords[reversed($babyNames2020[$i])])) {
+    $currentName = $babyNames2020[$i];
 
+    echo "<li>";
+    echo "$currentName reversed is <span style='color:green'>" . reversed($currentName);
+    
+    if (isset($scrabbleWords[reversed($currentName)])) {
+
+      echo "{$i}: " . $currentName;
 
     }
+
+    echo "</li>";
 
   }  
   echo '</ul>';
@@ -91,7 +97,35 @@ function main()
 
 function reversed($inputStr) {
 
-  ///
+  $newStr = '';
+
+  $remainder = $inputStr;
+
+  $count = 0;
+
+  while (strlen($remainder) > 0) {
+
+    echo "<h3>Run: $count</h3>";
+
+    // get last char
+    $lastChar = substr($remainder, -1);
+    echo "lastChar: $lastChar<br>";
+    
+    // set $remainder as remainder
+    $newStrLastIndex = strlen($remainder) - 1;
+    echo "\$newStrLastIndex = $newStrLastIndex</br>";
+    $remainder = substr($remainder, 0, $newStrLastIndex);
+
+    // append last char to $newStr
+    $newStr .= $lastChar;
+
+    $count++;
+
+  }
+
+  // $newStr .= array_pop(explode('', $inputStr));
+
+  return $newStr;
 
 }
 
