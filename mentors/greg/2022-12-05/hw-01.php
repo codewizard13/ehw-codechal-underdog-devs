@@ -71,12 +71,18 @@ function main()
   echo '<ul>';
   for ($i=0; $i < count($babyNames2020); $i++) {
 
-    echo "<li>{$i}: " . $babyNames2020[$i] . '</li>';
-    
-    if (isset($scrabbleWords[reversed($babyNames2020[$i])])) {
+    $currentName = $babyNames2020[$i];
 
+    echo "<li>";
+    echo "$currentName reversed is <span style='color:green'>" . reversed($currentName);
+    
+    if (isset($scrabbleWords[reversed($currentName)])) {
+
+      echo "{$i}: " . $currentName;
 
     }
+
+    echo "</li>";
 
   }  
   echo '</ul>';
@@ -91,7 +97,9 @@ function main()
 
 function reversed($inputStr) {
 
-  ///
+  $newStr = '';
+
+  return $inputStr;
 
 }
 
