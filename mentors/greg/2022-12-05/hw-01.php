@@ -72,13 +72,15 @@ function main()
   for ($i=0; $i < count($babyNames2020); $i++) {
 
     $currentName = strtoupper($babyNames2020[$i]);
+    $reversedName = reversed($currentName);
 
     echo "<li>";
-    echo "$currentName reversed is <span style='color:green'>" . reversed($currentName);
+    echo "$currentName reversed is <span style='color:green'>$reversedName</span></br>";
+    echo "Reveresed name exists in scrabble words? " . $scrabbleWords[$reversedName] . "<br>";
     
     if (isset($scrabbleWords[reversed($currentName)])) {
 
-      echo "{$i}: " . $currentName;
+      echo "<strong>$i: $currentName</strong>";
 
     }
 
