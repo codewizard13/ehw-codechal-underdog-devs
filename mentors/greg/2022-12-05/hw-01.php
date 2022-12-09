@@ -1,35 +1,32 @@
 <?php
 
 /*
-MENTOR Greg:
+MENTOR Greg: HOMEWORK
 
-There is at least one baby name from the top 40 baby names for 2020 that, when spelled backwards, is a valid Scrabble word. Find and print all such names.
+At least one baby name from the top 40 baby names for 2020 that, when spelled
+backwards, is a valid Scrabble word. Find and print all such names.
 
 SECOND IMPLEMENTATION:
-
-
+- Refactor to use hashmaps
 
 Eric Hepperle
 2022-12-09
 */
 
+echo "HEY!<BR>";
 
+// INCLUDE FUNCTIONS LIBRARY
+require_once('../inc/functions.php');
+
+// FILE PATHS
 $babyNames2020 = '../../../docs/baby_names_2020_short.txt';
 $scrabbleFile = '../../../docs/sowpods.txt';
 
-echo "HI";
-
-function fileToArray($filename)
-{
-  $namesStr = file_get_contents($filename);
-  $namesArr = explode("\n", $namesStr);
-  return $namesArr;
-}
-
+// CREATE ARRAYS FROM FILES
 $namesArr = fileToArray($babyNames2020);
 $scrabbleArr = fileToArray($scrabbleFile);
 
-
+var_dump($namesArr);
 
 
 $matchedNames = [];
