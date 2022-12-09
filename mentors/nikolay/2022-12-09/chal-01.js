@@ -1,253 +1,129 @@
-/* 
+/*
+MENTOR Nikolay:
 
+Challenge:
+
+What are all of the names that were top 40 baby names in both 1880 and 2020?
 
 Eric Hepperle
-2022-12-02
+2022-12-09
 
-*/
-
-/* ----------- CONSOLE LOG STYLES: ----------- */
-
-const styles = {
-  error:
-    `color: red;` +
-    `font-weight: bold;` +
-    'font-size: 1.3em'
-  ,
-  correct:
-    `color: green;` +
-    `font-weight: bold;` +
-    'font-size: 1.3em'
-  ,
-  warn:
-    `color: orange;` +
-    `font-weight: bold;` +
-    'font-size: 1.3em'
-  ,
-  bgYellow:
-    `background: #ffffb3;` +
-    `padding: 1em;` +
-    `font-weight: bold;`
-  ,
-  bgAlice:
-    `background: aliceblue;` +
-    `padding: 1em;` +
-    `font-weight: bold;`
-  ,
-}
-
-/*
-What is the shortest baby name in the top 40 baby names for 2020
-
-EDGE CASES:
-
-- Empty file
-- blank lines in file
-
-- garbage characters
+V1
 
 */
 
 const fs = require('fs')
 
 
-const results = []
+/**
+ * Return lines array from file
+ * 
+ * @args: {string} filename
+ * @return: {array} lines
+ */
+function filenameToLines(filename) {
 
-let filename = '../../../docs/baby_names_2020_short.txt'
-const buffer = fs.readFileSync(filename)
-const fileStr = buffer.toString()
-const names = fileStr.split('\n') // make array
-// countries.push("Cat")
+  const buffer = fs.readFileSync(filename)
+  const fileStr = buffer.toString()
+  const lines = fileStr.split('\n') // make array
 
-/* ----------- Test Values: ----------- */
+  return lines
 
+}
 
-/*
-ALGORITHM:
-
-declare shortestLength = 0
-results = []
-
-slurp file into names array
-
-// FIND shortest length
-foreach name in names 
-
-  if (first element)
-    shortestLength = currentName.length
-  else
-    (if shortest.length < currentName.length)
-      shortestLength = currentName.length
+console.log("hi")
 
 
-// Return all names in array that have length == shortest length 
-
-foreach name in names
-  if name.length === shortestLength
-    results.push(name)
-
-
-
-*/
-
-
-// let shortestLength = 0
-// // console.log({names})
-
-// names.forEach((name, i) => {
-
-//   if (name.length > 0 && name !== undefined) {
-//     if (i === 0) {
-//       shortestLength = name.length
-//     } else {
-//       if (shortestLength > name.length) {
-//         shortestLength = name.length
-//       }
-//     }
-
-//   }
-
-// })
-
-// console.log({ shortestLength })
-
-
-
-// const shortestNames = names.filter(name => name.length == shortestLength)
-
-// const shortNames = []
-
-// for (let i = 0; i < names.length; i++) {
-//   if (names[i].length == shortestLength) {
-//     shortNames.push(names[i])
-//   }
+// dict: {
+//   '0': babyName
 // }
 
-// console.log({ shortestNames })
-// console.log({ shortNames })
 
-
-///
-
-// Time complexity
-// File length = n
-// First loop line by line, go through once. linear time complexity
 /*
-go once from top to bottom
+ALGORITHM
 
-First loop is linear time complexity
+DECLARE matchedNames array
 
-RESEARCH time complexity
-2N
+SLURP baby names 1880 into array (babyNames1880)
+SLURP baby names 2020 into array (babyNames2020)
+
+LOOP through babyNames2020
+
+  STORE currentBabyName2020
+
+  COMPARE cureentBabyName2020
+
+    IF current2020Name is included in 1880NamesArray
+    
+      ADD current name to matchedNames array
+
+END
 
 */
 
-/*
-
-function accepts a filename and returns shortestName(s)
-
-*/
 
 
-function getShortestName(filename) {
+/**
+ * Main: The main function; controller.
+ */
+function main() {
 
-  const buffer = fs.readFileSync(filename)
-  const fileStr = buffer.toString()
-  const names = fileStr.split('\n') // make array
 
-  const results = []
+  let babyNames1880File = '../../../docs/baby_names_1880_short.txt'
+  let babyNames2020File = '../../../docs/baby_names_2020_short.txt'
 
-  let shortestLength = 0
-  // console.log({names})
+  babyNames1880Array = filenameToLines(babyNames1880File)
+  babyNames2020Array = filenameToLines(babyNames2020File)
 
-  names.forEach((name, i) => {
+  // console.log({ babyNames2020Array })
 
-    if (name.length > 0 && name !== undefined) {
-      if (i === 0) {
-        shortestLength = name.length
-      } else {
-        if (shortestLength > name.length) {
-          shortestLength = name.length
-        }
-      }
+  for (let i = 0; i < babyNames2020Array.length; i++) {
 
+    let name2020 = babyNames2020Array[i]
+    // console.log()
+
+    if (babyNames1880Array.indexOf(name2020) !== -1) {
+      // console.log("Found: ", i, ' ', name2020, "in both!")
+
+      matchedNames.push(name2020)
     }
 
-  })
-
-  // console.log({ shortestLength })
-
-  // const shortestNames = names.filter(name => name.length == shortestLength)
-
-  const shortNames = []
-
-  for (let i = 0; i < names.length; i++) {
-    if (names[i].length == shortestLength) {
-      shortNames.push(names[i])
-    }
   }
 
-return shortNames
+  console.log(`There were `, matchedNames.length, `results:`)
+  console.log({ matchedNames })
+
 
 }
 
-console.log(getShortestName('../../../docs/baby_names_2020_short.txt'))
-console.log(getShortestName('../../../docs/baby_names_1880_short.txt'))
 
+let matchedNames = []
 
-/////
-
-
-
-function getLongestName(filename) {
-
-  const buffer = fs.readFileSync(filename)
-  const fileStr = buffer.toString()
-  const names = fileStr.split('\n') // make array
-
-  const results = []
-
-  let longestLength = 0
-  // console.log({names})
-
-  names.forEach((name, i) => {
-
-    if (name.length > 0 && name !== undefined) {
-      if (i === 0) {
-        longestLength = name.length
-      } else {
-        if (longestLength < name.length) {
-          longestLength = name.length
-        }
-      }
-
-    }
-
-  })
-
-  // console.log({ longestLength })
-
-  // const shortestNames = names.filter(name => name.length == longestLength)
-
-  const longNames = []
-
-  for (let i = 0; i < names.length; i++) {
-    if (names[i].length == longestLength) {
-      longNames.push(names[i])
-    }
-  }
-
-return longNames
-
-}
-
-console.log(getLongestName('../../../docs/baby_names_2020_short.txt'))
-console.log(getLongestName('../../../docs/baby_names_1880_short.txt'))
+main()
 
 
 /*
-Focus more on explaining while writing
 
-BASICS of space and time complexity HOMEWORK
+HOMEWORK
+
+if name doesn't exist as a key
+  add key to object
+  set value to 1
+else
+  increment keys value by 1
+
+
+wHAT IS TIME COMPLEXITY?
+
 
 */
+
+
+
+
+  // const shortestCountryNames = shortestLines(countries)
+
+  // // Output results
+  // console.table(shortestCountryNames)
+  // console.log(`There were`, shortestCountryNames.length, `of`, countries.length, `countries that had`)
+  // console.log(`the shortest country length of`, shortestLength)
