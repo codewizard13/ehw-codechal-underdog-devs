@@ -19,18 +19,25 @@ echo "HEY!<BR>";
 require_once('../inc/functions.php');
 
 // FILE PATHS
+// $babyNames2020 = '../../../docs/baby_names_2020_short.txt';
+// $scrabbleFile = '../../../docs/sowpods.txt';
 $babyNames2020 = '../../../docs/baby_names_2020_short.txt';
 $scrabbleFile = '../../../docs/sowpods.txt';
 
-// CREATE ARRAYS FROM FILES
-$namesArr = fileToArray($babyNames2020);
-$scrabbleArr = fileToArray($scrabbleFile);
-
-var_dump($namesArr);
+define('DOCS_PATH',  '../../../docs/');
+define('BABY_NAMES_2020', DOCS_PATH . 'baby_names_2020_short.txt');
+define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 
-$matchedNames = [];
+/**
+ * Primary controller function.
+ */
+function main() {
 
+  // CREATE ARRAYS FROM FILES
+$namesArr = fileToArray(BABY_NAMES_2020);
+$scrabbleArr = fileToArray(SCRABBLE_FILE);
+  
 
 foreach ($namesArr as $name) {
 
@@ -65,5 +72,14 @@ function strReverse2($string) {
 $testing = strReverse2("LIAM");
 
 echo "<h2>$testing</h2>";
+
+
+}
+
+$matchedNames = [];
+
+main();
+
+
 
 
