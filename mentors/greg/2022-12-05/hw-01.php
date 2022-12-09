@@ -71,7 +71,7 @@ function main()
   echo '<ul>';
   for ($i=0; $i < count($babyNames2020); $i++) {
 
-    $currentName = $babyNames2020[$i];
+    $currentName = strtoupper($babyNames2020[$i]);
 
     echo "<li>";
     echo "$currentName reversed is <span style='color:green'>" . reversed($currentName);
@@ -105,15 +105,15 @@ function reversed($inputStr) {
 
   while (strlen($remainder) > 0) {
 
-    echo "<h3>Run: $count</h3>";
+    // echo "<h3>Run: $count</h3>";
 
     // get last char
     $lastChar = substr($remainder, -1);
-    echo "lastChar: $lastChar<br>";
+    // echo "lastChar: $lastChar<br>";
     
     // set $remainder as remainder
     $newStrLastIndex = strlen($remainder) - 1;
-    echo "\$newStrLastIndex = $newStrLastIndex</br>";
+    // echo "\$newStrLastIndex = $newStrLastIndex</br>";
     $remainder = substr($remainder, 0, $newStrLastIndex);
 
     // append last char to $newStr
@@ -123,13 +123,9 @@ function reversed($inputStr) {
 
   }
 
-  // $newStr .= array_pop(explode('', $inputStr));
-
   return $newStr;
 
 }
-
-
 
 
 // RUN program
