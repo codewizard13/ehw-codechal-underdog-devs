@@ -13,7 +13,6 @@ Eric Hepperle
 2022-12-09
 */
 
-echo "HEY!<BR>";
 
 // INCLUDE FUNCTIONS LIBRARY
 require_once('../inc/functions.php');
@@ -21,65 +20,121 @@ require_once('../inc/functions.php');
 // FILE PATHS
 // $babyNames2020 = '../../../docs/baby_names_2020_short.txt';
 // $scrabbleFile = '../../../docs/sowpods.txt';
-$babyNames2020 = '../../../docs/baby_names_2020_short.txt';
-$scrabbleFile = '../../../docs/sowpods.txt';
 
 define('DOCS_PATH',  '../../../docs/');
 define('BABY_NAMES_2020', DOCS_PATH . 'baby_names_2020_short.txt');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 
+
+
+
+
+/*
+ALGORITHM
+
+DEFINE babyNames file constant
+DEFINE scrabbleWords file contstant
+
+DEFINE matchedNames var as empty array
+
+SLURP babyNames file into array (babyNames)
+SLURP scrabbleWords file into array (scrabbleWords)
+
+LOOP through baby names
+
+  IF reverse of current baby name exists in scrabble words list
+
+    ADD baby name to matches array
+
+  END
+
+END
+
+RETURN matchedNames
+
+*/
+
+
 /**
  * Primary controller function.
  */
-function main() {
+function main()
+{
+
+  $matchedNames = [];
 
   // CREATE ARRAYS FROM FILES
-$namesArr = fileToArray(BABY_NAMES_2020);
-$scrabbleArr = fileToArray(SCRABBLE_FILE);
+  $babyNames2020 = fileToArray(BABY_NAMES_2020);
+  $scrabbleWords = fileToArray(SCRABBLE_FILE);
+
+  echo '<ul>';
+  for ($i=0; $i < count($babyNames2020); $i++) {
+
+    echo "<li>{$i}: " . $babyNames2020[$i] . '</li>';
+    
+    if (isset($scrabbleWords[reversed($babyNames2020[$i])])) {
+
+
+    }
+
+  }  
+  echo '</ul>';
   
+  
+  
+  print_r($matchedNames);
 
-foreach ($namesArr as $name) {
-
-  // echo $name . "<br>";
-
-  $tmpArr = array_reverse(str_split($name));
-
-  $nameReversed = strtoupper(implode($tmpArr));
-
-  if (in_array($nameReversed, $scrabbleArr)) {
-    echo $nameReversed . " found in scrabble words!<br>";
-  }
-}
+} // END main
 
 
 
-function strReverse2($string) {
+function reversed($inputStr) {
 
-  $strLen = strlen($string);
-
-  $newStr = '';
-
-  // for ($i = $strLen-$j; $i < $sstrLen; $j++ )
-
-  for ($i=$strLen-1; $i >= 0  ; $i--) {
-    echo "$i: $string[$i]<br>";
-    $newStr .= $string[$i];    
-  }
-
-  return $newStr;
-}
-$testing = strReverse2("LIAM");
-
-echo "<h2>$testing</h2>";
-
+  ///
 
 }
 
-$matchedNames = [];
+
+
+
+// RUN program
 
 main();
 
 
 
 
+// foreach ($namesArr as $name) {
+
+//   // echo $name . "<br>";
+
+//   $tmpArr = array_reverse(str_split($name));
+
+//   $nameReversed = strtoupper(implode($tmpArr));
+
+//   if (in_array($nameReversed, $scrabbleArr)) {
+//     echo $nameReversed . " found in scrabble words!<br>";
+//   }
+// }
+
+
+
+// function strReverse2($string) {
+
+//   $strLen = strlen($string);
+
+//   $newStr = '';
+
+//   // for ($i = $strLen-$j; $i < $sstrLen; $j++ )
+
+//   for ($i=$strLen-1; $i >= 0  ; $i--) {
+//     echo "$i: $string[$i]<br>";
+//     $newStr .= $string[$i];    
+//   }
+
+//   return $newStr;
+// }
+// $testing = strReverse2("LIAM");
+
+// echo "<h2>$testing</h2>";
