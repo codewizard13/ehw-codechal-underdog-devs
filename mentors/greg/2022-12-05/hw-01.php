@@ -10,14 +10,9 @@ SECOND IMPLEMENTATION:
 
 
 Eric Hepperle
-2022-12-05
+2022-12-09
 */
 
-// Slurp files into arrays
-// $namesStr = file_get_contents('../../../docs/baby_names_2020_short.txt');
-// $namesArr = explode('\n', $namesStr);
-
-// var_dump($namesArr);
 
 $babyNames2020 = '../../../docs/baby_names_2020_short.txt';
 $scrabbleFile = '../../../docs/sowpods.txt';
@@ -34,33 +29,11 @@ function fileToArray($filename)
 $namesArr = fileToArray($babyNames2020);
 $scrabbleArr = fileToArray($scrabbleFile);
 
-// var_dump( fileToArray($babyNames2020) );
-// var_dump(fileToArray($scrabbleFile));
 
-/*
 
-ALGO:
-
-declare global matchedNames array
-
-FOR EACH baby name
-
-  reverse baby name
-
-  foreach scrabble word
-
-    if reversed baby name found in scrabble words array
-
-      add name to results array
-
-  
-END baby loop
-
-return matchedNames array
-
-*/
 
 $matchedNames = [];
+
 
 foreach ($namesArr as $name) {
 
@@ -76,17 +49,6 @@ foreach ($namesArr as $name) {
 }
 
 
-/*
-
-oldSring = LIAM
-
-foreach char in string
-
-  $newStr .= pop(oldString)
-
-  MAIL
-
-*/
 
 function strReverse2($string) {
 
@@ -107,13 +69,4 @@ $testing = strReverse2("LIAM");
 
 echo "<h2>$testing</h2>";
 
-// two pointer / dual pointer
-
-// Arrays in PHP are all associative / hashmaps
-
-// Data structure algorithm initally
-
-// Have an understanding and be able to implement library functions
-
-// 
 
