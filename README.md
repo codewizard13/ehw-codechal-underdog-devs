@@ -1,9 +1,11 @@
+![Underdog Devs logo long](img/logo-underdog-devs-01-long.png)
+
 | INFO PROPERTY | VALUE             |
 | ------------- | ----------------- |
 | Project Name  | **Underdog Devs** |
 | File Name     | README.md         |
 | Date Created  | 10/12/22          |
-| Date Modified | 12/04/22          |
+| Date Modified | 12/09/22          |
 | Version       | 0.0.1             |
 | Programmer    | **Eric Hepperle** |
 
