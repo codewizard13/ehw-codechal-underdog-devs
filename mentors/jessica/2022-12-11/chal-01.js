@@ -3,7 +3,7 @@ Jessica McKellar challenges - 2022-12-11
 
 Challenge:
 
-TODAYS_CODE_CHALLENGE_QUESTION
+There is at least one country name that contains another country name. Find all of these cases
 
 
 --- --- ---
@@ -54,10 +54,10 @@ function main() {
   const scrabbleWords = filenameToLines(scrabbleWordsFile)
   const countries = filenameToLines(countriesFile)
 
-  console.log({ babyNames1880 })
-  console.log({ babyNames2020 })
-  console.log({ scrabbleWords })
-  console.log({ countries })
+  // console.log({ babyNames1880 })
+  // console.log({ babyNames2020 })
+  // console.log({ scrabbleWords })
+  // console.log({ countries })
 
 
   // JOIN FILES INTO ONE
@@ -99,3 +99,54 @@ let matchedNames = []
 const foundWords = {}
 
 main()
+
+
+/*
+ALGORITHM
+
+DEFINE GLOBAL hashMap to store country name counts (namesCount)
+
+SLURP countries file into array (countries)
+
+LOOP through countries
+
+  STORE country as currentCountry
+
+  // Check if country name is key in namesCount
+  IF currentCountry is NOT a key in namesCount
+
+    ADD key to namesCount
+    INITIALIZE value to 1
+
+  ELSE
+
+    INCREMENT key by one
+
+  END
+
+  // CHECK 
+  IF
+
+
+END
+
+
+*/
+
+
+
+// let searchString = 'Gen';
+let searchString = 'oe'
+
+const myDict = {
+  'Genesis': 'You are the beginning',
+  'Joel': 'Joe is cool'
+  // Many other key value pairs
+}
+
+const result = Object.entries(myDict).find(([k]) => k.includes(searchString));
+
+const result2 = Object.keys(myDict).find(([key]) => key.includes(searchString))
+
+console.log(result);
+console.log(result2);
