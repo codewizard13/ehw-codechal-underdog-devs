@@ -1,89 +1,101 @@
 /*
- Jessica McKellar challenges - 2022-12-11
+Jessica McKellar challenges - 2022-12-11
 
- This version only concerns refactoring this for lower cost:
+Challenge:
 
- Find the words in matches with longest char length
+TODAYS_CODE_CHALLENGE_QUESTION
+
+
+--- --- ---
+TIME COMPLEXITY:
+
+Eric Hepperle
+2022-12-11
+
+V1
+
 */
 
 const fs = require('fs')
 
-let matches = []
-let reg = /GHTLY/
-let filename = '../../../docs/countries.txt'
-let filtered = []
-let needle = 'TYPE'
+/**
+ * Return lines array from file
+ * 
+ * @args: {string} filename
+ * @return: {array} lines
+ */
+function filenameToLines(filename) {
 
-const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const buffer = fs.readFileSync(filename)
+  const fileStr = buffer.toString()
+  const lines = fileStr.split('\n') // make array
 
-// Read file into an array of words
+  return lines
 
-const buffer = fs.readFileSync(filename)
-const fileStr = buffer.toString()
-const countries = fileStr.split('\n') // make array
-
-const sampleArr = [
-  "BORROW OR ROB?", "BRANCH", "CYST", "DAMMIT, I'M MAD!",
-  "DEIFIED", "DIPLOMATIC", "DO GEESE SEE GOD?", "HAIRCUT",
-  "HYMN", "LEVEL", "MOSQUITO", "MURDRUM",
-  "NON", "POP", "POWER", "SPY", "THY"
-]
+}
 
 
-// https://paper.dropbox.com/doc/Programming-practice-problems-Eric-Hepperle--BuNtP5qTuxeLpxX1V5d9DbPdAg-tPLQO2NkY75TNOgxTM13a
+/**
+ * Main: The main function; controller.
+ */
+function main() {
 
-// What country names are > 50% vowels?
+  console.log('*'.repeat(30), `\n`)
 
-/*
 
-slurp countries into array
+  // SLURP FILE DATA INTO ARRAYS
+  const babyNames1880File = '../../../docs/baby_names_1880_short.txt'
+  const babyNames2020File = '../../../docs/baby_names_2020_short.txt'
+  const scrabbleWordsFile = '../../../docs/sowpods.txt'
+  const countriesFile = '../../../docs/countries.txt'
 
-foreach country in countries
+  const babyNames1880 = filenameToLines(babyNames1880File)
+  const babyNames2020 = filenameToLines(babyNames2020File)
+  const scrabbleWords = filenameToLines(scrabbleWordsFile)
+  const countries = filenameToLines(countriesFile)
 
-  // Calc percentage of vowels in country name
-  
-  foreach letter in word check if letter is vowel
+  console.log({ babyNames1880 })
+  console.log({ babyNames2020 })
+  console.log({ scrabbleWords })
+  console.log({ countries })
 
-    if is vowel 
-      increment vowelsCount
 
-  sum vowels Add all counts for country
+  // JOIN FILES INTO ONE
+  joinedArray = [...babyNames1880, ...babyNames2020]
 
-  if ( percentage = sum / country.length > .50 ) {
 
-    results.push(country)
-  }
 
-*/
+  // CHECK FOR DUPLICATES (duplicate equals a match)
+  for (let i = 0; i < joinedArray.length; i++) {
 
-// console.log(countries)
+    let currentName = joinedArray[i]
 
-let vowelsCount = 0
-const results = []
-countries.forEach(country => {
+    // if (foundWords.hasOwnProperty(currentName)) {
+    if (!(currentName in foundWords)) {
 
-  vowelsCount = 0
+      foundWords[currentName] = 1
 
-  country.split('').forEach(char => {
+    } else {
 
-    // if char is a vowel , incement voweslCount
-    if (
-      char.toLowerCase() === 'a'
-      || char.toLowerCase() === 'e'
-      || char.toLowerCase() === 'i'
-      || char.toLowerCase() === 'o'
-      || char.toLowerCase() === 'u'
-    ) {
-      vowelsCount++
+      // ADD currentName to matchedNames array because we've found it twice
+      foundWords[currentName]++
+
     }
 
-  })
+    if (foundWords[currentName] === 2) {
+      matchedNames.push(currentName)
+    }
 
-
-  if (vowelsCount / country.length > .50) {
-    results.push(country)
   }
 
-})
+  // REPORT RESULTS
+  console.log(`There were `, matchedNames.length, `results:`)
+  console.log({ matchedNames })
+  // console.log({ foundWords })
 
-console.table(results)
+}
+
+let matchedNames = []
+const foundWords = {}
+
+main()
