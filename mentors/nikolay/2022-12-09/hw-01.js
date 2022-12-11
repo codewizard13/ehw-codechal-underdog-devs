@@ -31,8 +31,6 @@ function filenameToLines(filename) {
 
 }
 
-console.log("hi")
-
 
 /**
  * Main: The main function; controller.
@@ -46,34 +44,42 @@ function main() {
   babyNames1880Array = filenameToLines(babyNames1880File)
   babyNames2020Array = filenameToLines(babyNames2020File)
 
+  // JOIN FILES INTO ONE
+  joinedArray = [...babyNames1880Array, ...babyNames2020Array]
+  console.log(`1880 Names has ${babyNames1880Array.length} items`)
+  console.log(`2020 Names has ${babyNames2020Array.length} items`)
+  console.log(`Joined Array has ${joinedArray.length} items`)
+  console.log()
 
-  for (let i = 0; i < babyNames2020Array.length; i++) {
 
-    let name2020 = babyNames2020Array[i]
+  // CHECK FOR DUPLICATES (duplicate equals a match)
+  for (let i = 0; i < joinedArray.length; i++) {
 
-    if (namesCounter[name2020] === undefined) {
+    let currentName = joinedArray[i]
 
-      namesCounter[name2020] = 1
+    if (foundWords.indexOf(currentName) === -1) {
+
+      foundWords.push(currentName)
 
     } else {
 
-      namesCounter[name2020]++
+      // ADD currentName to matchedNames array because we've found it twice
+      matchedNames.push(currentName)
 
     }
 
-
   }
 
+  // REPORT RESULTS
   console.log(`There were `, matchedNames.length, `results:`)
   console.log({ matchedNames })
-  console.log({ dict })
-
+  console.log({ foundWords })
 
 }
 
 
 let matchedNames = []
-const namesCounter = {}
+const foundWords = []
 
 main()
 
