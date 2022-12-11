@@ -5,10 +5,12 @@ Challenge:
 
 What are all of the names that were top 40 baby names in both 1880 and 2020?
 
-This version solves using hashmap / dict to track name count
+This version solves using hashmap / dict to track name count.
+
+TIME COMPLEXIT: O(n) because one loop and using hashmap instead of indexOf
 
 Eric Hepperle
-2022-12-09
+2022-12-11
 
 V1
 
