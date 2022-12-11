@@ -3,7 +3,7 @@ Jessica McKellar challenges - 2022-12-11
 
 Challenge:
 
-There is at least one country name that contains another country name. Find all of these cases
+There is at least one country name that contains another country name. Find all of these cases.
 
 
 --- --- ---
@@ -42,7 +42,6 @@ function main() {
 
   console.log('*'.repeat(30), `\n`)
 
-
   // SLURP FILE DATA INTO ARRAYS
   const babyNames1880File = '../../../docs/baby_names_1880_short.txt'
   const babyNames2020File = '../../../docs/baby_names_2020_short.txt'
@@ -60,43 +59,33 @@ function main() {
   // console.log({ countries })
 
 
-  // JOIN FILES INTO ONE
-  joinedArray = [...babyNames1880, ...babyNames2020]
+  for (let i = 0; i < countries.length; i++) {
 
+    let includedCountry = countries[i].toLowerCase()
 
+    for (let j = 0; j < countries.length; j++) {
 
-  // CHECK FOR DUPLICATES (duplicate equals a match)
-  for (let i = 0; i < joinedArray.length; i++) {
+      let containingCountry = countries[j].toLowerCase()
 
-    let currentName = joinedArray[i]
+      // console.log({ includedCountry })
+      // console.log({ containingCountry })
 
-    // if (foundWords.hasOwnProperty(currentName)) {
-    if (!(currentName in foundWords)) {
+      if (containingCountry.includes(includedCountry)
+        && includedCountry !== containingCountry
+      ) {
+        console.log('hi')
+        results.push([containingCountry, includedCountry])
+      }
 
-      foundWords[currentName] = 1
-
-    } else {
-
-      // ADD currentName to matchedNames array because we've found it twice
-      foundWords[currentName]++
-
-    }
-
-    if (foundWords[currentName] === 2) {
-      matchedNames.push(currentName)
     }
 
   }
 
-  // REPORT RESULTS
-  console.log(`There were `, matchedNames.length, `results:`)
-  console.log({ matchedNames })
-  // console.log({ foundWords })
+  console.log({ results })
 
-}
+} // END main
 
-let matchedNames = []
-const foundWords = {}
+const results = []
 
 main()
 
@@ -104,49 +93,27 @@ main()
 /*
 ALGORITHM
 
-DEFINE GLOBAL hashMap to store country name counts (namesCount)
+DEFINE GLOBAL set foundCountries
 
-SLURP countries file into array (countries)
+SLURP country file contents into array (countries)
 
 LOOP through countries
 
-  STORE country as currentCountry
-
-  // Check if country name is key in namesCount
-  IF currentCountry is NOT a key in namesCount
-
-    ADD key to namesCount
-    INITIALIZE value to 1
-
-  ELSE
-
-    INCREMENT key by one
-
-  END
-
-  // CHECK 
-  IF
+  ADD currentCountry to foundCountries
 
 
-END
+  
+
+
+
+
+
+
+
+
+END loop
+
+
 
 
 */
-
-
-
-// let searchString = 'Gen';
-let searchString = 'oe'
-
-const myDict = {
-  'Genesis': 'You are the beginning',
-  'Joel': 'Joe is cool'
-  // Many other key value pairs
-}
-
-const result = Object.entries(myDict).find(([k]) => k.includes(searchString));
-
-const result2 = Object.keys(myDict).find(([key]) => key.includes(searchString))
-
-console.log(result);
-console.log(result2);
