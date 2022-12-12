@@ -73,7 +73,7 @@ function main() {
       if (containingCountry.includes(includedCountry)
         && includedCountry !== containingCountry
       ) {
-        console.log('hi')
+        // console.log('hi')
         results.push([containingCountry, includedCountry])
       }
 
