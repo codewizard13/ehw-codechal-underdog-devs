@@ -10,7 +10,9 @@ SECOND IMPLEMENTATION:
 - Refactor to use hashmaps
 
 Eric Hepperle
-2022-12-09
+2022-12-12
+
+V2
 */
 
 
