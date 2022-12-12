@@ -38,7 +38,7 @@ ALGORITHM
 DEFINE babyNames file constant
 DEFINE scrabbleWords file contstant
 
-DEFINE matchedNames var as empty array
+DEFINE matchedNames as empty array
 
 SLURP babyNames file into array (babyNames)
 SLURP scrabbleWords file into array (scrabbleWords)
@@ -70,7 +70,9 @@ function main()
   $babyNames2020 = fileToArray(BABY_NAMES_2020);
   $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
-  echo '<ul>';
+  echo '<ul>';  
+
+  // LOOP through babyNames2020 AND BUILD hashmap
   for ($i = 0; $i < count($babyNames2020); $i++) {
 
     $currentName = strtoupper($babyNames2020[$i]);
@@ -78,13 +80,17 @@ function main()
 
     echo "<li>";
     echo "$currentName reversed is <span style='color:green'>$reversedName</span></br>";
-    echo "Reveresed name exists in scrabble words? " . $scrabbleWords[$reversedName] . "<br>";
+    // echo "Reveresed name exists in scrabble words? " . $scrabbleWords[$reversedName] . "<br>";
 
     // if (isset($scrabbleWords[reversed($currentName)])) {
-    if ( array_key_exists($currentName, $scrabbleWords) ) {
+    // if ( array_key_exists($reversedName, $scrabbleWords) ) {
+    if ( in_array($reversedName, $scrabbleWords) ) {
 
-      echo "<strong>$i: $currentName</strong>";
+      echo "Name reversed [$reversedName] exists in \$scrabbleWords<br>";
+      
+      array_push($matchedNames, $currentName);
     }
+    
 
     echo "</li>";
   }
