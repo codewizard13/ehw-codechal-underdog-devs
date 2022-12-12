@@ -1,7 +1,14 @@
-f("hello") => "HELLO"
+$memStart = memory_get_usage();
 
-f("../../../docs/countries.txt") => ["Egypt", "United States", ...]
 
-const process = require('process');
+	$peak = memory_get_peak_usage()/1024/1024;
 
-process.argv[1]
+	$memEnd = memory_get_usage();
+	$memTotal = ($memEnd-$memStart)/1024/1024 . PHP_EOL;;
+	echo "Mem usage: {$memTotal}\n";
+	echo "Peak: {$peak}\n";
+	
+	
+for($i=strlen($s)-1, $j=0; $j<$i; $i--, $j++) {
+    list($s[$j], $s[$i]) = array($s[$i], $s[$j]);
+}
