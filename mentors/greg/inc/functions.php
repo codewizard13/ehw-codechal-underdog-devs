@@ -29,9 +29,11 @@ function fileToHashmap($filename)
   $namesHash = [];
   
   foreach ($namesArr as $key => $value) {
-    echo "$key => $value<br>";
+    // echo "$key => $value<br>";
+
+    $namesHash[$value] = true;
+
   }
 
-
-  return $namesArr;
+  return $namesHash;
 }

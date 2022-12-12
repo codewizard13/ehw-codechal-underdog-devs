@@ -76,19 +76,18 @@ function main()
   for ($i = 0; $i < count($babyNames2020); $i++) {
 
     $currentName = strtoupper($babyNames2020[$i]);
-    $reversedName = reversed($currentName);
+    $reversedName = strReverse2($currentName);
 
     echo "<li>";
     echo "$currentName reversed is <span style='color:green'>$reversedName</span></br>";
     // echo "Reveresed name exists in scrabble words? " . $scrabbleWords[$reversedName] . "<br>";
 
-    // if (isset($scrabbleWords[reversed($currentName)])) {
-    if ( array_key_exists($reversedName, $scrabbleWords) ) {
+    if (isset($scrabbleWords[$reversedName])) {
+    // if ( array_key_exists($reversedName, $scrabbleWords) ) {
     // if ( in_array($reversedName, $scrabbleWords) ) {
 
       echo "<h4>Name reversed [$reversedName] IS A KEY in \$scrabbleWords</h4>";
       
-      ;
     }
     
 
@@ -105,34 +104,35 @@ function main()
 
 
 
-function reversed($inputStr)
-{
-
-  $remainder = $inputStr;
-
-  $count = 0;
-
-  while (strlen($remainder) > 0) {
-
-    // echo "<h3>Run: $count</h3>";
-
-    // get last char
-    $lastChar = substr($remainder, -1);
-    // echo "lastChar: $lastChar<br>";
-
-    // set $remainder as remainder
-    $newStrLastIndex = strlen($remainder) - 1;
-    // echo "\$newStrLastIndex = $newStrLastIndex</br>";
-    $remainder = substr($remainder, 0, $newStrLastIndex);
-
-    // append last char to $newStr ??
+// function reversed($inputStr)
+// {
 
 
-    $count++;
-  }
+//   $remainder = $inputStr;
 
-  return $newStr;
-}
+//   $count = 0;
+
+//   while (strlen($remainder) > 0) {
+
+//     // echo "<h3>Run: $count</h3>";
+
+//     // get last char
+//     $lastChar = substr($remainder, -1);
+//     // echo "lastChar: $lastChar<br>";
+
+//     // set $remainder as remainder
+//     $newStrLastIndex = strlen($remainder) - 1;
+//     // echo "\$newStrLastIndex = $newStrLastIndex</br>";
+//     $remainder = substr($remainder, 0, $newStrLastIndex);
+
+//     // append last char to $newStr ??
+
+
+//     $count++;
+//   }
+
+//   return $newStr;
+// }
 
 
 // RUN program
@@ -157,21 +157,21 @@ main();
 
 
 
-// function strReverse2($string) {
+function strReverse2($string) {
 
-//   $strLen = strlen($string);
+  $strLen = strlen($string);
 
-//   $newStr = '';
+  $newStr = '';
 
-//   // for ($i = $strLen-$j; $i < $sstrLen; $j++ )
+  // for ($i = $strLen-$j; $i < $sstrLen; $j++ )
 
-//   for ($i=$strLen-1; $i >= 0  ; $i--) {
-//     echo "$i: $string[$i]<br>";
-//     $newStr .= $string[$i];    
-//   }
+  for ($i=$strLen-1; $i >= 0  ; $i--) {
+    // echo "$i: $string[$i]<br>";
+    $newStr .= $string[$i];    
+  }
 
-//   return $newStr;
-// }
+  return $newStr;
+}
 // $testing = strReverse2("LIAM");
 
 // echo "<h2>$testing</h2>";
