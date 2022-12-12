@@ -38,7 +38,7 @@ ALGORITHM
 DEFINE babyNames file constant
 DEFINE scrabbleWords file contstant
 
-DEFINE matchedNames as empty array
+DEFINE matchedNames as empty hashmap
 
 SLURP babyNames file into array (babyNames)
 SLURP scrabbleWords file into array (scrabbleWords)
@@ -68,7 +68,7 @@ function main()
 
   // CREATE ARRAYS FROM FILES
   $babyNames2020 = fileToArray(BABY_NAMES_2020);
-  $scrabbleWords = fileToArray(SCRABBLE_FILE);
+  $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
 
   echo '<ul>';  
 
@@ -83,12 +83,12 @@ function main()
     // echo "Reveresed name exists in scrabble words? " . $scrabbleWords[$reversedName] . "<br>";
 
     // if (isset($scrabbleWords[reversed($currentName)])) {
-    // if ( array_key_exists($reversedName, $scrabbleWords) ) {
-    if ( in_array($reversedName, $scrabbleWords) ) {
+    if ( array_key_exists($reversedName, $scrabbleWords) ) {
+    // if ( in_array($reversedName, $scrabbleWords) ) {
 
-      echo "Name reversed [$reversedName] exists in \$scrabbleWords<br>";
+      echo "<h4>Name reversed [$reversedName] IS A KEY in \$scrabbleWords</h4>";
       
-      array_push($matchedNames, $currentName);
+      ;
     }
     
 
@@ -103,10 +103,10 @@ function main()
 
 
 
+
+
 function reversed($inputStr)
 {
-
-  $newStr = '';
 
   $remainder = $inputStr;
 
@@ -125,8 +125,8 @@ function reversed($inputStr)
     // echo "\$newStrLastIndex = $newStrLastIndex</br>";
     $remainder = substr($remainder, 0, $newStrLastIndex);
 
-    // append last char to $newStr
-    $newStr .= $lastChar;
+    // append last char to $newStr ??
+
 
     $count++;
   }

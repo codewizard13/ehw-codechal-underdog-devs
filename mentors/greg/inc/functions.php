@@ -21,3 +21,17 @@ function fileToArray($filename)
   $namesArr = explode("\n", $namesStr);
   return $namesArr;
 }
+
+function fileToHashmap($filename)
+{
+  $namesStr = file_get_contents($filename);
+  $namesArr = explode("\n", $namesStr);
+  $namesHash = [];
+  
+  foreach ($namesArr as $key => $value) {
+    echo "$key => $value<br>";
+  }
+
+
+  return $namesArr;
+}
