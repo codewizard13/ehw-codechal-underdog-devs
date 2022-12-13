@@ -1,3 +1,2 @@
-  for ($i = strlen($string) - 1, $j = 0; $j < $i; $i--, $j++) {
-    list($string[$j], $string[$i]) = array($string[$i], $string[$j]);
-  }
+What are all of the words that both start with a "TH" and end with a "TH"?
+
