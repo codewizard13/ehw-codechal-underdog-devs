@@ -21,36 +21,108 @@ require_once(__DIR__ . '/../inc/functions.php');
 define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
-echo DOCS_PATH;
-// exit;
-
-
-
 
 /*
 ALGORITHM
 
-DEFINE babyNames file constant
-DEFINE scrabbleWords file contstant
+// FUNCTION:  MAIN
+SLURP Scrabble words into array (scrabbleWords)
 
-DEFINE matchedNames as empty hashmap
+LOOP through each word
 
-SLURP babyNames file into array (babyNames)
-SLURP scrabbleWords file into array (scrabbleWords)
+  IF WORD STARTS with TH && WORD ENDS WITH TH
+  // if (startsWith(haystack, needle) && endsWith(haystack, needle))
 
-LOOP through baby names
-
-  IF reverse of current baby name exists in scrabble words list
-
-    ADD baby name to matches array
+    ADD word to results
 
   END
 
 END
 
-RETURN matchedNames
+RETURN RESULTS
+
+
+// FUNCTION:  startsWith() - ARGS: needle, haystack (both strings)
+LOOP through each char in needle (needleChar)
+
+  IF needleChar DIFFERENT than hayStack char
+  needle[0] === haystack[0]
+
+    RETURN false
+
+  END
+
+END
+
+OTHERWISE RETURN true
 
 */
+
+function startsWith($haystackStr, $needle) {
+
+  $haystackLen = strlen($haystackStr);
+  $needleLen = strlen($needle);
+
+  for ($i = 0; $i < $needleLen; $i++ ) {
+
+    if ($needle[$i] !== $haystackStr[$i]) {
+      return false;
+    }
+
+  }
+
+  return true;
+
+}
+
+
+/*
+
+// H: THE
+// FUNCTION:  endsWith() - ARGS: needle, haystack (both strings)
+STORE needle length (needleLen)
+STORE haystack length (haystackLen)
+
+for ($needleIndex = needleLen -1, $haystackIndex = haystackLen -1;
+    $needleIndex >= 0   ; needleIndex--, haystackIndex--
+)
+LOOP through each char in needle (needleChar)
+
+  // IF needleChar DIFFERENT than hayStack char
+  // needle[$needleIndex] !== haystack[$haystackIndex]
+
+    RETURN false
+
+  END
+
+END
+
+OTHERWISE RETURN true
+
+*/
+
+function endsWith($haystackStr, $needle)
+{
+
+  $needleLen = strlen($needle);
+  $haystackLen = strlen($haystackStr);
+
+  for (
+    $needleIndex = $needleLen - 1, $haystackIndex = $haystackLen - 1;
+    $needleIndex >= 0;
+    $needleIndex--, $haystackIndex--
+  ) {
+
+    if ($needle[$needleIndex] !== $haystackStr[$haystackIndex]) {
+
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
 
 
 /**
@@ -62,109 +134,157 @@ function main($memStart)
   $matchedNames = [];
 
   // CREATE ARRAYS FROM FILES
-  $babyNames2020 = fileToArray(BABY_NAMES_2020);
   $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
 
-  echo '<ul>';
 
-  // LOOP through babyNames2020 AND BUILD hashmap
-  for ($i = 0; $i < count($babyNames2020); $i++) {
+  /// DO STUFF ...
+  // var_dump($scrabbleWords);
+  echo "Hey<br>";
 
-    $currentName = strtoupper($babyNames2020[$i]);
+  $temp = endsWith("HTH", "TH");
+  echo "<h2>$temp</h2>";
 
-    $reversedName = strReverse2($currentName);
+  $temp = endsWith("APPLE", "TH");
+  echo "<h2>$temp</h2>";
 
-    echo "<li>";
-    echo "$currentName reversed is <span style='color:green'>$reversedName</span></br>";
-    // echo "Reveresed name exists in scrabble words? " . $scrabbleWords[$reversedName] . "<br>";
+  $temp = endsWith("ooooTH", "TH");
+  echo "<h2>$temp</h2>";
 
-    if (isset($scrabbleWords[$reversedName])) {
-      // if ( array_key_exists($reversedName, $scrabbleWords) ) {
-      // if ( in_array($reversedName, $scrabbleWords) ) {
+  // testHarness($scrabbleWords);
+  $wordsCount = count($scrabbleWords);
+  echo "Words count: $wordsCount<br>";
 
-      echo "<h4>Name reversed [$reversedName] IS A KEY in \$scrabbleWords</h4>";
-    }
-
-
-    echo "</li>";
-  }
-  echo '</ul>';
-
+  // Generate smaller scrabble words test set
+  $smallWordsArr = ["TENTH", "EIGHTH"];
+  $smallWordsArr = smallWordsList($scrabbleWords);
+  // $smallWordsArr = array_push($smallWordsArr, smallWordsList($scrabbleWords)) ;
+  $smallWordsArr[count($smallWordsArr)] = "THIRTEENTH";
 
 
-  print_r($matchedNames);
+  var_dump($smallWordsArr);
+  // exit;
+
+  testHarness($smallWordsArr, ["TH", "ED"]);
+
+  // for ($i = 0; $i < count($smallWordsArr); $i++) {
+  //   if (isset($smallWordsArr[$i])) {
+  //     echo "<h3>\$smallWordsArr[$i]: <span style='color:green'>$smallWordsArr[$i]</span></h3>";
+
+  //     $temp = endsWith($smallWordsArr[$i], "TH");
+  //     echo "<h2>$temp</h2>";
+  //   }
+  // }
 
 
+  // END memory test and return results
   $peak = memory_get_peak_usage() / 1024 / 1024;
-
   echo "Peak: {$peak}\n";
-
-  
-$memEnd = memory_get_usage();
-$memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
-echo "Mem usage: {$memTotal}\n";
+  $memEnd = memory_get_usage();
+  $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
+  echo "Mem usage: {$memTotal}\n";
 } // END main
 
 
 
-
-
-// function reversed($inputStr)
-// {
-
-
-//   $remainder = $inputStr;
-
-//   $count = 0;
-
-//   while (strlen($remainder) > 0) {
-
-//     // echo "<h3>Run: $count</h3>";
-
-//     // get last char
-//     $lastChar = substr($remainder, -1);
-//     // echo "lastChar: $lastChar<br>";
-
-//     // set $remainder as remainder
-//     $newStrLastIndex = strlen($remainder) - 1;
-//     // echo "\$newStrLastIndex = $newStrLastIndex</br>";
-//     $remainder = substr($remainder, 0, $newStrLastIndex);
-
-//     // append last char to $newStr ??
-
-
-//     $count++;
-//   }
-
-//   return $newStr;
-// }
-
-
 // RUN program
-
 main($memStart);
 
-
-
-// This was the original strReverse2, but I renamed it
-function strReverse($string)
+/**
+ * Given a set of needle values, loop through each value
+ * and report any matches in haystack.
+ * 
+ * @arg: $testValues array
+ * @return: void
+ */
+function testHarness($wordsArr, $needleSet = [])
 {
 
-  $strLen = strlen($string);
+  $results = [];
+  // $increment = calcIncrement($values);
+  // findMatches();
 
-  $leftP = 0;
-  $rightP = $strLen;
+/*
+ALGO
 
-  $newStr = '';
+LOOP through each needle
 
-  for ($i = $strLen - 1; $i >= 0; $i--) {
-    // echo "$i: $string[$i]<br>";
-    $newStr .= $string[$i];
+  IF haystack ends with needle
+
+    ADD needle to results array
+
+*/
+
+
+  for ($i = 0; $i < count($needleSet); $i++) {
+    if (isset($needleSet[$i])) {
+      echo "<h3>\$needleSet[$i]: <span style='color:green'>$needleSet[$i]</span></h3>";
+
+      findMatches($wordsArr, $needleSet[$i]);
+    }
   }
-
-  return $newStr;
 }
 
+// Given a set of needle values
+function findMatches($wordsArr, $needle)
+{
+
+for ($i = 0; $i < count($wordsArr); $i++) {
+
+  if (endsWith($wordsArr[$i], $needle)) {
+    echo "<h2> <span style='background: aliceblue'>$wordsArr[$i]</span> ends with $needle</h2>";
+  }
+
+  if (startsWith($wordsArr[$i], $needle)) {
+    echo "<h2> <span style='background: antiquewhite'>$wordsArr[$i]</span> STARTS with $needle</h2>";
+
+  }
+    
+}
+
+
+}
+
+
+
+function calcIncrement($values = [], $print = false)
+{
+
+  // Determine increment interval
+  $valsLen = count($values);
+  $incrementAmount = $valsLen / 100;
+  $incrementAmount = floor($incrementAmount);
+
+  if ($print) {
+
+    echo "<h3>There are <span style='color: green'>" . $valsLen . " total elements passed in.</h3>";
+    echo "<h3>Increment Amount: <span style='color: green'>" . $incrementAmount . "</h3>";
+  }
+
+  return $incrementAmount;
+}
+
+// Since there are of 260K words, generate a smaller word set to work with
+function smallWordsList($words)
+{
+
+  $wordsCount = count($words);
+
+  $smallWordsArr = [];
+
+  for ($i = 0; $i < $wordsCount; $i += 55000) {
+
+    // increment index by 55000 and grab three elments including this one
+    $subArr = array_slice($words, $i, 3);
+    $tmpArr = array_keys(($subArr));
+    // var_dump($tmpArr);
+    // array_push($smallWordsArr, $tmpArr);
+    foreach ($tmpArr as $word) {
+      array_push($smallWordsArr, $word);
+    }
+  }
+
+  return $smallWordsArr;
+}
 
 
 // This version reverses a string in place without any temporary variables
