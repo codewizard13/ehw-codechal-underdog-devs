@@ -37,3 +37,29 @@ function fileToHashmap($filename)
 
   return $namesHash;
 }
+
+
+/**
+ * For long text files that are split into arrays, generate a smaller
+ *  sample to test with.
+ * 
+ * @arg: $values array
+ * @arg: $print bool
+ * @return: int
+ */
+function calcIncrement($values = [], $print = false)
+{
+
+  // Determine increment interval
+  $valsLen = count($values);
+  $incrementAmount = $valsLen / 100;
+  $incrementAmount = floor($incrementAmount);
+
+  if ($print) {
+
+    echo "<h3>There are <span style='color: green'>" . $valsLen . " total elements passed in.</h3>";
+    echo "<h3>Increment Amount: <span style='color: green'>" . $incrementAmount . "</h3>";
+  }
+
+  return $incrementAmount;
+}
