@@ -1,14 +1,3 @@
-$memStart = memory_get_usage();
-
-
-	$peak = memory_get_peak_usage()/1024/1024;
-
-	$memEnd = memory_get_usage();
-	$memTotal = ($memEnd-$memStart)/1024/1024 . PHP_EOL;;
-	echo "Mem usage: {$memTotal}\n";
-	echo "Peak: {$peak}\n";
-	
-	
-for($i=strlen($s)-1, $j=0; $j<$i; $i--, $j++) {
-    list($s[$j], $s[$i]) = array($s[$i], $s[$j]);
-}
+  for ($i = strlen($string) - 1, $j = 0; $j < $i; $i--, $j++) {
+    list($string[$j], $string[$i]) = array($string[$i], $string[$j]);
+  }
