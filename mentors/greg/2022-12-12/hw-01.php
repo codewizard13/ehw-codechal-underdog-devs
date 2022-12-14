@@ -152,8 +152,6 @@ function main($memStart)
   echo "Mem usage: {$memTotal}\n";
 } // END main
 
-
-
 // RUN program
 main($memStart);
 
