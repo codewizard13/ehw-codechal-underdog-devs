@@ -87,11 +87,20 @@ function findLinesContainingString(lines, needle) {
 
 
 
-// let countriesPath = '../../../docs/countries.txt'
-console.log(process.argv)
-let countries = filenameToLines(process.argv[2])
 
-const results = findLinesContainingString(countries, "United")
+
+// let countriesPath = '../../../docs/countries.txt'
+// console.log(process.argv[1])
+
+const myArgs = process.argv
+console.log({myArgs})
+
+let argHaystack = myArgs[2]
+let argNeedle = myArgs[3]
+
+let countries = filenameToLines(argHaystack)
+
+const results = findLinesContainingString(countries, argNeedle)
 
 console.log("Results:", results)
 

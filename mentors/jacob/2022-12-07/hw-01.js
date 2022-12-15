@@ -50,9 +50,6 @@ const results = []
 
 
 
-
-
-
 /**
  * Main: The main function; controller.
  */

@@ -40,16 +40,10 @@ const vowels = ["A", "E", "I", "O", "U"]
  * @returns {bool}
  */
 function isVowel(char) {
-  if (vowels.indexOf(char) !== -1) {
-    return true
-  }
-  return false
+
+  return vowels.includes(char)
+
 }
-
-const results = []
-
-
-
 
 
 
@@ -57,6 +51,8 @@ const results = []
  * Main: The main function; controller.
  */
 function main() {
+
+  const results = []
 
   // SLURP FILE DATA INTO ARRAYS
   const countriesFile = '../../../docs/countries.txt'
@@ -70,10 +66,10 @@ function main() {
   
     // console.log(`country:`, country, ` -- firstChar:`, firstChar, `| lastChar:`, lastChar)
   
-    if (!isVowel(firstChar)) { continue }
-    if (!isVowel(lastChar)) { continue }
-  
-    results.push(country)
+    if (isVowel(firstChar) && isVowel(lastChar) ) { 
+      results.push(country)      
+    }
+
   
   }
   
