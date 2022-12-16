@@ -28,6 +28,43 @@ const fs = require('fs')
 
 
 /**
+ * Main: The main function; controller.
+ */
+function main() {
+
+  // SLURP FILE DATA INTO ARRAYS
+  let babyNames1880File = '../../../docs/baby_names_1880_short.txt'
+  let babyNames2020File = '../../../docs/baby_names_2020_short.txt'
+
+  babyNames1880Array = filenameToLines(babyNames1880File)
+  babyNames2020Array = filenameToLines(babyNames2020File)
+
+  // JOIN FILES INTO ONE
+  joinedArray = [...babyNames1880Array, ...babyNames2020Array]
+
+  // FIND DUPLICATES
+  const matchedNames = findDuplicates(joinedArray)
+
+  // DISPLAY HELPFUL CONTEXT IN OUTPUT FOR USER
+  console.log(`STARTING VALUES:\n`)
+  console.log(`- 1880 Names has`, babyNames1880Array.length, `items.`)
+  console.log(`- 2020 Names has`, babyNames2020Array.length, `items.`)
+  console.log()
+  console.log(`Joing both arrays results in`, joinedArray.length, `items.\n`)
+
+
+  // OUTPUT RESULTS
+  console.log(`These`, matchedNames.length, `results were found`)
+  console.log(`in both lists:\n`)
+  console.table(matchedNames)
+
+}
+main()
+
+
+/// FUNCTIONS
+
+/**
  * Return lines array from file
  * 
  * @args: {string} filename
@@ -43,79 +80,44 @@ function filenameToLines(filename) {
 
 }
 
-
 /**
- * Main: The main function; controller.
+ * Filter an array of words / strings and return all the
+ * duplicates.
+ * 
+ * @param {array} words 
+ * @returns {array} duplicates
  */
-function main() {
+function findDuplicates(words) {
 
-  // SLURP FILE DATA INTO ARRAYS
-  let babyNames1880File = '../../../docs/baby_names_1880_short.txt'
-  let babyNames2020File = '../../../docs/baby_names_2020_short.txt'
-
-  babyNames1880Array = filenameToLines(babyNames1880File)
-  babyNames2020Array = filenameToLines(babyNames2020File)
-
-  // JOIN FILES INTO ONE
-  joinedArray = [...babyNames1880Array, ...babyNames2020Array]
-  console.log(`1880 Names has ${babyNames1880Array.length} items`)
-  console.log(`2020 Names has ${babyNames2020Array.length} items`)
-  console.log(`Joined Array has ${joinedArray.length} items`)
-  console.log()
-
+  const duplicates = []
+  const foundWords = {}
 
   // CHECK FOR DUPLICATES (duplicate equals a match)
-  for (let i = 0; i < joinedArray.length; i++) {
+  for (let i = 0; i < words.length; i++) {
 
-    let currentName = joinedArray[i]
+    let currentWord = words[i]
 
-    // if (foundWords.hasOwnProperty(currentName)) {
-    if (!(currentName in foundWords)) {
+    // ANOTHER WAY: if (foundWords.hasOwnProperty(currentWord)
+    if (!(currentWord in foundWords)) {
 
-      foundWords[currentName] = 1
+      foundWords[currentWord] = 1
 
     } else {
 
-      // ADD currentName to matchedNames array because we've found it twice
-      foundWords[currentName]++
+      // ADD currentWord to duplicates array because we've found it twice
+      foundWords[currentWord]++
 
     }
 
-    if (foundWords[currentName] === 2) {
-      matchedNames.push(currentName)
+    if (foundWords[currentWord] === 2) {
+      duplicates.push(currentWord)
     }
 
   }
 
-  // REPORT RESULTS
-  console.clear()
-  console.log(`There were `, matchedNames.length, `results:`)
-  console.log({ matchedNames })
-  // console.log({ foundWords })
+  return duplicates
 
 }
-
-let matchedNames = []
-const foundWords = {}
-
-main()
-
-
-/*
-
-HOMEWORK
-
-if name doesn't exist as a key
-  add key to object
-  set value to 1
-else
-  increment keys value by 1
-
-
-wHAT IS TIME COMPLEXITY?
-
-
-*/
 
 
 
