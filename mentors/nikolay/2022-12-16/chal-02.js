@@ -5,27 +5,16 @@ CHALLENGE:
 
 What are the shortest words that start with “PRO” and end in “ING”? Make sure your solution can handle ties.
 
--
+Q: What if conditions are variables?
 
-What if conditions are variables?
+HW: Optimizing the if statement in findMatches() - DONE
 
 Eric Hepperle
 2022-12-16
 
-
 V1
 
 */
-
-/*
-ALGORITHM
-
-
-
-
-
-*/
-
 
 const fs = require('fs')
 
@@ -39,8 +28,6 @@ function main() {
   const scrabbleFile = '../../../docs/sowpods.txt'
   const scrabbleWords = filenameToLines(scrabbleFile)
 
-  // console.log(scrabbleWords)
-  // const matches = findMatches(scrabbleWords, "PRO", "ING", 11)
   // const matches = findMatches(scrabbleWords, "PRO", "ING", 8)
   const matches = findMatches(scrabbleWords, "PRO", "ING")
   console.table(matches)
@@ -76,6 +63,26 @@ function findMatches(words, startsWith = "", endsWith = "") {
   return shortestWords
 }
 
+
+
+/// FUNCTIONS
+
+/**
+ * Return lines array from file
+ * 
+ * @args: {string} filename
+ * @return: {array} lines
+ */
+function filenameToLines(filename) {
+
+  const buffer = fs.readFileSync(filename)
+  const fileStr = buffer.toString()
+  const lines = fileStr.split('\n') // make array
+
+  return lines
+
+}
+
 // O(N^2)
 function findMatchesWithSort(words, startsWith = "", endsWith = "") {
 
@@ -99,25 +106,4 @@ function findMatchesWithSort(words, startsWith = "", endsWith = "") {
   let shortestWords = sortedMatches.filter(word => word.length === shortestLength)
   console.table(shortestWords)
   return shortestWords
-}
-
-
-
-
-/// FUNCTIONS
-
-/**
- * Return lines array from file
- * 
- * @args: {string} filename
- * @return: {array} lines
- */
-function filenameToLines(filename) {
-
-  const buffer = fs.readFileSync(filename)
-  const fileStr = buffer.toString()
-  const lines = fileStr.split('\n') // make array
-
-  return lines
-
 }
