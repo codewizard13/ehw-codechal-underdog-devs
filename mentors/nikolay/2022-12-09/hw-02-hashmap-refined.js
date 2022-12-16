@@ -45,35 +45,35 @@ function main() {
   // FIND DUPLICATES
   const matchedNames = findDuplicates(joinedArray)
 
-  let testVal = displayResults(babyNames1880Array, babyNames2020Array)
+  // let testVal = displayResults([babyNames1880Array, babyNames2020Array])
 
 
   // DISPLAY HELPFUL CONTEXT IN OUTPUT FOR USER
-  console.log(`STARTING VALUES:\n`)
-  console.log(`- 1880 Names has`, babyNames1880Array.length, `items.`)
-  console.log(`- 2020 Names has`, babyNames2020Array.length, `items.`)
-  console.log()
-  console.log(`Joing both arrays results in`, joinedArray.length, `items.\n`)
+  // console.log(`STARTING VALUES:\n`)
+  // console.log(`- 1880 Names has`, babyNames1880Array.length, `items.`)
+  // console.log(`- 2020 Names has`, babyNames2020Array.length, `items.`)
+  // console.log()
+  // console.log(`Joing both arrays results in`, joinedArray.length, `items.\n`)
 
-  // OUTPUT RESULTS
-  console.log(`These`, matchedNames.length, `results were found`)
-  console.log(`in both lists:\n`)
-  console.table(matchedNames)
+  // // OUTPUT RESULTS
+  // console.log(`These`, matchedNames.length, `results were found`)
+  // console.log(`in both lists:\n`)
+  // console.table(matchedNames)
 
 }
 main()
 
 
-function displayResults(args=[]) {
+// function displayResults(args=[]) {
 
-  console.log({args})
-  const [names1880, names2020] = args
+//   console.log({args})
+//   const [names1880, names2020] = args
 
-  // console.log({names1880})
-  // console.log({names2020})
+//   console.log({names1880})
+//   console.log({names2020})
 
 
-}
+// }
 
 
 /// FUNCTIONS
