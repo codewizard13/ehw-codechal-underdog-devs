@@ -51,31 +51,23 @@ main()
 
 // Array of three words
 const testArray = ["FRIDAY", "PRO134", "PROING", "PROGGING"]
-function findMatches(words, startsWith="", endsWith="") {
+
+// O(N)
+function findMatches(words, startsWith = "", endsWith = "") {
 
   let shortestWords = []
 
-  for (let i=0; i < words.length; i++ ) {
+  for (let i = 0; i < words.length; i++) {
 
     let word = words[i]
 
-
-
     if (word.startsWith(startsWith) && word.endsWith(endsWith)) {
 
-      if (shortestWords.length === 0) {
+      if (shortestWords.length === 0 || word.length === shortestWords[0].length) {
         shortestWords.push(word)
-      } else {
-        if (word.length < shortestWords[0].length) {
-          shortestWords = [word]
-        } else if (word.length === shortestWords[0].length) {
-          shortestWords.push(word)
-        }
-    
-  
+      } else if (word.length < shortestWords[0].length) {
+        shortestWords = [word]
       }
-        
-    
 
     }
 
@@ -84,30 +76,30 @@ function findMatches(words, startsWith="", endsWith="") {
   return shortestWords
 }
 
+// O(N^2)
+function findMatchesWithSort(words, startsWith = "", endsWith = "") {
 
-// function findMatchesWithSort(words, startsWith="", endsWith="") {
+  const matches = []
 
-//   const matches = []
+  for (let i = 0; i < words.length; i++) {
 
-//   for (let i=0; i < words.length; i++ ) {
+    let word = words[i]
 
-//     let word = words[i]
+    if (word.startsWith(startsWith) && word.endsWith(endsWith)) {
 
-//     if (word.startsWith(startsWith) && word.endsWith(endsWith)) {
+      matches.push(word)
 
-//       matches.push(word)
+    }
 
-//     }
+  }
 
-//   }
-
-//   const sortedMatches = matches.sort((a, b) => a.length - b.length)
-//   let shortestLength = sortedMatches[0].length
-//   console.table(sortedMatches)
-//   let shortestWords = sortedMatches.filter(word => word.length === shortestLength)
-//   console.table(shortestWords)
-//   return shortestWords
-// }
+  const sortedMatches = matches.sort((a, b) => a.length - b.length)
+  let shortestLength = sortedMatches[0].length
+  console.table(sortedMatches)
+  let shortestWords = sortedMatches.filter(word => word.length === shortestLength)
+  console.table(shortestWords)
+  return shortestWords
+}
 
 
 
