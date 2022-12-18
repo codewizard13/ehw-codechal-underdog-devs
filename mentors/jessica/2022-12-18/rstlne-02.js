@@ -45,63 +45,31 @@ function main() {
 
   // SLURP FILE DATA INTO ARRAY
   const scrabbleWordsFile = '../../../docs/sowpods.txt'
-  // const scrabbleWords = filenameToLines(scrabbleWordsFile)
+  const scrabbleWords = filenameToLines(scrabbleWordsFile)
 
-  // Temporarily use a small test set
   // const scrabbleWords = [
-  //   "RA", "RSTL", "RUSTLER", "HUSTLE", "rstlne",
-  //   "RSTLNE", "apple", "RRRSSSTTTLLL", "TRAP",
-  //   "rstlneao", "RRRLLLnnnnRRR"
+  //   "RA", "RSTL"
   // ]
 
-  const scrabbleWords = [
-    "RA", "RSTL"
-  ]
-
-
-  // console.log({scrabbleWords})
-
   const allowedChars = ["r", "s", "t", "l", "n", "e"]
+  // const allowedChars = ["r", "s", "t", "l", "n"]
 
   // LOOP through each scrabble word
   for (let i = 0; i < scrabbleWords.length; i++) {
 
     let currentWord = scrabbleWords[i]
 
-    let foundIllegalChar = false
+    // If the current word doesn't contain illegal characters,
+    if (currentWord !== '' && !containsIllegalChar(currentWord, allowedChars)) {
 
+      // ADD current word to results set
+      results.add(currentWord)
 
-    // LOOP over all characters in current word
-    for (let j = 0; j < currentWord.length && !foundIllegalChar; j++) {
-
-      let currentChar = currentWord[j]
-
-      // LOOP through all allowed chars
-      for (let k = 0; k < allowedChars.length; k++) {
-
-        let allowedChar = allowedChars[k]
-
-        if (currentChar !== allowedChar[k]) {
-
-          foundIllegalChar = true
-          continue // illegal char found so jump to next word
-
-        } 
-
-        // console.log(`char ${j} of ${currentWord} is ${currentChar}`)
-
-      }
-
-      // if we got here then current char not illegal
-
+    } else {
+      // console.log(`${currentWord} contains ILLEGAL characters!`)
     }
-      // If we get here, then no disallowd chars were found!
-      if (!foundIllegalChar) {
-        results.add(scrabbleWords[i])
 
-      }
-
-  }
+  } // END scrabbleWords loop
 
 
 
@@ -115,6 +83,27 @@ function main() {
 
 main()
 
+
+function containsIllegalChar(word, allowedChars) {
+
+  // console.warn({word})
+
+  let charIsLegal = true
+
+  for (let i = 0; i < word.length; i++) {
+    let currentChar = word[i]
+    let charIsLegal = allowedChars.includes(currentChar.toLowerCase())
+
+    // console.log({charIsLegal})
+
+    if (!charIsLegal) {
+      return true
+    }
+
+  }
+
+  return false
+}
 
 /*
 ALGORITHM
@@ -140,9 +129,12 @@ END
 LOOP over each char in word as currentChar
 
   IF currentChar not in allowedChars
+    return false
+  END
 
 END
 
+RETURN true
 
 
   
