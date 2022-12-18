@@ -58,7 +58,6 @@ function main() {
     "RA", "RSTL"
   ]
 
-  let foundIllegalChar = false
 
   // console.log({scrabbleWords})
 
@@ -69,8 +68,11 @@ function main() {
 
     let currentWord = scrabbleWords[i]
 
+    let foundIllegalChar = false
+
+
     // LOOP over all characters in current word
-    for (let j = 0; j < currentWord.length; j++) {
+    for (let j = 0; j < currentWord.length && !foundIllegalChar; j++) {
 
       let currentChar = currentWord[j]
 
@@ -79,25 +81,25 @@ function main() {
 
         let allowedChar = allowedChars[k]
 
+        if (currentChar !== allowedChar[k]) {
 
-        console.log(
-          `WORD #` + i+1 ,`currentWord: ${currentWord} | currentChar: ${currentChar}`,
-          `| allowedChar: ${allowedChar}`
-        )
+          foundIllegalChar = true
+          continue // illegal char found so jump to next word
 
-        // If current char is disallowed, go to next word
-        if (currentChar !== allowedChars[k]) {
-          console.warn("ILLEGAL CHAR FOUND!")
-        }
+        } 
+
+        // console.log(`char ${j} of ${currentWord} is ${currentChar}`)
 
       }
 
-      // If we get here, then no disallowd chars were found!
-      results.add(scrabbleWords[i])
-
+      // if we got here then current char not illegal
 
     }
+      // If we get here, then no disallowd chars were found!
+      if (!foundIllegalChar) {
+        results.add(scrabbleWords[i])
 
+      }
 
   }
 
@@ -120,36 +122,27 @@ ALGORITHM
 SLURP file into array (scrabbleWords)
 
 // FUNCTION: Main
-DEFINE results array []
+DEFINE results set []
 
 DEFINE allowedChars array
 
 LOOP through each word in scrabbleWords
 
-  SET currentWord = scrabbleWords[i]
+  IF current word does NOT contain any illgal letters
 
-  LOOP through each char in currentWord
+    ADD current word to results set
 
-    SET currentChar = currentWord[j]
-
-    FOR EACH letter in allowedChars
-
-      IF currentChar not equal to current allowed char
-
-        SKIP to next word because disallowed char was found
-
-      END
-
-    END
-
-
-  END currentWord loop
-
-
-  We have reached this point if no disallowd chars were found in current word
-  so, ADD current word to results array
+  END
 
 END
+
+// FUNCTION: containsIllegalChar(word, allowedChars)
+LOOP over each char in word as currentChar
+
+  IF currentChar not in allowedChars
+
+END
+
 
 
   
