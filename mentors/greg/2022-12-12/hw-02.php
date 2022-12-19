@@ -242,12 +242,12 @@ function findMatches($wordsArr, $needle)
     $currentWord = $wordsArr[$i];
     echo "\$currentWord: $currentWord<br>";
 
-    if (endsWith($currentWord, $needle)) {
-      echo "<h2> <span style='background: aliceblue'>$currentWord</span> ends with $needle</h2>";
-    }
-
     if (startsWith($currentWord, $needle)) {
       echo "<h2>Word: $currentWord <span style='background: antiquewhite'>$currentWord</span> STARTS with $needle</h2>";
+    }
+    if (endsWith($currentWord, $needle)) {
+      echo "<h2> <span style='background: aliceblue'>$currentWord</span> ends with $needle</h2>";
+      array_push($matches, $currentWord);
     }
 
   }
