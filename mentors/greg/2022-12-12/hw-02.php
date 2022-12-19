@@ -30,7 +30,8 @@ function main($memStart)
 {
 
   // CREATE ARRAYS FROM FILES
-  $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
+  // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
+  $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
   // testHarness($scrabbleWords);
   $wordsCount = count($scrabbleWords);
@@ -42,8 +43,8 @@ function main($memStart)
 
   // FIND AND RETURN MATCHES
   // testHarness($smallWordsArr, ["TH", "ED"]);
-  testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
+  // testHarness($smallWordsArr, ["TH"]);
+  testHarness($scrabbleWords, ["TH"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -72,7 +73,7 @@ function startsWith($haystackStr, $needle)
   for ($i = 0; $i < $needleLen; $i++) {
 
     // IF current needle char is not same as current hastack char
-    if ($needle[$i] !== $haystackStr[$i]) {
+    if ($haystackStr !== '' && $needle[$i] !== $haystackStr[$i]) {
       return false;
     }
   }
@@ -173,7 +174,7 @@ function findMatches($wordsArr, $needle)
 
     $currentWord = $wordsArr[$i] ?? null;
 
-    if (startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
+    if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
 
       echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
 
