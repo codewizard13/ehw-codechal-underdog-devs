@@ -7,6 +7,7 @@ What are all of the words that can be made without the letters in
 “AEIOSHRTN” (in other words, without the most common letters)? Not
 all of those letters need to be used, and letters can be repeated.
 
+PERSONAL HOMEWORK --> NOT assigned by Greg
 
 Eric Hepperle
 2022-12-19
@@ -41,7 +42,7 @@ function main($memStart, $cssStyles)
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
 
   // TODO: DO STUFF ...
-  testHarness($scrabbleWords, ["TH", "ED"]);
+  testHarness($scrabbleWords, ["TH", "ED"], $cssStyles);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -71,10 +72,11 @@ function sayFilename($cssStyles)
  * @arg: $testValues array
  * @return: void
  */
-function testHarness($wordsArr, $needleSet = [])
+function testHarness($wordsArr, $needleSet, $cssStyles)
 {
   echo "i'M IN " . __FUNCTION__ . "<br>";
   // DO stuff
+  echo "<h3 style='" . $cssStyles['msgError'] . "'>NEED TO FINISH CODING</h3>";
   $results = [];
 }
 
