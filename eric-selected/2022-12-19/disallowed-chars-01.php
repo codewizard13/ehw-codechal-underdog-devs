@@ -17,10 +17,9 @@ V1
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once(__DIR__ . '/../inc/functions.php');
+require_once(__DIR__ . '/functions.php');
 
 // FILE PATHS
-define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 // DEFINE illegal chars array
@@ -29,9 +28,9 @@ $illegalChars = ["A", "E", "I", "O", "S", "H", "R", "T", "N"];
 /**
  * Primary controller function.
  */
-function main($memStart)
+function main($memStart, $cssStyles)
 {
-  sayFilename();
+  sayFilename($cssStyles);
 
   // SLURP file into array
   $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
@@ -49,16 +48,16 @@ function main($memStart)
 } // END main
 
 // RUN program
-main($memStart);
+main($memStart, $cssStyles);
 
 /**
  * Print styled filename so you know what file you are seeing.
  */
-function sayFilename()
+function sayFilename($cssStyles)
 {
   // IDENTIFY file name
   $thisFilename = basename(__FILE__);
-  echo "<br><h3>Current File: <span style='" . $_SESSION['styleInfo'] . "'>$thisFilename</span></h3>";
+  echo "<br><h3>Current File: <span style='" . $cssStyles['msgInfo'] . "'>$thisFilename</span></h3>";
 }
 
 
@@ -74,7 +73,8 @@ function sayFilename()
  */
 function testHarness($wordsArr, $needleSet = [])
 {
-
+  echo "i'M IN " . __FUNCTION__ . "<br>";
+  // DO stuff
   $results = [];
 }
 

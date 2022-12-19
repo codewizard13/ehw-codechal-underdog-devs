@@ -30,6 +30,8 @@ define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 function main($memStart)
 {
 
+  sayFilename();
+
   // CREATE ARRAYS FROM FILES
   $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
   // $scrabbleWords = fileToArray(SCRABBLE_FILE);
@@ -60,6 +62,15 @@ main($memStart);
 
 /// FUNCTIONS ///
 
+/**
+ * Print styled filename so you know what file you are seeing.
+ */
+function sayFilename()
+{
+  // IDENTIFY file name
+  $thisFilename = basename(__FILE__);
+  echo "<br><h3>Current File: <span style='" . $_SESSION['styleInfo'] . "'>$thisFilename</span></h3>";
+}
 
 /**
  * Given a set of needle values, loop through each value

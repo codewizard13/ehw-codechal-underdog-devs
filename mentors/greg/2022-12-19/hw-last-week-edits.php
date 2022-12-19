@@ -5,7 +5,7 @@ MENTOR Greg: HOMEWORK
 
 What are all of the words that both start with a "TH" and end with a "TH"?
 
-WORK with $scrabbleWords array
+WORK with $scrabbleWords hashmap
 
 Eric Hepperle
 2022-12-12
@@ -24,20 +24,24 @@ define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 /* ALGORITHM in SEPARATE FILE */
 
+// echo "<span style='" . $_SESSION['style']['error'] . "'>TEST ERROR</span><br>";
+echo "<span style='" . $cssStyles['error'] . "'>TEST ERROR</span><br>";
+
 /**
  * Primary controller function.
  */
-function main($memStart)
+function main($memStart, $cssStyles)
 {
-  sayFilename();
 
+  sayFilename($cssStyles);
   // CREATE ARRAYS FROM FILES
-  // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-  $scrabbleWords = fileToArray(SCRABBLE_FILE);
+  $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
+  // $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
+  // var_dump($scrabbleWords);
 
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
@@ -54,7 +58,7 @@ function main($memStart)
 } // END main
 
 // RUN program
-main($memStart);
+main($memStart, $cssStyles);
 
 
 
@@ -63,11 +67,11 @@ main($memStart);
 /**
  * Print styled filename so you know what file you are seeing.
  */
-function sayFilename()
+function sayFilename($styleSet)
 {
   // IDENTIFY file name
   $thisFilename = basename(__FILE__);
-  echo "<br><h3>Current File: <span style='" . $_SESSION['styleInfo'] . "'>$thisFilename</span></h3>";
+  echo "<br><h3>Current File: <span style='" . $styleSet['info'] . "'>$thisFilename</span></h3>";
 }
 
 /**
@@ -87,37 +91,34 @@ function testHarness($wordsArr, $needleSet = [])
 
     $currentNeedle = $needleSet[$i];
 
-    if (isset($currentNeedle)) {
+    // IF we find any matches add them to results array
+    $results = findMatches($wordsArr, $currentNeedle);
 
-      // IF we find any matches add them to results array
-      $results = findMatches($wordsArr, $currentNeedle);
-      
-      // OUPUT RESULTS
-      echo "<H2>RESULTS:</H2>";
-      echo count($results) . " words begin and end with $currentNeedle<br>";
-      var_dump($results);
-    }
+    // OUPUT RESULTS
+    echo "<H2>RESULTS:</H2>";
+    echo count($results) . " words begin and end with $currentNeedle<br>";
+    var_dump($results);
   }
-
 }
 
 
 // Given a set of needle values
-function findMatches($wordsArr, $needle)
+function findMatches($wordsHash, $needle)
 {
 
   $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
   // LOOP through each word in array
-  for ($i = 0; $i < count($wordsArr); $i++) {
+  foreach ($wordsHash as $currentWord => $value) {
 
-    $currentWord = $wordsArr[$i] ?? null;
+    $currentWord = trim($currentWord);
 
-    if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
+    if (strlen($currentWord) < strlen($needle)) {
+      continue;
+    }
 
-      // echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
-
+    if (startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
       array_push($matches, $currentWord);
     }
   }
@@ -140,7 +141,7 @@ function startsWith($haystackStr, $needle)
   for ($i = 0; $i < $needleLen; $i++) {
 
     // IF current needle char is not same as current hastack char
-    if ($haystackStr !== '' && $needle[$i] !== $haystackStr[$i]) {
+    if ($needle[$i] !== $haystackStr[$i]) {
       return false;
     }
   }

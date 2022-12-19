@@ -37,15 +37,6 @@ function main($memStart)
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
 
-  $smallWordsArr = [
-    'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
-  ];
-
-  // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
-  testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -57,6 +48,7 @@ main($memStart);
 
 
 /// FUNCTIONS ///
+
 
 
 /**

@@ -9,14 +9,16 @@ Eric Hepperle
 2022-12-09
 */
 
+include_once('../../routes.php');
+
 $fontFamily = "Roboto, Open Sans, Arial, Tahoma, sans-serif";
+$message = "padding: .5rem; border-radius: 10px; font-family: $fontFamily; border: solid black 2px;";
 
 $cssStyles = [
-  "message" => "padding: .5rem; border-radius: 10px; font-family: $fontFamily; border: solid black 2px;",
-  "error" => "color: brown; background: pink; border: brown solid 2px;",
-  "correct" => "color: forestgreen; background: lightgreen; border: forestgreen solid 2px;",
-  "warn" => "color: orange; background: blanchedalmond; border: orange solid 2px;",
-  "info" => "color: navy; background: aliceblue; border: navy solid 2px;",
+  "msgError" => $message . "color: brown; background: pink; border: brown solid 2px;",
+  "msgCorrect" => $message . "color: forestgreen; background: lightgreen; border: forestgreen solid 2px;",
+  "msgWarn" => $message . "color: orange; background: blanchedalmond; border: orange solid 2px;",
+  "msgInfo" => $message . "color: navy; background: aliceblue; border: navy solid 2px;",
 ];
 
 
