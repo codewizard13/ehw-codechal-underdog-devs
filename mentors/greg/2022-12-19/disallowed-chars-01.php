@@ -1,16 +1,17 @@
 <?php
 
 /*
-MENTOR Greg: HOMEWORK
+Eric's Anticipatory work:
 
-What are all of the words that both start with a "TH" and end with a "TH"?
+What are all of the words that can be made without the letters in
+“AEIOSHRTN” (in other words, without the most common letters)? Not
+all of those letters need to be used, and letters can be repeated.
 
-WORK with $scrabbleWords array
 
 Eric Hepperle
-2022-12-12
+2022-12-19
 
-V2
+V1
 */
 
 $memStart = memory_get_usage();
@@ -22,7 +23,55 @@ require_once(__DIR__ . '/../inc/functions.php');
 define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
-/* ALGORITHM in SEPARATE FILE */
+/* ALGORITHM
+
+SLURP file into scrabbleWords array
+DEFINE allowedLetters array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
 
 /**
  * Primary controller function.
@@ -38,15 +87,8 @@ function main($memStart)
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
 
-  $smallWordsArr = [
-    'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
-  ];
-
-  // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
-  testHarness($scrabbleWords, ["TH", "ED"]);
+  // TODO: DO STUFF ...
+  // testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);

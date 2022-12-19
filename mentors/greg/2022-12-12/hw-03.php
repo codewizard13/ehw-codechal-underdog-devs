@@ -5,7 +5,7 @@ MENTOR Greg: HOMEWORK
 
 What are all of the words that both start with a "TH" and end with a "TH"?
 
-WORK with $scrabbleWords array
+WORK with $scrabbleWords hashmap
 
 Eric Hepperle
 2022-12-12
@@ -31,12 +31,13 @@ function main($memStart)
 {
 
   // CREATE ARRAYS FROM FILES
-  // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-  $scrabbleWords = fileToArray(SCRABBLE_FILE);
+  $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
+  // $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
+  // var_dump($scrabbleWords);
 
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
@@ -93,23 +94,20 @@ function testHarness($wordsArr, $needleSet = [])
 
 
 // Given a set of needle values
-function findMatches($wordsArr, $needle)
+function findMatches($wordsHash, $needle)
 {
 
   $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
   // LOOP through each word in array
-  for ($i = 0; $i < count($wordsArr); $i++) {
-
-    $currentWord = $wordsArr[$i] ?? null;
+  foreach ($wordsHash as $currentWord => $value)
 
     if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
 
       // echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
 
       array_push($matches, $currentWord);
-    }
   }
   return $matches;
 }
