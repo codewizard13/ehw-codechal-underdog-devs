@@ -10,7 +10,7 @@ Eric Hepperle
 */
 
 /**
- * filetoArray(): Converts a text file of n lines to an array of n lines.
+ * Converts a text file of n lines to an array of n lines.
  * 
  * @param: string $filename
  * @return: array $namesArr
@@ -22,6 +22,14 @@ function fileToArray($filename)
   return $namesArr;
 }
 
+
+/**
+ * Converts a text file of n lines to a hashmap / dict where
+ * the key is the index number and the value is the line string
+ * 
+ * @param: string $filename
+ * @return: array[]
+ */
 function fileToHashmap($filename)
 {
   $namesStr = file_get_contents($filename);
@@ -43,8 +51,8 @@ function fileToHashmap($filename)
  * For long text files that are split into arrays, generate a smaller
  *  sample to test with.
  * 
- * @arg: $values array
- * @arg: $print bool
+ * @param: array $values
+ * @param: bool $print
  * @return: int
  */
 function calcIncrement($values = [], $print = false)
