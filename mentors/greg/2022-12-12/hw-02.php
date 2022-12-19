@@ -12,10 +12,26 @@ Eric Hepperle
 V1
 */
 
+
+
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
 require_once(__DIR__ . '/../inc/functions.php');
+
+var_dump($_SESSION);
+$messageStyle = $_SESSION['cssStyles']['message'];
+$errorStyle = $_SESSION['cssStyles']['error'];
+$correctStyle = $_SESSION['cssStyles']['correct'];
+$warnStyle = $_SESSION['cssStyles']['warn'];
+
+echo $errorStyle;
+
+echo "<p style='$messageStyle$errorStyle'>TESTING ERROR</p>";
+echo "<p style='$messageStyle$correctStyle'>TESTING CORRECT</p>";
+echo "<p style='$messageStyle$warnStyle'>TESTING WARN</p>";
+
+exit;
 
 // FILE PATHS
 define('DOCS_PATH', __DIR__ . '/../../../docs/');
@@ -140,25 +156,44 @@ function main($memStart)
   $wordsCount = count($scrabbleWords);
   echo "Words count: $wordsCount<br>";
 
-  // Generate smaller scrabble words test set
-  $smallWordsArr = smallWordsList($scrabbleWords);
-  $smallWordsArr[count($smallWordsArr)] = "THIRTEENTH";
+  $smallWordsArr = [
+    'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
+  ];
   var_dump($smallWordsArr);
 
   // FIND AND RETURN MATCHES
   testHarness($smallWordsArr, ["TH", "ED"]);
 
 
-  // END memory test and return results
-  $peak = memory_get_peak_usage() / 1024 / 1024;
-  echo "Peak: {$peak}\n";
-  $memEnd = memory_get_usage();
-  $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
-  echo "Mem usage: {$memTotal}\n";
+  reportMemUsage($memStart);
+
 } // END main
 
 // RUN program
 main($memStart);
+
+
+function reportMemUsage($memStart) {
+
+  if (isset($GLOBALS[$cssStyles])) {
+    $styles = $GLOBALS[$cssStyles];
+  } else {
+    $styles = '';
+  }
+
+  // END memory test and return results
+  $peak = memory_get_peak_usage() / 1024 / 1024;
+
+  echo "<p style='" . '' . "'>";
+  echo "Peak: {$peak}\n";
+  echo "</p>";
+  
+  $memEnd = memory_get_usage();
+  $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
+  echo "Mem usage: {$memTotal}\n";
+
+}
+
 
 /**
  * Given a set of needle values, loop through each value
@@ -207,11 +242,5 @@ function findMatches($wordsArr, $needle)
     return true;
   }
 }
-
-
-
-
-// Since there are of 260K words, generate a smaller word set to work with
-
 
 

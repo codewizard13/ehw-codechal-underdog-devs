@@ -9,6 +9,21 @@ Eric Hepperle
 2022-12-09
 */
 
+session_start();
+
+$fontFamily = "Roboto, Open Sans, Arial, Tahoma, sans-serif";
+
+$cssStyles = [
+  "message" => "padding: .5rem; border-radius: 10px; font-family: $fontFamily; border: solid black 2px;",
+  "error" => "color: brown; background: pink; border: brown solid 2px;",
+  "correct" => "color: forestgreen; background: lightgreen; border: forestgreen solid 2px;",
+  "warn" => "color: orange; background: blanchedalmond; border: orange solid 2px;",
+];
+
+// Add Global CSS styles to session superglobal
+$_SESSION['cssStyles'] = $cssStyles;
+
+
 /**
  * Converts a text file of n lines to an array of n lines.
  * 
