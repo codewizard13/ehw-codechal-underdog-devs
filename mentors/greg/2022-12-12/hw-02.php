@@ -19,19 +19,17 @@ $memStart = memory_get_usage();
 // INCLUDE FUNCTIONS LIBRARY
 require_once(__DIR__ . '/../inc/functions.php');
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 $messageStyle = $_SESSION['cssStyles']['message'];
 $errorStyle = $_SESSION['cssStyles']['error'];
 $correctStyle = $_SESSION['cssStyles']['correct'];
 $warnStyle = $_SESSION['cssStyles']['warn'];
 
-echo $errorStyle;
+// echo "<p style='$messageStyle$errorStyle'>TESTING ERROR</p>";
+// echo "<p style='$messageStyle$correctStyle'>TESTING CORRECT</p>";
+// echo "<p style='$messageStyle$warnStyle'>TESTING WARN</p>";
 
-echo "<p style='$messageStyle$errorStyle'>TESTING ERROR</p>";
-echo "<p style='$messageStyle$correctStyle'>TESTING CORRECT</p>";
-echo "<p style='$messageStyle$warnStyle'>TESTING WARN</p>";
-
-exit;
+// exit;
 
 // FILE PATHS
 define('DOCS_PATH', __DIR__ . '/../../../docs/');
@@ -107,8 +105,12 @@ function startsWith($haystackStr, $needle)
   $haystackLen = strlen($haystackStr);
   $needleLen = strlen($needle);
 
+  // LOOP through each char in needle
   for ($i = 0; $i < $needleLen; $i++) {
 
+    echo '$needle[$i]: ' . $needle[$i] . ' | ' . '$haystackStr[$i]' . $haystackStr[$i] . "<br>";
+
+    // IF current needle char is not same as current hastack char
     if ($needle[$i] !== $haystackStr[$i]) {
       return false;
     }
@@ -162,9 +164,10 @@ function main($memStart)
   var_dump($smallWordsArr);
 
   // FIND AND RETURN MATCHES
-  testHarness($smallWordsArr, ["TH", "ED"]);
+  // testHarness($smallWordsArr, ["TH", "ED"]);
+  testHarness($smallWordsArr, ["TH"]);
 
-
+  // PRINT MEMORY USAGE
   reportMemUsage($memStart);
 
 } // END main
@@ -175,18 +178,10 @@ main($memStart);
 
 function reportMemUsage($memStart) {
 
-  if (isset($GLOBALS[$cssStyles])) {
-    $styles = $GLOBALS[$cssStyles];
-  } else {
-    $styles = '';
-  }
-
   // END memory test and return results
   $peak = memory_get_peak_usage() / 1024 / 1024;
 
-  echo "<p style='" . '' . "'>";
   echo "Peak: {$peak}\n";
-  echo "</p>";
   
   $memEnd = memory_get_usage();
   $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
@@ -207,15 +202,25 @@ function testHarness($wordsArr, $needleSet = [])
 
   $results = [];
 
+  // LOOP through each needle in needleSet
   for ($i = 0; $i < count($needleSet); $i++) {
-    if (isset($needleSet[$i])) {
-      echo "<h3>\$needleSet[$i]: <span style='color:green'>$needleSet[$i]</span></h3>";
+    
+    $currentNeedle = $needleSet[$i];
 
-      if (findMatches($wordsArr, $needleSet[$i])) {
-        $results = findMatches($wordsArr, $needleSet[$i]);
-      }
+    if (isset($currentNeedle)) {
+      echo "<h3>\$currentNeedle: <span style='color:green'>$currentNeedle</span></h3>";
+
+      // IF we find any matches,
+        $results = findMatches($wordsArr, $currentNeedle);
+        var_dump($results);
+      // } else {
+      //   return "NO matches found.<br>";
+      // }
+
     }
   }
+
+  return $results;
 }
 
 
@@ -225,22 +230,29 @@ function testHarness($wordsArr, $needleSet = [])
 function findMatches($wordsArr, $needle)
 {
 
+  echo "<h3>\$wordsArr:</h3>";
+  var_dump($wordsArr);
+  echo count($wordsArr). ' words in $wordsArr<br>';
+
+  $matches = [];
+
+  // LOOP through each word in array
   for ($i = 0; $i < count($wordsArr); $i++) {
 
-    if (endsWith($wordsArr[$i], $needle)) {
-      echo "<h2> <span style='background: aliceblue'>$wordsArr[$i]</span> ends with $needle</h2>";
-    } else {
-      return false;
+    $currentWord = $wordsArr[$i];
+    echo "\$currentWord: $currentWord<br>";
+
+    if (endsWith($currentWord, $needle)) {
+      echo "<h2> <span style='background: aliceblue'>$currentWord</span> ends with $needle</h2>";
     }
 
-    if (startsWith($wordsArr[$i], $needle)) {
-      echo "<h2> <span style='background: antiquewhite'>$wordsArr[$i]</span> STARTS with $needle</h2>";
-    } else {
-      return false;
+    if (startsWith($currentWord, $needle)) {
+      echo "<h2>Word: $currentWord <span style='background: antiquewhite'>$currentWord</span> STARTS with $needle</h2>";
     }
 
-    return true;
   }
+  return $matches;
+
 }
 
 
