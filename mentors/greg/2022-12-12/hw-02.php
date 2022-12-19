@@ -183,6 +183,9 @@ function testHarness($wordsArr, $needleSet = [])
   }
 }
 
+
+
+
 // Given a set of needle values
 function findMatches($wordsArr, $needle)
 {
@@ -209,22 +212,6 @@ function findMatches($wordsArr, $needle)
 
 
 // Since there are of 260K words, generate a smaller word set to work with
-function smallWordsList($words)
-{
 
-  $wordsCount = count($words);
 
-  $smallWordsArr = [];
 
-  for ($i = 0; $i < $wordsCount; $i += 55000) {
-
-    // increment index by 55000 and grab three elments including this one
-    $subArr = array_slice($words, $i, 3);
-    $tmpArr = array_keys(($subArr));
-    foreach ($tmpArr as $word) {
-      array_push($smallWordsArr, $word);
-    }
-  }
-
-  return $smallWordsArr;
-}

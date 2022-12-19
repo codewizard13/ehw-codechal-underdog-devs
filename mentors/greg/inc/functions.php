@@ -28,22 +28,22 @@ function fileToArray($filename)
  * the key is the index number and the value is the line string
  * 
  * @param: string $filename
- * @return: array[]
+ * @return: array[ int => string ] $linesHash
  */
 function fileToHashmap($filename)
 {
-  $namesStr = file_get_contents($filename);
-  $namesArr = explode("\n", $namesStr);
-  $namesHash = [];
+  $linesStr = file_get_contents($filename);
+  $linesArr = explode("\n", $linesStr);
+  $linesHash = [];
   
-  foreach ($namesArr as $key => $value) {
+  foreach ($linesArr as $key => $value) {
     // echo "$key => $value<br>";
 
-    $namesHash[$value] = true;
+    $linesHash[$value] = true;
 
   }
 
-  return $namesHash;
+  return $linesHash;
 }
 
 
@@ -70,4 +70,31 @@ function calcIncrement($values = [], $print = false)
   }
 
   return $incrementAmount;
+}
+
+
+/**
+ * Given a large array of words, generate a smaller subset to use for testing.
+ * 
+ * @param: array $words
+ * @return: array $smallWordsArr
+ */
+function smallWordsList($words)
+{
+
+  $wordsCount = count($words);
+
+  $smallWordsArr = [];
+
+  for ($i = 0; $i < $wordsCount; $i += 55000) {
+
+    // increment index by 55000 and grab three elments including this one
+    $subArr = array_slice($words, $i, 3);
+    $tmpArr = array_keys(($subArr));
+    foreach ($tmpArr as $word) {
+      array_push($smallWordsArr, $word);
+    }
+  }
+
+  return $smallWordsArr;
 }
