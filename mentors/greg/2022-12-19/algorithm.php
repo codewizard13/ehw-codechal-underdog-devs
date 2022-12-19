@@ -7,21 +7,13 @@ What are all of the words that can be made without the letters in
 “AEIOSHRTN” (in other words, without the most common letters)? Not
 all of those letters need to be used, and letters can be repeated.
 
+ALGORITHM only
 
 Eric Hepperle
 2022-12-19
 
 V1
 */
-
-$memStart = memory_get_usage();
-
-// INCLUDE FUNCTIONS LIBRARY
-require_once(__DIR__ . '/../inc/functions.php');
-
-// FILE PATHS
-define('DOCS_PATH', __DIR__ . '/../../../docs/');
-define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 /* ALGORITHM
 
