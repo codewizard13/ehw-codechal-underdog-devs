@@ -17,22 +17,9 @@ $memStart = memory_get_usage();
 // INCLUDE FUNCTIONS LIBRARY
 require_once(__DIR__ . '/../inc/functions.php');
 
-// var_dump($_SESSION);
-$messageStyle = $_SESSION['cssStyles']['message'];
-$errorStyle = $_SESSION['cssStyles']['error'];
-$correctStyle = $_SESSION['cssStyles']['correct'];
-$warnStyle = $_SESSION['cssStyles']['warn'];
-
-// echo "<p style='$messageStyle$errorStyle'>TESTING ERROR</p>";
-// echo "<p style='$messageStyle$correctStyle'>TESTING CORRECT</p>";
-// echo "<p style='$messageStyle$warnStyle'>TESTING WARN</p>";
-
-// exit;
-
 // FILE PATHS
 define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
-
 
 /* ALGORITHM in SEPARATE FILE */
 
@@ -79,13 +66,10 @@ main($memStart);
 function startsWith($haystackStr, $needle)
 {
 
-  // $haystackLen = strlen($haystackStr);
   $needleLen = strlen($needle);
 
   // LOOP through each char in needle
   for ($i = 0; $i < $needleLen; $i++) {
-
-    // echo '$needle[$i]: ' . $needle[$i] . ' | ' . '$haystackStr[$i]' . $haystackStr[$i] . "<br>";
 
     // IF current needle char is not same as current hastack char
     if ($needle[$i] !== $haystackStr[$i]) {
@@ -165,7 +149,6 @@ function testHarness($wordsArr, $needleSet = [])
     $currentNeedle = $needleSet[$i];
 
     if (isset($currentNeedle)) {
-      // echo "<h3>\$currentNeedle: <span style='color:green'>$currentNeedle</span></h3>";
 
       // IF we find any matches add them to results array
       $results = findMatches($wordsArr, $currentNeedle);
@@ -182,8 +165,6 @@ function testHarness($wordsArr, $needleSet = [])
 function findMatches($wordsArr, $needle)
 {
 
-  // echo "<h3>\$wordsArr:</h3>";
-  // echo count($wordsArr). ' words in $wordsArr<br>';
   $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
@@ -191,8 +172,6 @@ function findMatches($wordsArr, $needle)
   for ($i = 0; $i < count($wordsArr); $i++) {
 
     $currentWord = $wordsArr[$i] ?? null;
-    // echo "current array key: $i<br>";
-    // echo "\$currentWord: $currentWord<br>";
 
     if (startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
 
