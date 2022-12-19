@@ -37,9 +37,44 @@ define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 /* ALGORITHM in SEPARATE FILE */
 
 /**
- * Returns true if haystackStr starts with needle
+ * Primary controller function.
+ */
+function main($memStart)
+{
+
+  // CREATE ARRAYS FROM FILES
+  $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
+
+  // testHarness($scrabbleWords);
+  $wordsCount = count($scrabbleWords);
+  echo "Words count: $wordsCount<br>";
+
+  $smallWordsArr = [
+    'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
+  ];
+
+  // FIND AND RETURN MATCHES
+  // testHarness($smallWordsArr, ["TH", "ED"]);
+  testHarness($smallWordsArr, ["TH"]);
+  // testHarness($scrabbleWords, ["TH"]);
+
+  // PRINT MEMORY USAGE
+  reportMemUsage($memStart);
+} // END main
+
+// RUN program
+main($memStart);
+
+
+
+/// FUNCTIONS ///
+
+/**
+ * Returns true if haystackStr starts with needle.
  * 
- * @ar
+ * @param: string $hastackStr
+ * @param: string $needle
+ * @return: bool
  */
 function startsWith($haystackStr, $needle)
 {
@@ -61,8 +96,13 @@ function startsWith($haystackStr, $needle)
   return true;
 }
 
-
-
+/**
+ * Returns true if haystackStr ends with needle.
+ * 
+ * @param: string $hastackStr
+ * @param: string $needle
+ * @return: bool
+ */
 function endsWith($haystackStr, $needle)
 {
 
@@ -85,51 +125,25 @@ function endsWith($haystackStr, $needle)
 }
 
 
-
-
 /**
- * Primary controller function.
+ * Calculate and report memory usage of a block of code.
+ * 
+ * @usage: Call at bottom of a code black that has $memStart as arg.
+ * 
+ * @param: mixed $memStart
+ * @return: void
  */
-function main($memStart)
+function reportMemUsage($memStart)
 {
-
-  // CREATE ARRAYS FROM FILES
-  $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-
-  // testHarness($scrabbleWords);
-  $wordsCount = count($scrabbleWords);
-  echo "Words count: $wordsCount<br>";
-
-  $smallWordsArr = [
-    'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
-  ];
-  // var_dump($smallWordsArr);
-
-  // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  testHarness($scrabbleWords, ["TH"]);
-
-  // PRINT MEMORY USAGE
-  reportMemUsage($memStart);
-
-} // END main
-
-// RUN program
-main($memStart);
-
-
-function reportMemUsage($memStart) {
 
   // END memory test and return results
   $peak = memory_get_peak_usage() / 1024 / 1024;
 
   echo "Peak: {$peak}\n";
-  
+
   $memEnd = memory_get_usage();
   $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
   echo "Mem usage: {$memTotal}\n";
-
 }
 
 
@@ -147,23 +161,21 @@ function testHarness($wordsArr, $needleSet = [])
 
   // LOOP through each needle in needleSet
   for ($i = 0; $i < count($needleSet); $i++) {
-    
+
     $currentNeedle = $needleSet[$i];
 
     if (isset($currentNeedle)) {
       // echo "<h3>\$currentNeedle: <span style='color:green'>$currentNeedle</span></h3>";
 
-      // IF we find any matches,
-        $results = findMatches($wordsArr, $currentNeedle);
-        var_dump($results);
-
+      // IF we find any matches add them to results array
+      $results = findMatches($wordsArr, $currentNeedle);
+      
+      // OUPUT RESULTS
+      var_dump($results);
     }
   }
 
-  return $results;
 }
-
-
 
 
 // Given a set of needle values
@@ -172,7 +184,7 @@ function findMatches($wordsArr, $needle)
 
   // echo "<h3>\$wordsArr:</h3>";
   // echo count($wordsArr). ' words in $wordsArr<br>';
-
+  $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
   // LOOP through each word in array
@@ -182,17 +194,12 @@ function findMatches($wordsArr, $needle)
     // echo "current array key: $i<br>";
     // echo "\$currentWord: $currentWord<br>";
 
-    if (startsWith($currentWord, $needle)) {
-      echo "<h2>Word: $currentWord <span style='background: antiquewhite'>$currentWord</span> STARTS with $needle</h2>";
-    }
-    if (endsWith($currentWord, $needle)) {
-      echo "<h2> <span style='background: aliceblue'>$currentWord</span> ends with $needle</h2>";
+    if (startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
+
+      echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
+
       array_push($matches, $currentWord);
     }
-
   }
   return $matches;
-
 }
-
-
