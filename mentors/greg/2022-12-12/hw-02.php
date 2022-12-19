@@ -164,26 +164,3 @@ function endsWith($haystackStr, $needle)
 
   return true;
 }
-
-
-
-/**
- * Calculate and report memory usage of a block of code.
- * 
- * @usage: Call at bottom of a code black that has $memStart as arg.
- * 
- * @param: mixed $memStart
- * @return: void
- */
-function reportMemUsage($memStart)
-{
-
-  // END memory test and return results
-  $peak = memory_get_peak_usage() / 1024 / 1024;
-
-  echo "Peak: {$peak}\n";
-
-  $memEnd = memory_get_usage();
-  $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
-  echo "Mem usage: {$memTotal}\n";
-}
