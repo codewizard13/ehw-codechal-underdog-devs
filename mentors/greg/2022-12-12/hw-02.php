@@ -9,10 +9,8 @@ What are all of the words that both start with a "TH" and end with a "TH"?
 Eric Hepperle
 2022-12-12
 
-V1
+V2
 */
-
-
 
 $memStart = memory_get_usage();
 
@@ -36,63 +34,7 @@ define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 
-/*
-ALGORITHM
-
-// FUNCTION:  MAIN
-SLURP Scrabble words into array (scrabbleWords)
-
-LOOP through each word
-
-  IF WORD STARTS with TH && WORD ENDS WITH TH
-  // if (startsWith(haystack, needle) && endsWith(haystack, needle))
-
-    ADD word to results
-
-  END
-
-END
-
-RETURN RESULTS
-
-
-
-// FUNCTION:  startsWith() - ARGS: needle, haystack (both strings)
-LOOP through each char in needle (needleChar)
-
-  IF needleChar DIFFERENT than hayStack char
-  needle[0] === haystack[0]
-
-    RETURN false
-
-  END
-
-END
-
-OTHERWISE RETURN true
-
-
-// FUNCTION:  endsWith() - ARGS: needle, haystack (both strings)
-STORE needle length (needleLen)
-STORE haystack length (haystackLen)
-
-for ($needleIndex = needleLen -1, $haystackIndex = haystackLen -1;
-    $needleIndex >= 0   ; needleIndex--, haystackIndex--
-)
-LOOP through each char in needle (needleChar)
-
-  // IF needleChar DIFFERENT than hayStack char
-  // needle[$needleIndex] !== haystack[$haystackIndex]
-
-    RETURN false
-
-  END
-
-END
-
-OTHERWISE RETURN true
-
-*/
+/* ALGORITHM in SEPARATE FILE */
 
 /**
  * Returns true if haystackStr starts with needle
@@ -102,13 +44,13 @@ OTHERWISE RETURN true
 function startsWith($haystackStr, $needle)
 {
 
-  $haystackLen = strlen($haystackStr);
+  // $haystackLen = strlen($haystackStr);
   $needleLen = strlen($needle);
 
   // LOOP through each char in needle
   for ($i = 0; $i < $needleLen; $i++) {
 
-    echo '$needle[$i]: ' . $needle[$i] . ' | ' . '$haystackStr[$i]' . $haystackStr[$i] . "<br>";
+    // echo '$needle[$i]: ' . $needle[$i] . ' | ' . '$haystackStr[$i]' . $haystackStr[$i] . "<br>";
 
     // IF current needle char is not same as current hastack char
     if ($needle[$i] !== $haystackStr[$i]) {
@@ -161,11 +103,12 @@ function main($memStart)
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
   ];
-  var_dump($smallWordsArr);
+  // var_dump($smallWordsArr);
 
   // FIND AND RETURN MATCHES
   // testHarness($smallWordsArr, ["TH", "ED"]);
-  testHarness($smallWordsArr, ["TH"]);
+  // testHarness($smallWordsArr, ["TH"]);
+  testHarness($scrabbleWords, ["TH"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -208,14 +151,11 @@ function testHarness($wordsArr, $needleSet = [])
     $currentNeedle = $needleSet[$i];
 
     if (isset($currentNeedle)) {
-      echo "<h3>\$currentNeedle: <span style='color:green'>$currentNeedle</span></h3>";
+      // echo "<h3>\$currentNeedle: <span style='color:green'>$currentNeedle</span></h3>";
 
       // IF we find any matches,
         $results = findMatches($wordsArr, $currentNeedle);
         var_dump($results);
-      // } else {
-      //   return "NO matches found.<br>";
-      // }
 
     }
   }
@@ -230,17 +170,17 @@ function testHarness($wordsArr, $needleSet = [])
 function findMatches($wordsArr, $needle)
 {
 
-  echo "<h3>\$wordsArr:</h3>";
-  var_dump($wordsArr);
-  echo count($wordsArr). ' words in $wordsArr<br>';
+  // echo "<h3>\$wordsArr:</h3>";
+  // echo count($wordsArr). ' words in $wordsArr<br>';
 
   $matches = [];
 
   // LOOP through each word in array
   for ($i = 0; $i < count($wordsArr); $i++) {
 
-    $currentWord = $wordsArr[$i];
-    echo "\$currentWord: $currentWord<br>";
+    $currentWord = $wordsArr[$i] ?? null;
+    // echo "current array key: $i<br>";
+    // echo "\$currentWord: $currentWord<br>";
 
     if (startsWith($currentWord, $needle)) {
       echo "<h2>Word: $currentWord <span style='background: antiquewhite'>$currentWord</span> STARTS with $needle</h2>";
