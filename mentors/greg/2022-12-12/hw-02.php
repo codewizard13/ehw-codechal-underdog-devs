@@ -34,8 +34,8 @@ function main($memStart)
   $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
   // testHarness($scrabbleWords);
-  $wordsCount = count($scrabbleWords);
-  echo "Words count: $wordsCount<br>";
+  $scrabbleWordsCount = count($scrabbleWords);
+  echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
 
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
@@ -44,7 +44,8 @@ function main($memStart)
   // FIND AND RETURN MATCHES
   // testHarness($smallWordsArr, ["TH", "ED"]);
   // testHarness($smallWordsArr, ["TH"]);
-  testHarness($scrabbleWords, ["TH"]);
+  // testHarness($scrabbleWords, ["TH"]);
+  testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -56,6 +57,61 @@ main($memStart);
 
 
 /// FUNCTIONS ///
+
+
+/**
+ * Given a set of needle values, loop through each value
+ * and report any matches in haystack.
+ * 
+ * @arg: $testValues array
+ * @return: void
+ */
+function testHarness($wordsArr, $needleSet = [])
+{
+
+  $results = [];
+
+  // LOOP through each needle in needleSet
+  for ($i = 0; $i < count($needleSet); $i++) {
+
+    $currentNeedle = $needleSet[$i];
+
+    if (isset($currentNeedle)) {
+
+      // IF we find any matches add them to results array
+      $results = findMatches($wordsArr, $currentNeedle);
+      
+      // OUPUT RESULTS
+      echo "<H2>RESULTS:</H2>";
+      echo count($results) . " words begin and end with $currentNeedle<br>";
+      var_dump($results);
+    }
+  }
+
+}
+
+
+// Given a set of needle values
+function findMatches($wordsArr, $needle)
+{
+
+  $style = 'background: antiquewhite; font-weight: bold;';
+  $matches = [];
+
+  // LOOP through each word in array
+  for ($i = 0; $i < count($wordsArr); $i++) {
+
+    $currentWord = $wordsArr[$i] ?? null;
+
+    if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
+
+      // echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
+
+      array_push($matches, $currentWord);
+    }
+  }
+  return $matches;
+}
 
 /**
  * Returns true if haystackStr starts with needle.
@@ -110,6 +166,7 @@ function endsWith($haystackStr, $needle)
 }
 
 
+
 /**
  * Calculate and report memory usage of a block of code.
  * 
@@ -129,57 +186,4 @@ function reportMemUsage($memStart)
   $memEnd = memory_get_usage();
   $memTotal = ($memEnd - $memStart) / 1024 / 1024 . PHP_EOL;;
   echo "Mem usage: {$memTotal}\n";
-}
-
-
-/**
- * Given a set of needle values, loop through each value
- * and report any matches in haystack.
- * 
- * @arg: $testValues array
- * @return: void
- */
-function testHarness($wordsArr, $needleSet = [])
-{
-
-  $results = [];
-
-  // LOOP through each needle in needleSet
-  for ($i = 0; $i < count($needleSet); $i++) {
-
-    $currentNeedle = $needleSet[$i];
-
-    if (isset($currentNeedle)) {
-
-      // IF we find any matches add them to results array
-      $results = findMatches($wordsArr, $currentNeedle);
-      
-      // OUPUT RESULTS
-      var_dump($results);
-    }
-  }
-
-}
-
-
-// Given a set of needle values
-function findMatches($wordsArr, $needle)
-{
-
-  $style = 'background: antiquewhite; font-weight: bold;';
-  $matches = [];
-
-  // LOOP through each word in array
-  for ($i = 0; $i < count($wordsArr); $i++) {
-
-    $currentWord = $wordsArr[$i] ?? null;
-
-    if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
-
-      echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
-
-      array_push($matches, $currentWord);
-    }
-  }
-  return $matches;
 }
