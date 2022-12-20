@@ -15,10 +15,10 @@ V1
 /*
 ALGORITHM
 
-SLURP scrabble file into array (scrabbleWords)
 
 // FUNCTION: main
 DEFINE empty results array
+SLURP scrabble file into array (scrabbleWords)
 
 LOOP through each word
 
@@ -51,15 +51,18 @@ LOOP  through each char in word
 
     END
 
-    IF found has only one element and that element is U
+  END vowels loop
+    
+END word char loop
 
-      RETURN true
+// AFTER looping though word if found array has length 1
+IF found has only one element and that element is U
 
-    END
+  RETURN true
 
-  END
+ELSE
 
-  return false
+  RETURN false
 
 END
 
@@ -75,11 +78,94 @@ HOMEWORK: Implement the above algorithm I wrote
 
 */
 
-
-*/
-
-
 const fs = require('fs')
+
+// let scrabbleWords = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper", "Afghanistan"]
+
+const vowels = ["A", "E", "I", "O", "U"]
+
+/**
+ * Main: The main function; controller.
+ */
+function main() {
+
+  const matchedWords = []
+
+  // SLURP FILE DATA INTO ARRAYS
+  const scrabbleWordsFile = '../../../docs/sowpods.txt'
+  const scrabbleWords = filenameToLines(scrabbleWordsFile)
+  // const scrabbleWords = [
+  //   "AA", "BBB", "BBU", "OU", "UUU", "AAA", "UUAAU"
+  // ]
+  // console.log({ scrabbleWords })
+
+  // LOOP through each word
+  for (let i = 0; i < scrabbleWords.length; i++) {
+
+    let currentWord = scrabbleWords[i]
+
+    if (hasOnlyU(currentWord.toUpperCase())) {
+      matchedWords.push(currentWord)
+    }
+
+  }
+
+  console.log(`\nMATCHED WORDS:`)
+  console.table(matchedWords)
+  console.log(`\nOut of`, scrabbleWords.length, `scrabbleWords`, matchedWords.length, `contain only U for vowels.`)
+
+}
+main()
+
+
+function hasOnlyU(word) {
+
+  const foundVowels = []
+
+  // LOOP over each char in word
+  for (let i = 0; i < word.length; i++) {
+
+    // LOOP over each vowel
+    for (let j = 0; j < vowels.length; j++) {
+
+      // IF char is vowel AND vowel doesn't already exist in found array
+      if (word[i] === vowels[j] && !foundVowels.includes(word[i])) {
+
+        foundVowels.push(word[i])
+
+        // If we have found two unique vowels then return false
+        if (foundVowels.length === 2) { return false }
+
+      }
+
+    } // END vowels loop
+
+  } // END  chars in word loop
+
+  if (foundVowels.length === 1 && foundVowels[0] === "U") {
+    return true
+  } else {
+    return false
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// FUNCTIONS ///
 
 /**
  * Return lines array from file
@@ -96,53 +182,3 @@ function filenameToLines(filename) {
   return lines
 
 }
-
-// let scrabbleWords = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper", "Afghanistan"]
-
-const vowels = ["A", "E", "I", "O", "U"]
-
-/**
- * Check if a character is a vowel or not.
- * 
- * @param {char} char 
- * @returns {bool}
- */
-function isVowel(char) {
-
-  return vowels.includes(char)
-
-}
-
-
-
-/**
- * Main: The main function; controller.
- */
-function main() {
-
-  const results = []
-
-  // SLURP FILE DATA INTO ARRAYS
-  const scrabbleWordsFile = '../../../docs/sowpods.txt'
-  const scrabbleWords = filenameToLines(scrabbleWordsFile)
-
-  for (let i = 0; i < scrabbleWords.length; i++) {
-
-
-  
-  }
-  
-  console.table(results)
-  console.log(`\nOut of`, scrabbleWords.length, `scrabbleWords`, results.length, `both start and end with a vowel.`)
-
-}
-
-main()
-
-
-/*
-ALGORITHM:
-
-
-
-*/
