@@ -109,7 +109,7 @@ RETURN dict charCount
 
 
 
-const vowels = ['a', 'e', 'i', 'o', 'u']
+// const vowels = ['a', 'e', 'i', 'o', 'u']
 
 /**
  * Main: The main function; controller.
@@ -122,7 +122,9 @@ function main() {
   const countriesStr = countries.join('')
     .replace(EOL, '').replace(/[\s\.,\-]/g, '')
 
-  const charCount = {}
+  const vowelCount = {
+    a: 0, e: 0, i: 0, o: 0, u: 0
+  }
 
   // Split joined string at characters to get list of all letters in file
   let letterChars = countriesStr.split('')
@@ -136,27 +138,18 @@ function main() {
     let letter = letterChars[i].toLowerCase()
     // console.log(`Letter ${i}: ${letter}`)
 
-    // LOOP over each vowel
-    for (let j=0; j < vowels.length; j++) {
-
       // IF letter is a vowel
-      if (letter === vowels[j]) {
+      if (vowelCount[letter] !== undefined ) {
 
-        if (letter in charCount) {
-          charCount[letter]++
-        } else {
-          charCount[letter] = 1
-        }
+          vowelCount[letter]++
 
       }
-
-    }
 
   }
 
   // REPORT RESULTS
-  console.log(charCount)
-  console.log(Object.keys(charCount)) // [ 'a', 'i', 'e', 'o', 'u' ]
+  console.log(vowelCount)
+  console.log(Object.keys(vowelCount)) // [ 'a', 'i', 'e', 'o', 'u' ]
 
 
 }

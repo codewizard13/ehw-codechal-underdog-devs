@@ -3,7 +3,9 @@ MENTOR Tim: CHALLENGE 2022-12-20
 
 Challenge:
 
-???
+What are all of the words that can be made without the letters in “AEIOSHRTN”
+(in other words, without the most common letters)? Not all of those letters
+need to be used, and letters can be repeated.
 
 Programmer: Eric Hepperle
 Started:    2022-12-20
@@ -12,9 +14,7 @@ V1
 
 */
 
-const { EOF } = require('dns')
 const fs = require('fs')
-const { EOL } = require('os')
 
 /**
  * Return lines array from file
@@ -34,77 +34,57 @@ function filenameToLines(filename) {
 
 /* ALGORITHM IN OWN FILE */
 
+const illegalCharStr = "AEIOSHRTN"
+const illegalArr = (illegalCharStr).split('')
+const illegalChars = new Set(illegalArr)
 
-const vowels = ['a', 'e', 'i', 'o', 'u']
+const testWords = [
+  "AA", "BBB", "BBBE", "AEIOSHRTN", "DZY", "nnnn"
+]
 
 /**
  * Main: The main function; controller.
  */
 function main() {
 
+  const legalWords = []
+
   // SLURP FILE DATA INTO ARRAY
   const scrabbleFile = '../../../docs/sowpods.txt'
-  const scrabbleWords = filenameToLines(countriesFile)
-  
-  // DO MAIN STUFF
+  const scrabbleWords = filenameToLines(scrabbleFile)
+
+  console.log({testWords})
+  console.log({illegalChars})
+
+  // LOOP over all words
+  for (let i=0; i < scrabbleWords.length; i++) {
+
+    let currentWord = scrabbleWords[i]
+
+    if (!containsIllegalChars(currentWord.toUpperCase())) {
+      legalWords.push(currentWord)
+    }
+
+  }
 
   // REPORT RESULTS
+  console.log({legalWords})
 
 }
 main()
 
-const fs = require('fs')
 
-let filename = '../../../docs/countries.txt'
+function containsIllegalChars(string) {
 
-// Read file into an array of words
-const buffer = fs.readFileSync(filename)
-const fileStr = buffer.toString()
-const countries = fileStr.split('\n') // make array
+  for (let i=0; i < string.length; i++) {
 
-// SAMPLE COUNTRIES ARRAYS FOR TESTING:
-// let countries = ["Albania", "Uganda", "Togo", "Zimbabwe", "Beekeeper"]
-// let countries = ["Togo"]
-// let countries = ["Uganda"]
+    let currentChar = string[i]
 
-const results = []
-
-const vowels = ["A", "E", "I", "O", "U"]
-// vowels.push("Y") // add Y on for testing
-
-// For each country name,
-for (let i = 0; i < countries.length; i++) {
-
-  let country = countries[i]
-
-  // Clear / empty whatever is in found array
-  let found = []
-
-  // Loop through each vowel,
-  for (let j = 0; j < vowels.length; j++) {
-
-    let vowel = vowels[j]
-
-    // More than one vowels found in country name, so skip to next country
-    //  because this one is already not unique.
-    if (found.length >= 2) {
-      break; // next country
+    if (illegalChars.has(currentChar)) {
+      return true
     }
 
-    // IF vowel found in country name
-    if (country.toUpperCase().indexOf(vowel) !== -1) {
-      found.push(vowel)
-    }
-
-  } // end vowels loop
-
-  if (found.length === 1) {
-    results.push(country)
   }
 
-} // end countries loop
-
-console.log(`\nResults:`)
-console.table(results)
-console.log(`There were a total of`,  results.length, `matches of`,countries.length, `countries.`)
-
+  return false
+}
