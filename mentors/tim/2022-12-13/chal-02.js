@@ -150,15 +150,14 @@ function main() {
 
       }
 
-
     }
 
   }
 
+  // REPORT RESULTS
   console.log(charCount)
   console.log(Object.keys(charCount)) // [ 'a', 'i', 'e', 'o', 'u' ]
 
-  // REPORT RESULTS
 
 }
 main()
