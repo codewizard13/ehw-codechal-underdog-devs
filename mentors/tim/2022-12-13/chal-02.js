@@ -18,12 +18,14 @@ The return value should be `["a", "e", "i", "u"]`
 
 Eric Hepperle
 2022-12-13
-
+Completed: 2022-12-19
 V1
 
 */
 
+const { EOF } = require('dns')
 const fs = require('fs')
+const { EOL } = require('os')
 
 
 /**
@@ -107,7 +109,7 @@ RETURN dict charCount
 
 
 
-
+const vowels = ['a', 'e', 'i', 'o', 'u']
 
 /**
  * Main: The main function; controller.
@@ -115,30 +117,50 @@ RETURN dict charCount
 function main() {
 
   // SLURP FILE DATA INTO ARRAYS
-  // SLURP FILE DATA INTO ARRAYS
-  const babyNames1880File = '../../../docs/baby_names_1880_short.txt'
-  const babyNames2020File = '../../../docs/baby_names_2020_short.txt'
-  const scrabbleWordsFile = '../../../docs/sowpods.txt'
   const countriesFile = '../../../docs/countries.txt'
-
-  const babyNames1880 = filenameToLines(babyNames1880File)
-  const babyNames2020 = filenameToLines(babyNames2020File)
-  const scrabbleWords = filenameToLines(scrabbleWordsFile)
   const countries = filenameToLines(countriesFile)
+  const countriesStr = countries.join('')
+    .replace(EOL, '').replace(/[\s\.,\-]/g, '')
 
-  console.log(countries)
+  const charCount = {}
 
-  // // REPORT RESULTS
-  // console.clear()
-  // console.log(`There were `, matchedNames.length, `results:`)
-  // console.log({ matchedNames })
-  // // console.log({ foundWords })
+  // Split joined string at characters to get list of all letters in file
+  let letterChars = countriesStr.split('')
+  let numLettersInFile = letterChars.length
+  console.log(`[letterChars, numLettersInFile]:`, [letterChars, numLettersInFile])
+
+  // BUILD CHAR COUNT DICT
+  // LOOP through every letter in the file
+  for (let i = 0; i < numLettersInFile; i++) {
+
+    let letter = letterChars[i].toLowerCase()
+    // console.log(`Letter ${i}: ${letter}`)
+
+    // LOOP over each vowel
+    for (let j=0; j < vowels.length; j++) {
+
+      // IF letter is a vowel
+      if (letter === vowels[j]) {
+
+        if (letter in charCount) {
+          charCount[letter]++
+        } else {
+          charCount[letter] = 1
+        }
+
+      }
+
+
+    }
+
+  }
+
+  console.log(charCount)
+  console.log(Object.keys(charCount)) // [ 'a', 'i', 'e', 'o', 'u' ]
+
+  // REPORT RESULTS
 
 }
-
-let matchedNames = []
-const foundWords = {}
-
 main()
 
 
