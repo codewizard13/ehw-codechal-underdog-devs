@@ -18,15 +18,13 @@ V1
 /*
 ALGORITHM
 
+// FUNCTION: main($memStart, $cssStyles)
+
 SLURP scrabble file into array (scrabbleArray)
 
-DEFINE needle to search for as string (substring)
-TH
-
-RETURN array of words containing substring
-
-CREATE small words array to test with
-AA, THE
+DEFINE matchedWords array
+DEFINE needle to search for as string (substring) = TH
+DEFINE small words array to test with = AA, THE
 
 
 // FUNCTION: getWordsContainingSubstring(needle)
@@ -36,7 +34,7 @@ LOOP over each word in scrabbleArray
 
   SET temp var currentWord
 
-  SANITIZE word and needle (cleanValidNeedle(word, needle))
+  SANITIZE word and needle (wordIsValid(word, needle))
   
   IF sanitizedWord is valid
   AND substring is found in currentWord (foundIn(sanitizedWord, needle))
@@ -47,6 +45,7 @@ LOOP over each word in scrabbleArray
 
 END
 
+## RETURN array of words containing substring
 RETURN matchedWords
 
 
@@ -77,7 +76,25 @@ END
 RETURN TRUE
 
 
+// FUNCTION: substringOf($word, $needle)
+LOOP over each char in word as wordChar
 
+  LOOP over each char of needle as needleChar
+
+    IF wordChar NOT same as needleChar
+
+      RETURN false
+
+    END
+
+    // OTHERWISE check if next char matches next char, etc
+
+  END needle loop
+
+  ## We only get here is all chars in needle were found so
+  RETURN true
+
+END word char loop
 
 
 */
