@@ -1,9 +1,7 @@
 /*
 MENTOR Jacob: HOMEWORK: 2022-12-14
-
 What are all of the words that have only “U”s for vowels?
-
-THIS VERSION uses sets and dicts
+THIS VERSION uses a SET to hold vowels
 
 Eric Hepperle
 Started: 2022-12-21
