@@ -11,7 +11,7 @@ can appear anywhere in the word).
 Eric Hepperle
 2022-12-19
 
-V2
+V1
 */
 
 $memStart = memory_get_usage();
@@ -39,6 +39,10 @@ function main($memStart, $cssStyles)
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
+
+
+  // DEFINE substring
+  $substring = "TH";
 
   // TODO: DO STUFF ...
   testHarness($scrabbleWords, ["TH", "ED"], $cssStyles);

@@ -12,7 +12,7 @@ Eric Hepperle
 include_once('../../../routes.php');
 
 $fontFamily = "Roboto, Open Sans, Arial, Tahoma, sans-serif";
-$message = "padding: .5rem; border-radius: 10px; font-family: $fontFamily; border: solid black 2px;";
+$message = "padding: .5rem; border-radius: 10px; font-family: $fontFamily; border: solid black 2px; margin: 1rem; line-height: 1.3;";
 
 $cssStyles = [
   "msgError" => $message . "color: brown; background: pink; border: brown solid 2px;",
