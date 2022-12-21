@@ -6,7 +6,8 @@ THIS VERSION uses a SET to hold vowels
 Eric Hepperle
 Started: 2022-12-21
 Finished: 2022-12-21
-V2
+
+V3
 
 */
 
