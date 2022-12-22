@@ -6,6 +6,8 @@ REFACTOR hasOnlyOneVowel() to take needle arg and return a boolean
 Eric Hepperle
 2022-12-15
 
+V2
+
 */
 
 
@@ -115,6 +117,9 @@ function main() {
 main()
 
 
+
+/// FUNCTIONS
+
 /**
  * Return true if word has only one vowel type and it
  * matches the desiredVowel.
@@ -123,7 +128,7 @@ main()
  * @param {char} desiredVowel 
  * @returns bool
  */
-function hasOnlyOneVowelType(word, desiredVowel) {
+ function hasOnlyOneVowelType(word, desiredVowel) {
 
   const vowelsFound = new Set()
   let foundDesiredVowel = false
@@ -155,55 +160,6 @@ function hasOnlyOneVowelType(word, desiredVowel) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// FUNCTIONS
-
 /**
  * Return lines array from file
  * 
@@ -220,37 +176,5 @@ function filenameToLines(filename) {
 
 }
 
-/**
- * Get shortest lines(s)
- * - If there are ties, return all lines that match shortest length.
- *
- * @arg: {array} lines
- * @return: {array} filtered
- */
-function shortestLines(lines) {
-
-  let shortestLines = []
-
-  let shortestLength = 0
-
-  lines.forEach((line, i) => {
-
-    if (i === 0) {
-      shortestLength = line.length
-      shortestLines.push(line)
-    } else if (line.length < shortestLength) {
-      shortestLength = line.length
-      shortestLines = [line] // clear shortest array
-    } else if (line.length === shortestLength) {
-      shortestLines.push(line)
-    }
-
-  })
-
-  // const filtered = lines.filter(line => line.length === shortestLength)
-  // return filtered
-
-  return shortestLines
-}
 
 
