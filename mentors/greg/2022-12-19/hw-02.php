@@ -32,7 +32,7 @@ function main($memStart, $cssStyles)
   // SLURP file into array
   // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
   $scrabbleWords = fileToArray(SCRABBLE_FILE);
-  $scrabbleWords = ["ADVERT", "AD", "ADULTERY", "JOHN"];
+  // $scrabbleWords = ["ADVERT", "AD", "ADULTERY", "JOHN"];
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
@@ -143,13 +143,13 @@ function substringOf($word, $needle)
  */
 function wordIsValid($word, $needle)
 {
-  tellLabelAndValue("Function", __FUNCTION__);
+  // tellLabelAndValue("Function", __FUNCTION__);
 
   $word = trim($word);
   $needle = trim($needle);
 
   if (strlen($word) < strlen($needle)) {
-    echo "<h3>Word: $word is shorter than needle $needle</h3>";
+    // echo "<h3>Word: $word is shorter than needle $needle</h3>";
     return false;
   }
 
