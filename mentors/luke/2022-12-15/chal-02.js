@@ -15,17 +15,24 @@ const fs = require('fs')
 /*
 ALGORITHM:
 
-SLURP file into scrabbleWords array
+DEFINE GLOBAL CONSTANT VOWELS as set of all the vowels
 
-DEFINE GLOBAL const vowels array
 
 // FUNCTION: main()
 DEFINE matchedWords array empty
 
+SLURP file into scrabbleWords array
+
 LOOP through each word
 
-  IF word has only one unique vowel AND that vowel is E AND the word is > = 15 letters long
+  SET temp var currentWord
+  DEFINE desiredVowel as "E"
+  DEFINE minLength as 15
 
+  IF currentWord length is greater than or equal to minLength
+  AND currentWord has only one unique vowel type (no other vowels)
+  AND that vowel is desiredVowel
+  
     ADD word to matchedWords array
 
   END
@@ -36,43 +43,44 @@ OUTPUT matchedWords
 
 
 // FUNCTION: hasOnlyOneVowelType(word, "E")
-DEFINE found set
+DEFINE vowelsFound emtpy set
+DEFINE foundDesiredVowel as false
 
 LOOP through each character (char) in word
 
   LOOP through each vowel in vowels array
 
-    IF current word char is same as current vowel
+    SET temp var wordChar = word[i]
 
-      ADD vowel to found set
-      
-      IF set size is 2
-        RETURN false
+    // IF wordChar is a vowel:
+    IF VOWELS set has a key of wordChar
+
+      IF wordChar is the desiredVowel
+
+        SET foundDesiredvowel to TRUE
+
       END
-    
-    END
+
+      ADD wordChar to vowelsFound
+
+      IF there are now two chars in vowelsFound
+
+        RETURN FALSE because this word has more than one vowel type
+
+      END
+
+    END checking if wordChar is vowel
 
   END
 
-  RETURN true
+  RETURN value of foundDesiredVowel
 
-END
+END func
 
 */
 
 
-// const vowels = ["A", "E", "I", "O", "U", "Y"]
 const VOWELS = new Set(["A", "E", "I", "O", "U"])
-
-// console.log({ VOWELS })
-
-const testWords = [
-  "AARDVARK", "BINGO", "INNNNNNIIIIIIIIIIIII", "BEEKEEPER", "COUNCIL", "FREE", "BOOHOO", "BEEKEEPERBOOBOO", "AAAABBBBBBBBBBCCCA", "EEEEEEE99999EEEEEEEEE"
-]
-
-// const testWords = ["INNNNNNIIIIIIIIIIIII", "AAAABBBBBBBBBBCCCAU", "BEEKEEPERBOOBOO", "AAAABBBBBBBBBBCCCA"]
-// const testWords = ["AAR", "UUUU", "UE"]
-// const testWords = ["AU"]
 
 /**
  * Main: The main function; controller.
@@ -83,22 +91,18 @@ function main() {
 
   let scrabblePath = '../../../docs/sowpods.txt'
   let scrabbleWords = filenameToLines(scrabblePath)
-  // const scrabbleWords = testWords
 
-  // scrabbleWords = testWords
+  let desiredVowel = "E"
+  let minLength = 15
 
   // LOOP over all scrabble words
   for (let i = 0; i < scrabbleWords.length; i++) {
 
     let currentWord = scrabbleWords[i]
-    // console.log(`\ncurrentWord: ${currentWord}, currentWord.length: ${currentWord.length}`)
-    let hasJustOneVowelType = hasOnlyOneVowelType(currentWord.toUpperCase(), "E")
+    let hasJustOneVowelType = hasOnlyOneVowelType(currentWord.toUpperCase(), desiredVowel)
 
-    if (currentWord.length >= 15 && hasJustOneVowelType) {
-    // if (hasJustOneVowelType) {
-
+    if (currentWord.length >= minLength && hasJustOneVowelType) {
       matchedWords.push(currentWord)
-
     }
 
   }
@@ -111,11 +115,15 @@ function main() {
 main()
 
 
-
+/**
+ * Return true if word has only one vowel type and it
+ * matches the desiredVowel.
+ * 
+ * @param {string} word 
+ * @param {char} desiredVowel 
+ * @returns bool
+ */
 function hasOnlyOneVowelType(word, desiredVowel) {
-  
-
-  // console.log(`word: ${word}, desiredVowel: ${desiredVowel}`)
 
   const vowelsFound = new Set()
   let foundDesiredVowel = false
@@ -128,29 +136,21 @@ function hasOnlyOneVowelType(word, desiredVowel) {
     // If wordChar is in VOWELS set, then it is a vowel
     if (VOWELS.has(wordChar)) {
 
-      // console.log(`${wordChar} is a vowel`)
-
       // If current vowel is desired vowel
       if (wordChar === desiredVowel) {
-        // console.log(`char ${i} of ${word} is desiredVowel ${desiredVowel}`)
         foundDesiredVowel = true
       }
 
       vowelsFound.add(wordChar)
-      // console.log(`vowelsFound: `, vowelsFound)
 
       // If we have 2 unique vowels in found set then this word fails
       if (vowelsFound.size === 2) { return false }
 
-
     } // END if wordChar is vowel
-
 
   }
 
-
   return foundDesiredVowel
-
 
 }
 
@@ -198,37 +198,6 @@ function hasOnlyOneVowelType(word, desiredVowel) {
 
 
 
-
-
-
-// function hasOnlyOneVowelType(string) {
-
-//   const found = new Set()
-
-//   for (let i=0; i < string.length; i++) {
-
-//     for (let j=0; j < vowels.length; j++) {
-
-//       if (string[i] === vowels[j]) {
-
-//         found.add(vowels[j])
-
-//         if (found.size === 2) {
-//           return false
-//         }
-
-//       }
-
-//     }
-
-//   }
-
-//   const resultArr = Array.from(found)
-//   // console.log(resultArr[0])
-
-//   return resultArr[0]
-
-// }
 
 
 
