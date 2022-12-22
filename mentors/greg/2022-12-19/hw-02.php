@@ -32,6 +32,7 @@ function main($memStart, $cssStyles)
   // SLURP file into array
   // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
   $scrabbleWords = fileToArray(SCRABBLE_FILE);
+  $scrabbleWords = ["ADVERT", "AD", "ADULTERY", "JOHN"];
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
@@ -67,6 +68,9 @@ function getWordsContainingSubstring($words, $substring)
   $matchedWords = [];
 
   foreach ($words as $word) {
+
+    // If current word is not valid jump to next word
+    if(!wordIsValid($word, $substring)) { continue; }
 
     if (substringOf($word, $substring)) {
       array_push($matchedWords, $word);
@@ -145,6 +149,7 @@ function wordIsValid($word, $needle)
   $needle = trim($needle);
 
   if (strlen($word) < strlen($needle)) {
+    echo "<h3>Word: $word is shorter than needle $needle</h3>";
     return false;
   }
 
