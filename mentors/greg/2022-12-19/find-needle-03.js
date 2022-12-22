@@ -4,7 +4,7 @@ IMPLEMENTING my "indexOf" function from scratch in vanilla JS
 Programmer: Eric Hepperle
 Date Created: 2022-12-21
 
-V2
+V3
 */
 
 
