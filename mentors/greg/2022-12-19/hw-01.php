@@ -35,7 +35,7 @@ function main($memStart, $cssStyles)
   // SLURP file into array
   // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
   // $scrabbleWords = fileToArray(SCRABBLE_FILE);
-  
+
   $scrabbleWords = [
     "AA" => true,
     "THE" => true
@@ -43,7 +43,7 @@ function main($memStart, $cssStyles)
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
-  echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
+  tellLabelAndValue("Scrabble Words Count", $scrabbleWordsCount);
 
   // DEFINE substring
   $substring = "TH";
@@ -62,47 +62,95 @@ function main($memStart, $cssStyles)
 main($memStart, $cssStyles);
 
 
-function getWordsContainingSubstring($words, $needle) {
+
+
+function getWordsContainingSubstring($words, $needle)
+{
+
+  tellLabelAndValue("Function", __FUNCTION__);
 
   $matchedWords = [];
 
   foreach ($words as $word => $value) {
 
+    tellLabelAndValue("word", "$word | substring: $needle");
+
     if (foundIn($word, $needle)) {
-
       array_push($matchedWords, $word);
-
     }
-
   }
 
   return $matchedWords;
-
 }
 
 
-function foundIn($word, $needle) {
+function foundIn($word, $needle)
+{
+
+  tellLabelAndValue("Function", __FUNCTION__);
 
   // Return early if word is not valid
-  if (!wordIsValid($word, $needle)) { return false; }
+  if (!wordIsValid($word, $needle)) {
+    return false;
+  }
+  
+  $matchedWords = [];
 
-  for ($i = 0; $i < strlen($word); $i++ ) {
+  for ($i = 0; $i < strlen($word); $i++) {
 
     $wordChar = $word[$i];
 
     // If we find the first letter of the needle, then check for substring
     if ($wordChar === $needle[0]) {
 
-      // substringOf($word, $needle)
 
+      if (substringOf($word, $needle)) {
+
+        array_push($matchedWords, $word);
+      }
     }
-
   }
-
 }
 
 
-function wordIsValid($word, $needle) {
+function substringOf($word, $needle)
+{
+  tellLabelAndValue("Function", __FUNCTION__);
+
+  // We only get here if first char of needle is found in word
+  //  and word not shorter than needle
+
+  // LOOP over each char in word
+  for ($i = 0; $i < strlen($word); $i++) {
+
+    $wordChar = $word[$i];
+
+    //LOOP over each char in needle
+    for ($j = 0; $j < strlen($needle); $j++) {
+
+      $needleChar = $needle[$j];
+
+      tellLabelAndValue('$i, $j, $wordChar, $needleChar', "$i, $j, $wordChar, $needleChar");
+
+      // Early return if needleChar doesn't match wordChar
+      //  before hitting end of needle char loop
+      if ($wordChar !== $needleChar) {
+        return false;
+      } else {
+        continue; // check next char
+      }
+    }
+  }
+
+  return true;
+}
+
+
+
+function wordIsValid($word, $needle)
+{
+  tellLabelAndValue("Function", __FUNCTION__);
+
   $word = trim($word);
   $needle = trim($needle);
 
@@ -111,7 +159,6 @@ function wordIsValid($word, $needle) {
   }
 
   return true;
-
 }
 
 
@@ -140,6 +187,33 @@ function wordIsValid($word, $needle) {
 
 
 
+function tellLabelAndValue($label, $value)
+{
+
+  // DEFINE STYLES
+  $fontFamily = "Roboto, Open Sans, Arial, Tahoma, sans-serif;";
+  $msgBasic = "padding: 1rem .5rem; margin: .8rem 0; line-height: 1; font-family: $fontFamily;";
+  $msgCard = "padding: 1rem; border-radius: 10px; line-height: 1.3; font-family: $fontFamily; border: solid black 2px; margin: 1rem;";
+  $errorStyle = "color: brown; background: pink; border: brown solid 2px;";
+  $correctStyle = "color: forestgreen; background: lightgreen; border: forestgreen solid 2px;";
+  $warnStyle = "color: orange; background: blanchedalmond; border: orange solid 2px;";
+  $infoStyle = "color: navy; background: aliceblue; border: navy solid 2px;";
+  $textStyleMain = "color: cadetblue; font-weight: bold;";
+  $labelStyle = "font-weight: bold; margin-right: .5rem;";
+
+  $cssStyles = [
+    "msgBasic" => $msgBasic,
+    "msgError" => $msgBasic . $errorStyle,
+    "msgCorrect" => $msgBasic . $correctStyle,
+    "msgWarn" => $msgBasic . $warnStyle,
+    "msgInfo" => $msgBasic . $infoStyle,
+  ];
+
+  // OUPTUT MESSAGE
+  echo "<div style='font-family: $msgBasic'>";
+  echo "<span style ='$labelStyle'>$label:</span>";
+  echo "<span style='$textStyleMain'>$value</span></div>";
+}
 
 
 
