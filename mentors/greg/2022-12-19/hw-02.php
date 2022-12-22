@@ -193,20 +193,6 @@ function tellLabelAndValue($label, $value)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Given a set of needle values
 function findMatches($wordsArr, $needle)
 {
