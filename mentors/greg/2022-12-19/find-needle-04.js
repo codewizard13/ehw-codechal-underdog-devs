@@ -18,16 +18,42 @@ function main() {
   ]
   // const testWords = ["TOTT"]
 
-  let filteredWords = testWords.filter(word => substringOf(word, substring))
+  // let filteredWords = testWords.filter(word => substringOf(word, substring))
 
-  console.log(`MATCHED WORDS:\n`)
-  console.log(filteredWords)
+  const testObj = {
+    words: ["ATENTH", "TOTT", "TOTTTHTTT", "BB", "ITHE", "JOHN", "JOHNT"],
+    needles: ["TH", "BB", "OH", "THE", "TEN"]
+  }
+
+  testHarness(testObj)
+
+  // console.log(`\nMATCHED WORDS:\n`)
+  // console.table(filteredWords)
 
 }
 main()
 
 
 
+function testHarness(argsObj) {
+
+  const [wordSet, needleSet] = [argsObj.words, argsObj.needles]
+
+  wordSet.forEach(word => {
+    console.log('#'.repeat(30))
+
+    needleSet.forEach(needle => {
+
+
+      if (substringOf(word, needle)) {
+        console.log(`NEEDLE ${needle} found in ${word}`)
+      }
+
+    })
+
+  })
+
+}
 
 
 
