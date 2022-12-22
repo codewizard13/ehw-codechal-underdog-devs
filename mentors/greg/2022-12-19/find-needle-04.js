@@ -44,7 +44,6 @@ function testHarness(argsObj) {
 
     needleSet.forEach(needle => {
 
-
       if (substringOf(word, needle)) {
         console.log(`NEEDLE ${needle} found in ${word}`)
       }
