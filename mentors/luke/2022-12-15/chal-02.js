@@ -66,10 +66,11 @@ const VOWELS = new Set(["A", "E", "I", "O", "U"])
 
 // console.log({ VOWELS })
 
-// const testWords = [
-//   "AARDVARK", "BINGO", "INNNNNNIIIIIIIIIIIII", "BEEKEEPER", "COUNCIL", "FREE", "BOOHOO", "BEEKEEPERBOOBOO", "AAAABBBBBBBBBBCCCA", "EEEEEEE99999EEEEEEEEE"
-// ]
-const testWords = ["INNNNNNIIIIIIIIIIIII", "AAAABBBBBBBBBBCCCAU", "BEEKEEPERBOOBOO", "AAAABBBBBBBBBBCCCA"]
+const testWords = [
+  "AARDVARK", "BINGO", "INNNNNNIIIIIIIIIIIII", "BEEKEEPER", "COUNCIL", "FREE", "BOOHOO", "BEEKEEPERBOOBOO", "AAAABBBBBBBBBBCCCA", "EEEEEEE99999EEEEEEEEE"
+]
+
+// const testWords = ["INNNNNNIIIIIIIIIIIII", "AAAABBBBBBBBBBCCCAU", "BEEKEEPERBOOBOO", "AAAABBBBBBBBBBCCCA"]
 // const testWords = ["AAR", "UUUU", "UE"]
 // const testWords = ["AU"]
 
@@ -81,8 +82,8 @@ function main() {
   const matchedWords = []
 
   let scrabblePath = '../../../docs/sowpods.txt'
-  // let scrabbleWords = filenameToLines(scrabblePath)
-  const scrabbleWords = testWords
+  let scrabbleWords = filenameToLines(scrabblePath)
+  // const scrabbleWords = testWords
 
   // scrabbleWords = testWords
 
@@ -90,11 +91,11 @@ function main() {
   for (let i = 0; i < scrabbleWords.length; i++) {
 
     let currentWord = scrabbleWords[i]
-    console.log(`\ncurrentWord: ${currentWord}, currentWord.length: ${currentWord.length}`)
-    let hasJustOneVowelType = hasOnlyOneVowelType(currentWord.toUpperCase(), "A")
+    // console.log(`\ncurrentWord: ${currentWord}, currentWord.length: ${currentWord.length}`)
+    let hasJustOneVowelType = hasOnlyOneVowelType(currentWord.toUpperCase(), "E")
 
-    // if (currentWord.length >= 15 && hasJustOneVowelType) {
-    if (hasJustOneVowelType) {
+    if (currentWord.length >= 15 && hasJustOneVowelType) {
+    // if (hasJustOneVowelType) {
 
       matchedWords.push(currentWord)
 
@@ -114,7 +115,7 @@ main()
 function hasOnlyOneVowelType(word, desiredVowel) {
   
 
-  console.log(`word: ${word}, desiredVowel: ${desiredVowel}`)
+  // console.log(`word: ${word}, desiredVowel: ${desiredVowel}`)
 
   const vowelsFound = new Set()
   let foundDesiredVowel = false
@@ -131,12 +132,12 @@ function hasOnlyOneVowelType(word, desiredVowel) {
 
       // If current vowel is desired vowel
       if (wordChar === desiredVowel) {
-        console.log(`char ${i} of ${word} is desiredVowel ${desiredVowel}`)
+        // console.log(`char ${i} of ${word} is desiredVowel ${desiredVowel}`)
         foundDesiredVowel = true
       }
 
       vowelsFound.add(wordChar)
-      console.log(`vowelsFound: `, vowelsFound)
+      // console.log(`vowelsFound: `, vowelsFound)
 
       // If we have 2 unique vowels in found set then this word fails
       if (vowelsFound.size === 2) { return false }
