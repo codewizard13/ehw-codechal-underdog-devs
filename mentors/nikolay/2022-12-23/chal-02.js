@@ -1,8 +1,9 @@
 /*
-MENTOR Nikolay: CHALLENGE: 2022-12-23
+MENTOR Nikolay: CHALLENGE 2: 2022-12-23
 
-Write a function that takes a string word as an argument and
-returns a count of all of the “A”s in that string.
+Write a function that takes a string word as the first argument,
+a string letter as the second argument, and returns a count of
+how many times letter occurs in word.
 
 
 Eric Hepperle
@@ -46,12 +47,13 @@ RETURN aCount
  */
 function main() {
 
+  let letter = "I"
 
   const testValues = [
     "", "J4TIU4I5U4I5U4IU", "0000", "abc", "zzzzzzzazzz", 5
   ]
 
-  testValues.forEach(word => console.log(`There were`, countA(word), `A's in ${word}`))
+  testValues.forEach(word => console.log(`There were`, countA(word, letter), `A's in ${word}`))
 
 
   /// DO STUFF...
@@ -62,23 +64,23 @@ function main() {
 main()
 
 
-function countA(word) {
-  let countA = 0
+function countA(word, letter) {
+  let desiredLetterCount = 0
 
   if (typeof word !== "string") {
-    console.error(`Input must be a string`)
+    // console.error(`Input must be a string`)
     throw `Input must be a string`
   }
 
   for( let i=0; i < word.length; i++) {
 
-    if (word[i].toUpperCase() === "A") {
-      countA++
+    if (word[i].toUpperCase() === letter.toUpperCase()) {
+      desiredLetterCount++
     }
 
   }
 
-  return countA
+  return desiredLetterCount
 }
 
 
