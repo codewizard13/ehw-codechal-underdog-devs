@@ -1,16 +1,19 @@
 <?php
 
 /*
-MENTOR Greg: HOMEWORK 2022-12-19
+This is ERIC's attempt to figure out the CSV parsing before
+meeting with mentors. Here is the challenge question:
 
-Write a function that takes a string `substring` as an argument and returns
-an array of all of the words that contain that substring (the substring
-can appear anywhere in the word).
+ALGORITHM ONLY:
 
-ALGORITHM ONLY
+Read the NBA finals CSV data into one more more dictionaries as needed
+to complete the following:
 
-Eric Hepperle
-2022-12-19
+- Write a function that takes as an argument a year and returns the winner
+of the NBA finals that year.
+
+Programmer:   Eric Hepperle
+Date Created: 2022-12-26
 
 V1
 */
@@ -18,95 +21,36 @@ V1
 /*
 ALGORITHM
 
-// FUNCTION: main($memStart, $cssStyles)
+// FUNCTION buildDictFromCSV(filepath)
+SPLIT FILE into lines array at newline char
+DEFINE first line as (headers) array
+DEFINE rest as (rows)
+DEFINE delimiter (default is comma)
 
-SLURP scrabble file into array (scrabbleArray)
+DEFINE results dict as (dataDict)
 
-DEFINE matchedWords array
-DEFINE needle to search for as string (substring) = TH
-DEFINE small words array to test with = AA, THE
+SET unique id field as KEY (in this case, year which is first column
 
+LOOP over all row lines // while
 
-// FUNCTION: getWordsContainingSubstring(needle)
-DEFINE matchedWords array
+  SET temp var row = $rows[rowIndex]
 
-LOOP over each word in scrabbleArray
+  SPLIT row into array at delimiter
+  STORE result array as ($cols)
 
-  SET temp var currentWord
+  DEFINE first col as the unique ID key (year)
 
-  SANITIZE word and needle (wordIsValid(word, needle))
-  
-  IF sanitizedWord is valid
-  AND substring is found in currentWord (foundIn(sanitizedWord, needle))
+  LOOP through each column
 
-    ADD currentWord to matchedWords
+    DEFINE temp obj $thisObj as,
+      $year => [$cols[colIndex] => $rows[rowIndex]]
 
-  END valid word check
+    ADD thisObj to dataDict with key of $year
 
-END
+  END cols loop
 
-## RETURN array of words containing substring
-RETURN matchedWords
+END rows loop
 
-
-// FUNCTION: foundIn(word, needle)
-LOOP over each char in currentWord
-
-  SET temp var wordChar = currentWord[i]
-
-  IF wordChar same as first letter of needle then start testing
-
-    IF substring is found in current word
-    ADD currentWord to matchedWords array
-
-  END
-
-END
-
-RETURN
-
-
-// FUNCTION wordIsValid(word, needle)
-TRIM whitespace from start and end of word
-
-IF word is shorter than needle (ALSO accounts for is word is whitespace only)
-  return FALSE
-END
-
-RETURN TRUE
-
-
-// FUNCTION: substringOf($word, $needle)
-LOOP over each char in word as wordChar
-
-  LOOP over each char of needle as needleChar
-
-    IF wordChar NOT same as needleChar
-
-      RETURN false
-
-    END
-
-    // OTHERWISE check if next char matches next char, etc
-
-  END needle loop
-
-  ## We only get here is all chars in needle were found so
-  RETURN true
-
-END word char loop
-
+RETURN dataDict
 
 */
-
-
-
-$currentWord = trim($currentWord);
-
-    if (strlen($currentWord) < strlen($needle)) {
-      continue;
-    }
-
-    if (startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
-      array_push($matches, $currentWord);
-    }
