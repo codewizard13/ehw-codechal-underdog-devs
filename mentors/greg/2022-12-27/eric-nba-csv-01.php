@@ -36,12 +36,15 @@ function main($memStart, $cssStyles)
   $nbaDict = buildNBADictFromCSV(NBA_CSV) ?? NULL;
 
   $year = 2001;
+  $teamName = "Los Angeles Lakers";
 
   echo "<H3>Write a function that takes as an argument a year and returns the winner of the NBA finals that year.</H3>";
   echo getWinnerByYear($nbaDict, $year);
 
   echo "<H3>Write a function that takes as an argument a team name and returns an array of all of the years the team has won the NBA finals.</H3>";
-  echo getWinnerByYear($nbaDict, $year);
+  $winningYears = getWinningYearsByTeam($nbaDict, $teamName);
+  echo "The $teamName has been MVP " . count($winningYears) . " times including:<br>";
+  echo implode(', ', $winningYears) . "<br>";
 
 
   // PRINT MEMORY USAGE
@@ -50,11 +53,25 @@ function main($memStart, $cssStyles)
 main($memStart, $cssStyles);
 
 
+function getWinningYearsByTeam($nbaDict, $teamName)
+{
 
-function getWinnerByYear($nbaDict, $year) {
+  $winningYears = [];
+
+  foreach ($nbaDict as $year => $stats) {
+    if ($stats["Winner"] === $teamName) {
+      array_push($winningYears, $year);
+    }
+  }
+
+  return $winningYears;
+}
+
+
+function getWinnerByYear($nbaDict, $year)
+{
 
   return "Winner for $year: " . $nbaDict[$year]["Winner"] . "<br>";
-
 }
 
 
@@ -92,7 +109,6 @@ function buildNBADictFromCSV($filepath)
   } // END rows loop
 
   return $dataDict;
-
 }
 
 
