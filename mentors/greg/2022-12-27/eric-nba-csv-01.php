@@ -35,11 +35,12 @@ function main($memStart, $cssStyles)
 
   $nbaDict = buildNBADictFromCSV(NBA_CSV) ?? NULL;
 
-  $year = 2001;
+  $year = 1993;
   $teamName = "Los Angeles Lakers";
 
   echo "<H3>Write a function that takes as an argument a year and returns the winner of the NBA finals that year.</H3>";
-  echo getWinnerByYear($nbaDict, $year);
+  $winner = ${'winnerFor' . $year} = getWinnerByYear($nbaDict, $year);
+  echo "Winner for <b>$year</b>: <b><span style='color:green'>" . $winner . "</span></b><br>";
 
   echo "<H3>Write a function that takes as an argument a team name and returns an array of all of the years the team has won the NBA finals.</H3>";
   $winningYears = getWinningYearsByTeam($nbaDict, $teamName);
@@ -123,11 +124,13 @@ function getWinningYearsByTeam($nbaDict, $teamName)
 }
 
 
+
 function getWinnerByYear($nbaDict, $year)
 {
 
-  return "Winner for $year: " . $nbaDict[$year]["Winner"] . "<br>";
+  return $nbaDict[$year]["Winner"];
 }
+
 
 
 function buildNBADictFromCSV($filepath)
