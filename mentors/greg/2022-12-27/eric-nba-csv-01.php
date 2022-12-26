@@ -1,16 +1,20 @@
 <?php
 /*
-MENTOR Greg: HOMEWORK: 2022-12-19
+This is ERIC's attempt to figure out the CSV parsing before
+meeting with mentors. Here is the challenge question:
 
-Write a function that takes a string substring as an argument and returns
-an array of all of the words that contain that substring (the substring
-can appear anywhere in the word).
+Read the NBA finals CSV data into one more more dictionaries as needed
+to complete the following:
 
-Eric Hepperle
-2022-12-19
+- Write a function that takes as an argument a year and returns the winner
+of the NBA finals that year.
 
-V2
+Programmer:   Eric Hepperle
+Date Created: 2022-12-26
+
+V1
 */
+
 
 $memStart = memory_get_usage();
 
