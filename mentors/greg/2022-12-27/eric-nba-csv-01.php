@@ -33,8 +33,15 @@ function main($memStart, $cssStyles)
 {
   sayFilename($cssStyles);
 
-  $nbaDict = buildDictFromCSV(NBA_CSV) ?? NULL; 
-  var_dump($nbaDict);
+  $nbaDict = buildNBADictFromCSV(NBA_CSV) ?? NULL;
+
+  $year = 2001;
+
+  echo "<H3>Write a function that takes as an argument a year and returns the winner of the NBA finals that year.</H3>";
+  echo getWinnerByYear($nbaDict, $year);
+
+  echo "<H3>Write a function that takes as an argument a team name and returns an array of all of the years the team has won the NBA finals.</H3>";
+  echo getWinnerByYear($nbaDict, $year);
 
 
   // PRINT MEMORY USAGE
@@ -43,7 +50,15 @@ function main($memStart, $cssStyles)
 main($memStart, $cssStyles);
 
 
-function buildDictFromCSV($filepath)
+
+function getWinnerByYear($nbaDict, $year) {
+
+  return "Winner for $year: " . $nbaDict[$year]["Winner"] . "<br>";
+
+}
+
+
+function buildNBADictFromCSV($filepath)
 {
   $delim = ","; // delimiter
 
@@ -54,7 +69,7 @@ function buildDictFromCSV($filepath)
   // Remove row Item 0 from $lines and assign as $headers
   $headers = array_shift($rows);
   $headers = explode($delim, $headers);
-  
+
   // [$headers, ...$rows] = $lines; // destructuring doesn't work in PHP!
 
   for ($rowIndex = 0; $rowIndex < count($rows); $rowIndex++) {
