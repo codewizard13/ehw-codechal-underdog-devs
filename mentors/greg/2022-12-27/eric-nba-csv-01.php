@@ -46,11 +46,68 @@ function main($memStart, $cssStyles)
   echo "The $teamName has been MVP " . count($winningYears) . " times including:<br>";
   echo implode(', ', $winningYears) . "<br>";
 
+  echo "<H3>Which teams have made it to the NBA finals but have never won?</H3>";
+  $finalists = getFinalistsNotWinners($nbaDict);
+  echo "There are " . count($finalists) . " teams who have made it to the finals but didn't win:<br>";
+  echo "<ul>";
+  foreach ($finalists as $neverWinner) {
+    echo "\t<li style='color: brown'>$neverWinner</li>";
+  }
+  echo "</ul>";
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
 }
 main($memStart, $cssStyles);
+
+
+function getFinalistsNotWinners($nbaDict) {
+
+  $winners = [];
+  $losers = [];
+
+  $neverWon = [];
+
+  /*
+  IF team is in loser column and NOT in winner column
+  */
+  foreach ($nbaDict as $year => $stats) {
+    
+    $curWinner = $stats["Winner"];
+    $curLoser = $stats["Loser"];
+
+    // Create a Set-like assoc array with O(1) time complexity
+    $winners[$curWinner] = true;
+    $losers[$curLoser] = true;
+
+  }
+
+  foreach($losers as $loser => $value) {
+    if (isset($winners[$loser])) {
+      echo "$loser lost some but also <b>WON some</b><br>";
+    } else {
+      echo "$loser <b>NEVER WON</b> the NBA finals<br>";
+      array_push($neverWon, $loser);
+    }
+  }
+  
+
+  var_dump($winners);
+  var_dump($losers);
+  return $neverWon;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function getWinningYearsByTeam($nbaDict, $teamName)
