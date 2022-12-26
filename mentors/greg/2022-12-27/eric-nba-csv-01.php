@@ -56,10 +56,71 @@ function main($memStart, $cssStyles)
   }
   echo "</ul>";
 
+  echo "<H3>Print out a ranking of who has won the MVP more than once, by times won</H3>";
+
+
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
 }
 main($memStart, $cssStyles);
+
+
+
+/// FUNCTIONS
+
+/*
+ALGORITHM for rankWinners()
+
+DEFINE empty array as (rankDict)
+
+LOOP through each year's stats
+
+  // INCREMENT MVP key value
+  IF MVP field isn't blank
+  
+    IF MVP field doesn't exist
+
+      ADD column value as key in rankDict
+      SET value to 1
+
+    ELSE
+
+      INCREMENT value by 1
+    
+    END
+
+  END
+
+END
+
+
+// RETURN WINNERS sorted by value, highest to lowest
+LOOP through each entry in rankDict as
+
+  IF ???
+
+END looping through rankDict
+
+
+
+*/
+
+
+
+
+function rankWinners($nbaDict) {
+
+  $rankDict = [];
+
+  foreach ($nbaDict as $year => $stats) {
+
+
+
+  }
+
+  return $rankDict;
+
+}
 
 
 function getFinalistsNotWinners($nbaDict) {
@@ -95,17 +156,6 @@ function getFinalistsNotWinners($nbaDict) {
   // var_dump($losers);
   return $neverWon;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
