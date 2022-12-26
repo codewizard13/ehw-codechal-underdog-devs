@@ -33,7 +33,9 @@ function main($memStart, $cssStyles)
 {
   sayFilename($cssStyles);
 
-  buildDictFromCSV(NBA_CSV);
+  $nbaDict = buildDictFromCSV(NBA_CSV) ?? NULL; 
+  var_dump($nbaDict);
+
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -52,6 +54,7 @@ function buildDictFromCSV($filepath)
   // Remove row Item 0 from $lines and assign as $headers
   $headers = array_shift($rows);
   $headers = explode($delim, $headers);
+  
   // [$headers, ...$rows] = $lines; // destructuring doesn't work in PHP!
 
   for ($rowIndex = 0; $rowIndex < count($rows); $rowIndex++) {
@@ -60,10 +63,8 @@ function buildDictFromCSV($filepath)
 
     $cols = explode($delim, $row);
 
-    $thisObj = [];
-
     // Set first col as the key
-    $key = $year = $cols[0];
+    $year = $cols[0];
 
     // LOOP through rest of col values starting at 2nd element
     for ($colIndex = 1; $colIndex < count($cols); $colIndex++) {
@@ -73,11 +74,10 @@ function buildDictFromCSV($filepath)
       $dataDict[$year][$headers[$colIndex]] = $colVal;
     } // END cols loop
 
-
   } // END rows loop
 
+  return $dataDict;
 
-  var_dump($dataDict);
 }
 
 
