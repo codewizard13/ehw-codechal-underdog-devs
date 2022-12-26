@@ -22,12 +22,14 @@ V1
 ALGORITHM
 
 // FUNCTION buildDictFromCSV(filepath)
+DEFINE results dict as (dataDict)
+
+SLURP file into string
 SPLIT FILE into lines array at newline char
 DEFINE first line as (headers) array
 DEFINE rest as (rows)
 DEFINE delimiter (default is comma)
 
-DEFINE results dict as (dataDict)
 
 SET unique id field as KEY (in this case, year which is first column
 
