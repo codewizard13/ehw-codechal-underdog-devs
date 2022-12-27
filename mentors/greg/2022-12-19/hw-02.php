@@ -15,7 +15,7 @@ V2
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once('functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 
 // FILE PATHS
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');

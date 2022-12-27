@@ -9,7 +9,7 @@ Eric Hepperle
 2022-12-09
 */
 
-include_once('../../../routes.php');
+include_once(__DIR__ . '/paths.php');
 
 $fontFamily = "Roboto, Open Sans, Arial, Tahoma, sans-serif";
 $message = "padding: .5rem; border-radius: 10px; font-family: $fontFamily; border: solid black 2px; margin: 1rem; line-height: 1.3;";
