@@ -62,49 +62,18 @@ RETURN false
 
 */
 
-
-const fs = require('fs')
+const {filenameToLines} = require('../../../common/io')
 const process = require('process');
 
 const ALL_VOWELS = new Set("AEIOU".split(''))
-console.log({ ALL_VOWELS })
 
-/**
- * Main: The main function; controller.
- */
-function main() {
-  const scrabbleWordsFile = '../../../docs/sowpods.txt'
-  const scrabbleWords = filenameToLines(scrabbleWordsFile)
-  // const maybeVowel = "U" 
-  // const maybeVowel = "G"
-
-
-  const testVowel = "U"
-  // BECAUSE process[0] is node and process[1] is the filename,
-  // process[2] is the argument   
-  const maybeVowel = process.argv[2].toUpperCase()
-  
-  if (ALL_VOWELS.has(maybeVowel)) {
-    const matchedWords = scrabbleWords.filter(word => hasUniqueVowel(word.toUpperCase(), maybeVowel))
-    console.log(`\nMATCHED WORDS:`)
-    console.table(matchedWords)
-    console.log(`\nOut of`, scrabbleWords.length, `scrabbleWords`, matchedWords.length, `contain only ${maybeVowel} for VOWELS.`)
-    
-    // process.exit(0) means ended successfully, any other return code means failure
-    process.exit(0) 
-
-  } else {
-
-    console.error(`${maybeVowel} is not a vowel!`)
-    process.exit(1)
-
-    // echo $? shows return code of last run process
-
-  }
-
-
+function isVowel(letter) {
+  return ALL_VOWELS.has(letter.toUpperCase());
 }
-main()
+
+function filterWords(words, desiredVowel) {
+  return words.filter(word => hasUniqueVowel(word.toUpperCase(), desiredVowel))
+}
 
 // UNO
 function hasUniqueVowel(word, desiredVowel) {
@@ -131,24 +100,12 @@ function hasUniqueVowel(word, desiredVowel) {
 }
 
 
-/// FUNCTIONS ///
 
-/**
- * Return lines array from file
- * 
- * @args: {string} filename
- * @return: {array} lines
- */
-function filenameToLines(filename) {
-
-  const buffer = fs.readFileSync(filename)
-  const fileStr = buffer.toString()
-  const lines = fileStr.split('\n') // make array
-
-  return lines
-
+module.exports = {
+  hasUniqueVowel: hasUniqueVowel,
+  filterWords: filterWords,
+  isVowel: isVowel
 }
-
 
 
 
