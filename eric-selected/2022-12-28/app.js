@@ -14,4 +14,8 @@ TUTORIAL RESOURCES:
 
 */
 
-console.log('hi')
+const fs = require('fs')
+const csv = require('csvtojson')
+const {Parser} = require('json2csv')
+
+// FAILS because csv parser libraries are not installed!
