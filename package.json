@@ -6,6 +6,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "csv-parser": "^3.0.0"
+    "@fast-csv/parse": "^4.3.6",
+    "csv": "^6.2.5",
+    "csv-parser": "^3.0.0",
+    "fast-csv": "^4.3.6"
   }
 }
