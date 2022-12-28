@@ -15,6 +15,7 @@ V1
 
 TUTORIAL RESOURCES:
 - https://c2fo.github.io/fast-csv/docs/introduction/install/
+- https://c2fo.github.io/fast-csv/docs/parsing/examples/#first-row-as-headers
 
 */
 const fs = require("fs");
@@ -23,22 +24,19 @@ const { parse } = require('fast-csv');
 
 
 const moviesFile = `${__dirname}/../../docs/top_movies.csv`
-console.log(moviesFile)
+// console.log(moviesFile)
 const buffer = fs.readFileSync(moviesFile)
 const MOVIES_CSV = buffer.toString()
 
 
-const CSV_STRING = [
-    'a,b',
-    'a1,b1',
-    'a2,b2'
-].join(EOL);
-
 const stream = parse({ headers: true })
   .on('error', error => console.error(error))
+  // .on('data', row => console.log(row))
   .on('data', row => console.log(row))
   .on('end', rowCount => console.log(`Parsed ${rowCount} rows`));
 
 stream.write(MOVIES_CSV);
 stream.end();
+
+console.log({stream})
 
