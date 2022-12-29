@@ -11,6 +11,8 @@ This version tests papaparse
 
 - SYNCHRONOUS approach
 
+WORKS! Uses papaparse with headers flag and returns result.data
+
 V1
 
 TUTORIAL RESOURCES:
