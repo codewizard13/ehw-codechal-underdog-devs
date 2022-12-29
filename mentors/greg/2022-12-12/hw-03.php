@@ -34,21 +34,18 @@ function main($memStart, $cssStyles)
 
   // CREATE ARRAYS FROM FILES
   $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-  // $scrabbleWords = fileToArray(SCRABBLE_FILE);
+
+  echo "<h2 style='color: cadetblue; background: aliceblue; padding: 1rem;'>USES: hashmap</h2>";
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
-  // var_dump($scrabbleWords);
 
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
   ];
 
   // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
   testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
@@ -76,7 +73,7 @@ function sayFilename($cssStyles)
  * Given a set of needle values, loop through each value
  * and report any matches in haystack.
  * 
- * @arg: $testValues array
+ * @arg: array $testValues
  * @return: void
  */
 function testHarness($wordsArr, $needleSet = [])
@@ -93,33 +90,28 @@ function testHarness($wordsArr, $needleSet = [])
 
       // IF we find any matches add them to results array
       $results = findMatches($wordsArr, $currentNeedle);
-      
+
       // OUPUT RESULTS
       echo "<H2>RESULTS:</H2>";
       echo count($results) . " words begin and end with $currentNeedle<br>";
       var_dump($results);
     }
   }
-
 }
 
 
 // Given a set of needle values
 function findMatches($wordsHash, $needle)
 {
-
-  $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
   // LOOP through each word in array
   foreach ($wordsHash as $currentWord => $value)
 
     if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
-
-      // echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
-
       array_push($matches, $currentWord);
-  }
+    }
+    
   return $matches;
 }
 

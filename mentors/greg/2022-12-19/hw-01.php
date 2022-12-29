@@ -32,41 +32,32 @@ function main($memStart, $cssStyles)
 {
   sayFilename($cssStyles);
 
-  // SLURP file into array
-  // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-  // $scrabbleWords = fileToArray(SCRABBLE_FILE);
-
   $scrabbleWords = [
     "AA" => true,
     "THE" => true
   ];
 
-  // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   tellLabelAndValue("Scrabble Words Count", $scrabbleWordsCount);
 
   // DEFINE substring
   $substring = "TH";
 
-  // TODO: DO STUFF ...
-  // testHarness($scrabbleWords, [$substring], $cssStyles);
   $matchedWords = getWordsContainingSubstring($scrabbleWords, $substring);
   echo "<H3>Matched Words:</h3>";
   var_dump($matchedWords);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
-} // END main
-
-// RUN program
+}
 main($memStart, $cssStyles);
 
 
+/// FUNCTIONS
 
 
 function getWordsContainingSubstring($words, $needle)
 {
-
   tellLabelAndValue("Function", __FUNCTION__);
 
   $matchedWords = [];
@@ -86,7 +77,6 @@ function getWordsContainingSubstring($words, $needle)
 
 function foundIn($word, $needle)
 {
-
   tellLabelAndValue("Function", __FUNCTION__);
 
   // Return early if word is not valid
@@ -162,34 +152,8 @@ function wordIsValid($word, $needle)
 }
 
 
-
-
-
-
-/// FUNCTIONS ///
-
-
-// /**
-//  * Given a set of needle values, loop through each value
-//  * and report any matches in haystack.
-//  * 
-//  * @arg: $testValues array
-//  * @return: void
-//  */
-// function testHarness($wordsArr, $needleSet, $cssStyles)
-// {
-//   echo "I'M IN <b>" . __FUNCTION__ . "</b><br>";
-//   // DO stuff
-//   echo "<h3 style='" . $cssStyles['msgError'] . "'>NEED TO FINISH CODING</h3>";
-//   $results = [];
-// }
-
-
-
-
 function tellLabelAndValue($label, $value)
 {
-
   // DEFINE STYLES
   $fontFamily = "Roboto, Open Sans, Arial, Tahoma, sans-serif;";
   $msgBasic = "padding: 1rem .5rem; margin: .8rem 0; line-height: 1; font-family: $fontFamily;";

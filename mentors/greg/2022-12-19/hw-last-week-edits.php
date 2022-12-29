@@ -16,14 +16,13 @@ V2
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-// require_once(__DIR__ . '/../inc/functions.php');
 require_once(__DIR__ . '/../../../inc/functions.php');
+
 // FILE PATHS
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 /* ALGORITHM in SEPARATE FILE */
 
-// echo "<span style='" . $_SESSION['style']['error'] . "'>TEST ERROR</span><br>";
 echo "<span style='" . $cssStyles['msgError'] . "'>TEST ERROR</span><br>";
 
 /**
@@ -33,30 +32,23 @@ function main($memStart, $cssStyles)
 {
 
   sayFilename($cssStyles);
-  // CREATE ARRAYS FROM FILES
+  
+  // CREATE DICT FROM FILE
   $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-  // $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
-  // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
-  // var_dump($scrabbleWords);
 
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
   ];
 
   // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
   testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
-} // END main
-
-// RUN program
+}
 main($memStart, $cssStyles);
 
 

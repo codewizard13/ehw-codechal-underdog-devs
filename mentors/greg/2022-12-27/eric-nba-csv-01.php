@@ -25,7 +25,6 @@ require_once(__DIR__ . '/../../../inc/functions.php');
 define('NBA_CSV', DOCS_PATH . 'nba_finals.csv');
 
 
-
 /**
  * Primary controller function.
  */
@@ -58,37 +57,29 @@ function main($memStart, $cssStyles)
 
   echo "<H3>Print out a ranking of who has won the MVP more than once, by times won</H3>";
 
-
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
 }
 main($memStart, $cssStyles);
 
 
-
 /// FUNCTIONS
 
-
-
-
-
-
-function rankWinners($nbaDict) {
+// IN PROGRESS...
+function rankWinners($nbaDict)
+{
 
   $rankDict = [];
 
   foreach ($nbaDict as $year => $stats) {
-
-
-
   }
 
   return $rankDict;
-
 }
 
 
-function getFinalistsNotWinners($nbaDict) {
+function getFinalistsNotWinners($nbaDict)
+{
 
   $winners = [];
   $losers = [];
@@ -99,29 +90,23 @@ function getFinalistsNotWinners($nbaDict) {
   IF team is in loser column and NOT in winner column
   */
   foreach ($nbaDict as $year => $stats) {
-    
+
     $curWinner = $stats["Winner"];
     $curLoser = $stats["Loser"];
 
     // Create a Set-like assoc array with O(1) time complexity
     $winners[$curWinner] = true;
     $losers[$curLoser] = true;
-
   }
 
-  foreach($losers as $loser => $value) {
+  foreach ($losers as $loser => $value) {
     if (!isset($winners[$loser])) {
-      // echo "$loser <b>NEVER WON</b> the NBA finals<br>";
       array_push($neverWon, $loser);
     }
   }
-  
 
-  // var_dump($winners);
-  // var_dump($losers);
   return $neverWon;
 }
-
 
 
 function getWinningYearsByTeam($nbaDict, $teamName)
@@ -142,7 +127,6 @@ function getWinningYearsByTeam($nbaDict, $teamName)
 
 function getWinnerByYear($nbaDict, $year)
 {
-
   return $nbaDict[$year]["Winner"];
 }
 
@@ -160,7 +144,7 @@ function buildNBADictFromCSV($filepath)
   $headers = array_shift($rows);
   $headers = explode($delim, $headers);
 
-  // [$headers, ...$rows] = $lines; // destructuring doesn't work in PHP!
+  // [$headers, ...$rows] = $lines; // destructuring doesn't work in PHP! #GOTCHA!
 
   for ($rowIndex = 0; $rowIndex < count($rows); $rowIndex++) {
 

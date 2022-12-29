@@ -20,22 +20,47 @@ Eric Hepperle
 
 */
 
+// INCLUDE FUNCTIONS LIBRARY
+require_once(__DIR__ . '/../../../inc/functions.php');
 
-$babyNames2020 = '../../../docs/baby_names_2020_short.txt';
-$scrabbleFile = '../../../docs/sowpods.txt';
+// FILE PATHS
+define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
+define('BABY_NAMES_2020', DOCS_PATH . 'baby_names_2020_short.txt');
 
-function fileToArray($filename)
-{
-  $namesStr = file_get_contents($filename);
-  $namesArr = explode("\n", $namesStr);
-  return $namesArr;
+
+$namesArr = fileToArray(BABY_NAMES_2020);
+$scrabbleArr = fileToArray(SCRABBLE_FILE);
+
+$matchedNames = [];
+
+foreach ($namesArr as $name) {
+
+  $tmpArr = array_reverse(str_split($name));
+
+  $nameReversed = strtoupper(implode($tmpArr));
+
+  if (in_array($nameReversed, $scrabbleArr)) {
+    echo $nameReversed . " found in scrabble words!<br>";
+  }
 }
 
-$namesArr = fileToArray($babyNames2020);
-$scrabbleArr = fileToArray($scrabbleFile);
 
-// var_dump( fileToArray($babyNames2020) );
-// var_dump(fileToArray($scrabbleFile));
+function strReverse2($string) {
+
+  $strLen = strlen($string);
+
+  $newStr = '';
+
+  for ($i=$strLen-1; $i >= 0  ; $i--) {
+    echo "$i: $string[$i]<br>";
+    $newStr .= $string[$i];    
+  }
+
+  return $newStr;
+}
+$testing = strReverse2("LIAM");
+
+echo "<h2>$testing</h2>";
 
 /*
 
@@ -59,59 +84,3 @@ END baby loop
 return matchedNames array
 
 */
-
-$matchedNames = [];
-
-foreach ($namesArr as $name) {
-
-  // echo $name . "<br>";
-
-  $tmpArr = array_reverse(str_split($name));
-
-  $nameReversed = strtoupper(implode($tmpArr));
-
-  if (in_array($nameReversed, $scrabbleArr)) {
-    echo $nameReversed . " found in scrabble words!<br>";
-  }
-}
-
-
-/*
-
-oldSring = LIAM
-
-foreach char in string
-
-  $newStr .= pop(oldString)
-
-  MAIL
-
-*/
-
-function strReverse2($string) {
-
-  $strLen = strlen($string);
-
-  $newStr = '';
-
-  // for ($i = $strLen-$j; $i < $sstrLen; $j++ )
-
-  for ($i=$strLen-1; $i >= 0  ; $i--) {
-    echo "$i: $string[$i]<br>";
-    $newStr .= $string[$i];    
-  }
-
-  return $newStr;
-}
-$testing = strReverse2("LIAM");
-
-echo "<h2>$testing</h2>";
-
-
-// 
-
-/*
- 
-
-*/
-

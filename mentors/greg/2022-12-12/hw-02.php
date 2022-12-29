@@ -1,10 +1,9 @@
 <?php
 
 /*
-MENTOR Greg: HOMEWORK
+MENTOR Greg: HOMEWORK: 2022-12-12
 
 What are all of the words that both start with a "TH" and end with a "TH"?
-
 WORK with $scrabbleWords array
 
 Eric Hepperle
@@ -31,10 +30,10 @@ function main($memStart, $cssStyles)
   sayFilename($cssStyles);
 
   // CREATE ARRAYS FROM FILES
-  // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
   $scrabbleWords = fileToArray(SCRABBLE_FILE);
 
-  // testHarness($scrabbleWords);
+  echo "<h2 style='color: cadetblue; background: aliceblue; padding: 1rem;'>USES: array</h2>";
+
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
 
@@ -43,18 +42,12 @@ function main($memStart, $cssStyles)
   ];
 
   // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
   testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
-} // END main
-
-// RUN program
+}
 main($memStart, $cssStyles);
-
 
 
 /// FUNCTIONS ///
@@ -73,7 +66,7 @@ function sayFilename($cssStyles)
  * Given a set of needle values, loop through each value
  * and report any matches in haystack.
  * 
- * @arg: $testValues array
+ * @param: array $testValues
  * @return: void
  */
 function testHarness($wordsArr, $needleSet = [])
@@ -90,22 +83,19 @@ function testHarness($wordsArr, $needleSet = [])
 
       // IF we find any matches add them to results array
       $results = findMatches($wordsArr, $currentNeedle);
-      
+
       // OUPUT RESULTS
       echo "<H2>RESULTS:</H2>";
       echo count($results) . " words begin and end with $currentNeedle<br>";
       var_dump($results);
     }
   }
-
 }
 
 
 // Given a set of needle values
 function findMatches($wordsArr, $needle)
 {
-
-  $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
   // LOOP through each word in array
@@ -114,9 +104,6 @@ function findMatches($wordsArr, $needle)
     $currentWord = $wordsArr[$i] ?? null;
 
     if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
-
-      // echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
-
       array_push($matches, $currentWord);
     }
   }
