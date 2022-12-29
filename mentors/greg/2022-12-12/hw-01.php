@@ -15,10 +15,9 @@ V1
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once(__DIR__ . '/../inc/functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 
 // FILE PATHS
-define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 
@@ -203,28 +202,4 @@ function findMatches($wordsArr, $needle)
 
     return true;
   }
-}
-
-
-
-
-// Since there are of 260K words, generate a smaller word set to work with
-function smallWordsList($words)
-{
-
-  $wordsCount = count($words);
-
-  $smallWordsArr = [];
-
-  for ($i = 0; $i < $wordsCount; $i += 55000) {
-
-    // increment index by 55000 and grab three elments including this one
-    $subArr = array_slice($words, $i, 3);
-    $tmpArr = array_keys(($subArr));
-    foreach ($tmpArr as $word) {
-      array_push($smallWordsArr, $word);
-    }
-  }
-
-  return $smallWordsArr;
 }

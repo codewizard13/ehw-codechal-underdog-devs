@@ -16,10 +16,9 @@ V2
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once(__DIR__ . '/../inc/functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 
 // FILE PATHS
-define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 /* ALGORITHM in SEPARATE FILE */
@@ -27,9 +26,9 @@ define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 /**
  * Primary controller function.
  */
-function main($memStart)
+function main($memStart, $cssStyles)
 {
-  sayFilename();
+  sayFilename($cssStyles);
 
   // CREATE ARRAYS FROM FILES
   // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
@@ -54,7 +53,7 @@ function main($memStart)
 } // END main
 
 // RUN program
-main($memStart);
+main($memStart, $cssStyles);
 
 
 
@@ -63,11 +62,11 @@ main($memStart);
 /**
  * Print styled filename so you know what file you are seeing.
  */
-function sayFilename()
+function sayFilename($cssStyles)
 {
   // IDENTIFY file name
   $thisFilename = basename(__FILE__);
-  echo "<br><h3>Current File: <span style='" . $_SESSION['styleInfo'] . "'>$thisFilename</span></h3>";
+  echo "<br><h3>Current File: <span style='" . $cssStyles['msgInfo'] . "'>$thisFilename</span></h3>";
 }
 
 /**
