@@ -16,16 +16,15 @@ V2
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once(__DIR__ . '/../inc/functions.php');
-
+// require_once(__DIR__ . '/../inc/functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 // FILE PATHS
-define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
 
 /* ALGORITHM in SEPARATE FILE */
 
 // echo "<span style='" . $_SESSION['style']['error'] . "'>TEST ERROR</span><br>";
-echo "<span style='" . $cssStyles['error'] . "'>TEST ERROR</span><br>";
+echo "<span style='" . $cssStyles['msgError'] . "'>TEST ERROR</span><br>";
 
 /**
  * Primary controller function.
@@ -71,7 +70,7 @@ function sayFilename($styleSet)
 {
   // IDENTIFY file name
   $thisFilename = basename(__FILE__);
-  echo "<br><h3>Current File: <span style='" . $styleSet['info'] . "'>$thisFilename</span></h3>";
+  echo "<br><h3>Current File: <span style='" . $styleSet['msgInfo'] . "'>$thisFilename</span></h3>";
 }
 
 /**
