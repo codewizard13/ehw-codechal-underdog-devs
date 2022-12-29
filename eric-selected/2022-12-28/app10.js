@@ -23,31 +23,50 @@ TUTORIAL RESOURCES:
 const fs = require("fs");
 const Papa = require("papaparse");
 
-
 const moviesFile = `${__dirname}/../../docs/top_movies.csv`
-const MOVIES_CSV = fs.readFileSync(moviesFile).toString()
 
-const result = Papa.parse(MOVIES_CSV, {header: true});
-const moviesDict = result.data
-// console.log(moviesDict);
+function main() {
 
-const chosenDistributor = "DreamWorks"
-console.log(moviesDict[0].Distributor)
-console.log(moviesDict[0]['Release Date'])
+  const chosenDistributor = "DreamWorks"
+
+  const moviesDict = csvToObjArray(moviesFile).data
+
+  // console.log(moviesDict[0].Distributor)
+  // console.log(moviesDict[0]['Release Date'])
+
+  // console.log(moviesDict)
+
+  const first10 = moviesDict.slice(0, 3)
+  console.log(first10)
+
+
+  getMoviesByDistributor(moviesDict, chosenDistributor)
+
+
+}
+main()
+
+
+/// FUNCTIONS
+
 
 function getMoviesByDistributor(moviesDict, distributor) {
 
-  console.log(Array.isArray(moviesDict))
-
-
   const results = []
-  console.log(Array.isArray(results))
+  // console.log(Array.isArray(results))
 
-  const first10 = moviesDict.slice(0, 3)
-  return first10
-
-  
+  // const first10 = moviesDict.slice(0, 3)
+  // console.log(first10)
 
 }
 
-getMoviesByDistributor(moviesDict, chosenDistributor)
+
+
+function csvToObjArray(filename) {
+
+  const csvString = fs.readFileSync(filename).toString()
+
+  const result = Papa.parse(csvString, { header: true });
+
+  return result
+}
