@@ -19,7 +19,7 @@ V1
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once('functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 
 // FILE PATHS
 define('NBA_CSV', DOCS_PATH . 'nba_finals.csv');
@@ -68,42 +68,7 @@ main($memStart, $cssStyles);
 
 /// FUNCTIONS
 
-/*
-ALGORITHM for rankWinners()
 
-DEFINE empty array as (rankDict)
-
-LOOP through each year's stats
-
-  // INCREMENT MVP key value
-  IF MVP field isn't blank
-  
-    IF MVP field doesn't exist
-
-      ADD column value as key in rankDict
-      SET value to 1
-
-    ELSE
-
-      INCREMENT value by 1
-    
-    END
-
-  END
-
-END
-
-
-// RETURN WINNERS sorted by value, highest to lowest
-LOOP through each entry in rankDict as
-
-  IF ???
-
-END looping through rankDict
-
-
-
-*/
 
 
 
