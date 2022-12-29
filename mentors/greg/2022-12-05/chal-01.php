@@ -3,17 +3,23 @@
 /*
 MENTOR Greg:
 
-There is at least one baby name from the top 40 baby names for 2020 that, when spelled backwards, is a valid Scrabble word. Find and print all such names.
+There is at least one baby name from the top 40 baby names for 2020
+that, when spelled backwards, is a valid Scrabble word. Find and
+print all such names.
+
+Today's Leanrings:
+- Arrays in PHP are all associative / hashmaps
+- Data structure algorithm initally
+
+- HW: Research two pointer / dual pointer
+- HW: Have an understanding and be able to implement library functions
+
 
 Eric Hepperle
 2022-12-05
+
 */
 
-// Slurp files into arrays
-// $namesStr = file_get_contents('../../../docs/baby_names_2020_short.txt');
-// $namesArr = explode('\n', $namesStr);
-
-// var_dump($namesArr);
 
 $babyNames2020 = '../../../docs/baby_names_2020_short.txt';
 $scrabbleFile = '../../../docs/sowpods.txt';
@@ -101,13 +107,11 @@ $testing = strReverse2("LIAM");
 
 echo "<h2>$testing</h2>";
 
-// two pointer / dual pointer
-
-// Arrays in PHP are all associative / hashmaps
-
-// Data structure algorithm initally
-
-// Have an understanding and be able to implement library functions
 
 // 
+
+/*
+ 
+
+*/
 
