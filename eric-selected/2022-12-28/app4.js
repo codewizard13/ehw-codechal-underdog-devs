@@ -22,9 +22,9 @@ const csvParser = require("csv-parser");
 
 
 function main() {
-  const MOVIES_CSV = `${__dirname}/../../docs/top_movies.csv`
+  const moviesFile = `${__dirname}/../../docs/top_movies.csv`
 
-  const moviesDict = csvToJson(MOVIES_CSV)
+  const moviesDict = csvToJson(moviesFile)
   console.log({moviesDict})
 
 
