@@ -11,6 +11,7 @@ V1
 */
 
 const fs = require("fs");
+const path = require('path')
 
 // CSV parsing library
 const Papa = require("papaparse");
@@ -19,6 +20,9 @@ const Papa = require("papaparse");
 const { filenameToLines } = require('../../../common/io')
 
 const moviesFile = `${__dirname}/../../../docs/top_movies.csv`
+const billboardFile = `${__dirname}/../../../docs/billboard100_2000.csv`
+const nbaFile = `${__dirname}/../../../docs/nba_finals.csv`
+
 
 const testMovies = [
   {
@@ -52,7 +56,7 @@ const testMovies = [
 
 const moviesArray = parseCSVToArray(moviesFile)
 
-
+const horzrule = "*".repeat(30)
 
 
 
@@ -61,11 +65,19 @@ const moviesArray = parseCSVToArray(moviesFile)
  */
 function main() {
 
+  console.log(`\n\n${horzrule}`)
+
   // PARSE CSV file with papaparse library
-  parsedWithLibrary()
+  moviesParsedWithPapaparse()
 
   // PARSE CSV with hand-coded parser
-  parsedWithBruteForce()
+  parsedWithBruteForce(moviesFile)
+
+  parsedWithBruteForce(billboardFile)
+
+  parsedWithBruteForce(nbaFile)
+
+  console.log(path.basename(moviesFile))
 
 }
 main()
@@ -84,7 +96,7 @@ function ericParseCSV(filepath) {
   const headers = linesArr.shift().trim().split(',')
   const rows = linesArr
 
-  console.log([headers])
+  // console.log(headers)
 
   for (let i = 0; i < rows.length; i++) {
 
@@ -118,17 +130,18 @@ function ericParseCSV(filepath) {
 
 
 
-function parsedWithBruteForce() {
+function parsedWithBruteForce(filepath) {
 
   let msg = `THIS VERSION USES A PARSER I DESIGNED AND CODED FROM SCRATCH`
   console.log(`\n${msg}\n`)
+  console.log(path.basename(filepath))
 
-  ericParseCSV(moviesFile)
+  ericParseCSV(filepath)
 }
 
 
 
-function parsedWithLibrary() {
+function moviesParsedWithPapaparse() {
 
   let msg = `THIS VERSION USES THE PAPAPARSE LIBRARY`
   console.log(`\n${msg}\n`)
@@ -157,12 +170,12 @@ function parsedWithLibrary() {
 
 function parseCSVToArray(filepath) {
 
-  const MOVIES_CSV = fs.readFileSync(moviesFile).toString()
+  const CSV_STRING = fs.readFileSync(moviesFile).toString()
 
-  const result = Papa.parse(MOVIES_CSV, { header: true });
-  const moviesArray = result.data
+  const result = Papa.parse(CSV_STRING, { header: true });
+  const objArr = result.data
 
-  return moviesArray
+  return objArr
 }
 
 
