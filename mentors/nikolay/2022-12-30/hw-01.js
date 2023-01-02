@@ -1,10 +1,10 @@
 /*
-MENTOR Nikolay: CHALLENGE: 2022-12-30
-
-What distributor has the most films on this list?
+MENTOR Nikolay: HOMEWORK: 2022-12-23
+- For next week write a function to parse CSV
+- Consider whether to use library or write brute force
 
 Eric Hepperle
-2022-12-30
+2022-12-23
 
 V1
 
