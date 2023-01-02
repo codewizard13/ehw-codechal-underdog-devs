@@ -62,16 +62,12 @@ function main($memStart, $cssStyles)
   // - 3 times: Shaquille O'Neal, LeBron James
   // - 2 times: <etc>
   echo "<H3>Print out a ranking of who has won the MVP more than once, by times won</H3>";
-  $rankDict = getMVPWinnerCounts($nbaDict);
-  var_dump($rankDict);
+  $mvpDict = getMVPWinnerCounts($nbaDict);
+  // var_dump($mvpDict);
+  var_dump(printMVPWinnersByFreq($mvpDict)) ;
 
 
 
-  foreach ($rankDict as $mvp => $mvpCount) {
-    if ($mvpCount > 1) {
-    
-    }
-  }
 
 
 
@@ -81,10 +77,34 @@ function main($memStart, $cssStyles)
 main($memStart, $cssStyles);
 
 
-function printMVPWinnersByFreq($winnersDict) {
+function printMVPWinnersByFreq($mvpDict)
+{
+  $rankDict = [];
 
+  // How many MVPs are in the winnersDict?
+  $totalMvps = count($mvpDict);
+  echo "Total MVPs: $totalMvps<br>";
 
+  // Build Sorted Rankings Dict
+  foreach ($mvpDict as $mvp => $mvpCount) {
+    if ($mvpCount > 1) {
+      if (!isset($rankDict[$mvpCount])) {
+        $rankDict[$mvpCount] = [$mvp];
+      } else {
+        array_push($rankDict[$mvpCount], $mvp);
+      }
+    }
+  }
 
+  echo "<ul>";
+  // Print out Rankings
+  foreach ($rankDict as $mvpCount => $mvps) {
+
+    echo "<li>$mvpCount times: " . implode(', ', $mvps) . "</li>";
+
+  }
+  echo "</ul>";
+  return $rankDict;
 }
 
 
@@ -148,31 +168,26 @@ END looping through rankDict
 function getMVPWinnerCounts($nbaDict)
 {
 
-  $rankDict = [];
+  $winnerCounts = [];
 
   foreach ($nbaDict as $year => $stats) {
 
-    // echo "Year: $year";
-    // var_dump($stats);
-    // echo "<hr>";
-
     $mvp = $stats['MVP'];
 
-    // INCREMENT MVP KEY
-    if (!isset($rankDict[$mvp])) { //&& $rankDict[$mvp] !== '') {
-      $rankDict[$mvp] = 1;
-    } else {
-      echo "$mvp already exists in the rankdict and has a value of <b>" . $rankDict[$mvp] . "</b><br><hr>";
-      $rankDict[$mvp]++;
-      echo "The new value for $mvp after increment: <b>$rankDict[$mvp]</b><br><hr>";
+    if ($mvp !== '') {
+      // INCREMENT MVP KEY
+      if (!isset($winnerCounts[$mvp])) {
+        $winnerCounts[$mvp] = 1;
+      } else {
+        $winnerCounts[$mvp]++;
+      }
     }
-    // echo "The MVP for $year was: $mvp<br><hr>";
-
-
   }
 
-  return $rankDict;
+  return $winnerCounts;
 }
+
+
 
 function getFinalistsNotWinners($nbaDict)
 {
