@@ -58,8 +58,6 @@ function main($memStart, $cssStyles)
   echo "There are <b>" . count($finalists) . "</b> teams who have made it to the finals but didn't win:<br>";
   echo bulletList($finalists);
 
-
-
   // Q: Print out a ranking of who has won the MVP more than once, by times won, e.g. this output:
   // - 6 times: Michael Jordan
   // - 3 times: Shaquille O'Neal, LeBron James
@@ -67,8 +65,14 @@ function main($memStart, $cssStyles)
   echo "<H3>Print out a ranking of who has won the MVP more than once, by times won</H3>";
   $mvpDict = getMVPWinnerCounts($nbaDict);
   // var_dump($mvpDict);
-  var_dump(printMVPWinnersByFreq($mvpDict)) ;
+  $sortedMvps = sortMVPsByWins($mvpDict);
+  // printMVPWinnersByFreq($sortedMvps);
+  // ehBubbleSort($mvpDict);
+  // var_dump($sortedMvps);
 
+
+  // 6 => Michael Jordan
+  // 0 => [6, [array of name]]
 
 
 
@@ -80,16 +84,22 @@ function main($memStart, $cssStyles)
 main($memStart, $cssStyles);
 
 
-function printMVPWinnersByFreq($mvpDict)
+// HW: Implement bubble sort for the answer
+
+
+
+function sortMVPsByWins($dict)
 {
+
   $rankDict = [];
 
   // How many MVPs are in the winnersDict?
-  $totalMvps = count($mvpDict);
+  $totalMvps = count($dict);
   echo "Total MVPs: $totalMvps<br>";
 
+
   // Build Rankings Dict
-  foreach ($mvpDict as $mvp => $mvpCount) {
+  foreach ($dict as $mvp => $mvpCount) {
     if ($mvpCount > 1) {
 
       // ASSIGN MVP names to their win count index
@@ -100,15 +110,64 @@ function printMVPWinnersByFreq($mvpDict)
       }
     }
   }
+  // krsort($rankDict);
+
+  // uksort($rankDict, function($a, $b){
+  //   // return $b - $a;
+  //   return $a - $b ;
+  // });
+
+  return ehBubbleSort($rankDict);
+}
+
+/*
+2 -> Jack
+6 -> Michael
+3 -> Sue
+
+
+*/
+function ehBubbleSort($arr) {
+
+  $order = [];
+
+  $keys = array_keys($arr); // 
+  $keys = [2, 6, 3, 17];
+
+  // Compare index 0 to 1 and determine which one is bigger
+  for ($i = 0; $i < count($keys); $i++) {
+
+
+    for ($j = 0; $j < count($keys) - $i-1; $j++) {
+
+      $currentEl = $keys[$j];
+      $nextEl = $keys[$j+1];
+
+        if ($currentEl < $nextEl) {
+          $keys[$j] = $nextEl;
+          $keys[$j+1] = $currentEl;
+        }
+
+    }
+
+    
+  }
+  
+  var_dump($keys);
+
+  
+}
+
+function printMVPWinnersByFreq($mvpDict)
+{
 
   echo "<ul>";
   // Print out SORTED (high -> low) Rankings
-  foreach ($rankDict as $mvpCount => $mvps) {
+  foreach ($mvpDict as $mvpCount => $mvps) {
     echo "<li>$mvpCount times: " . implode(', ', $mvps) . "</li>";
   }
   echo "</ul>";
 
-  return $rankDict;
 }
 
 
@@ -247,7 +306,6 @@ function getWinningYearsByTeam($nbaDict, $teamName)
 
 function getWinnerByYear($nbaDict, $year)
 {
-
   return $nbaDict[$year]["Winner"];
 }
 
