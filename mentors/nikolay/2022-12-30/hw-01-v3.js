@@ -120,6 +120,8 @@ function getMovieCountByDistributor(filepath) {
 
 /*
 // #GOTCHA: WHY AM I GETTING AN UNDEFINED Distributor?
+
+This version I'm going to use a set instead of a dict to remember the order I'm adding things in
 */
 
 function getMoviesSortedByDistributor(moviesArr, distribDict) {
@@ -128,22 +130,23 @@ function getMoviesSortedByDistributor(moviesArr, distribDict) {
   const sortedDistribObjs = Object.entries(distribDict).sort((a, b) => b[1] - a[1])
   console.log({ sortedDistribObjs })
 
-  const sortedMovies = {} // think object may be better than array
+  const orderedMovies = new Set()
 
   const keys = Object.values(sortedDistribObjs)
 
 
-  // LOOP over each distrib Key and add to sortedMovies to populate keys in order
+  // LOOP over each distrib Key and add to orderedMovies to populate keys in order
   sortedDistribObjs.forEach(entry => {
 
     const [distrib, movieCount] = entry
-    console.log([movieCount, distrib])
-
 
     const matchedMovies = moviesArr.filter(movie => movie !== undefined && movie.Distrubutor === distrib)
 
-    // IF current movie count not a key in sortedMovies dict, add it and set value as empty array
-    if (!(movieCount in sortedMovies)) { sortedMovies[movieCount] = [] }
+    // IF current movie count not a key in orderedMovies set, add it and set value as empty array
+    if (!(orderedMovies.has(movieCount))) {
+      orderedMovies.add(movieCount)
+      orderedMovies[movieCount] = []
+    }
 
     // FOR every movie that matches current distributor, push movie onto current matchedMovies array
     Object.values(moviesArr).forEach(movie => {
@@ -154,23 +157,19 @@ function getMoviesSortedByDistributor(moviesArr, distribDict) {
 
     })
 
-    // ADD current movie result object to sortedMovies at movieCount key array
-    sortedMovies[movieCount].push({
+    // ADD current movie result object to orderedMovies at movieCount key array
+    orderedMovies[movieCount].push({
       'Distributor': distrib, 'Matched Movies': matchedMovies.length
     })
 
 
   })
 
-  const entries = Object.entries(sortedMovies)
-  sorted = entries.sort((a, b) => parseInt(b[0]) - parseInt(a[0]))  // doesnt work
-  console.log({sorted})
+  // const entries = Object.entries(orderedMovies)
+  // sorted = entries.sort((a, b) => parseInt(b[0]) - parseInt(a[0]))  // doesnt work
+  // console.log({ sorted })
 
-  // console.log(`\nsortedMovies:`)
-  // console.log(sortedMovies)
-  // console.log(JSON.stringify(sortedMovies, null, 4));
-
-  return sortedMovies
+  return orderedMovies
 
 
 }
