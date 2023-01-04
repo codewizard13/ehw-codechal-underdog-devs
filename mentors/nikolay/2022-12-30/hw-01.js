@@ -67,7 +67,9 @@ function main() {
 
   console.log(`\n\n${horzrule}`)
 
-  console.log(distributorWithMostFilms(moviesFile))
+  const distribDict = distributorWithMostFilms(moviesFile)
+  // console.log({distribDict})
+  sortDistribByMostFilms(moviesArray, distribDict)
 
 
 }
@@ -81,12 +83,12 @@ function distributorWithMostFilms(filepath) {
   let highestFreq = 0
 
   const distribDict = getMovieCountByDistributor(filepath)
-  console.log({distribDict})
+  // console.log({distribDict})
   // return [topDistributor, highestFreq]
+  return distribDict
 
 
 }
-
 
 function getMovieCountByDistributor(filepath) {
 
@@ -100,11 +102,11 @@ function getMovieCountByDistributor(filepath) {
 
     let distributor = movie['Distributor'] !== undefined ? movie['Distributor'].toString() : ''
 
-    if (distributor === undefined) {
-      console.log({"Distributor undefined": {
-        i, movie, distribDict
-      }})
-    } else {
+    // if (distributor === undefined) {
+    //   console.log({"Distributor undefined": {
+    //     i, movie, distribDict
+    //   }})
+    // } else {
 
     // INCREMENTING key count
     if (distributor in distribDict) {
@@ -114,7 +116,7 @@ function getMovieCountByDistributor(filepath) {
     }
 
 
-    }
+    // }
 
 
     // // TEST if current
@@ -137,7 +139,7 @@ function getMovieCountByDistributor(filepath) {
 /*
 ALGORITHM:
 
-// FUNCTION: sort sortDistribByMostFilms(filepath)
+// FUNCTION: sortDistribByMostFilms(moviesArr, distribDict)
 ARG MOVES_CSV filepath
 PARSE MOVIES_CSV into array
 
@@ -145,17 +147,33 @@ DEFINE empty distribResults array this is where the sorted results objects will 
 
 DEFINE dictionary to track movie count by distributor
 
-LOOP over movies objects array
+SORT distrib high to low by movie count
 
-  IF currentMovie. // TODO ... 
+LOOP over MOVIE array
+
+  //push movie onto sortedMoviesDict.Distribuor matchedMovies property
+
 
 END
 
+RETURN modified distribDict
 
-
+// #GOTCHA: WHY AM I GETTING AN UNDEFINED Distributor?
 */
 
-function sortDistribByMostFilms(filepath) {
+function sortDistribByMostFilms(moviesArr, distribDict) {
+
+  // console.log(`\nmoviesArr sample of 3 movies:`, moviesArr.splice(0, 3))
+  // console.log({ distribDict })
+
+  const distribResults = []
+
+  const sortedDistribs = Object.entries(distribDict).sort((a, b) => b[1] - a[1])
+  console.log({sortedDistribs})
+
+  
+
+
 
 
 
