@@ -69,7 +69,7 @@ function main() {
 
   const distribDict = distributorWithMostFilms(moviesFile)
   // console.log({distribDict})
-  sortDistribByMostFilms(moviesArray, distribDict)
+  getMoviesSortedByDistributor(moviesArray, distribDict)
 
 
 }
@@ -139,11 +139,11 @@ function getMovieCountByDistributor(filepath) {
 /*
 ALGORITHM:
 
-// FUNCTION: sortDistribByMostFilms(moviesArr, distribDict)
+// FUNCTION: getMoviesSortedByDistributor(moviesArr, distribDict)
 ARG MOVES_CSV filepath
 PARSE MOVIES_CSV into array
 
-DEFINE empty distribResults array this is where the sorted results objects will be pushed
+DEFINE empty sortedMovies array this is where the sorted results objects will be pushed
 
 DEFINE dictionary to track movie count by distributor
 
@@ -161,28 +161,19 @@ RETURN modified distribDict
 // #GOTCHA: WHY AM I GETTING AN UNDEFINED Distributor?
 */
 
-function sortDistribByMostFilms(moviesArr, distribDict) {
+function getMoviesSortedByDistributor(moviesArr, distribDict) {
 
   // SORT with library array function
   const sortedDistribObjs = Object.entries(distribDict).sort((a, b) => b[1] - a[1])
   console.log({ sortedDistribObjs })
 
-  const distribResults = {} // think object may be better than array
+  const sortedMovies = {} // think object may be better than array
 
   const keys = Object.values(sortedDistribObjs)
-  
-  const orderedDistribs = {}
 
-  // Build orderedDistribs dict from sortedDistribsObj
-  for (i = 0; i < sortedDistribObjs.length; i++) {
 
-    orderedDistribs[sortedDistribObjs[i][0]] = sortedDistribObjs[i][1]
-
-  }
-  // console.log({ orderedDistribs })
-
-  // loop over each distrib Key and add to distribResults to populate keys in order
-  orderedDistribs.forEach(entry => {
+  // LOOP over each distrib Key and add to sortedMovies to populate keys in order
+  sortedDistribObjs.forEach(entry => {
 
     const distrib = entry[0]
     const movieCount = entry[1]
@@ -190,38 +181,38 @@ function sortDistribByMostFilms(moviesArr, distribDict) {
 
 
     const matchedMovies = moviesArr.filter(movie => movie !== undefined && movie.Distrubutor === distrib)
-    console.log('matchedMovies.length:', matchedMovies.length)
 
-    // IF current movie count not a key in distribResults dict, add it and set value as empty array
-    if (!(movieCount in distribResults)) { distribResults[movieCount] = [] }
-    distribResults[movieCount].push({
-      'Distributor': distrib, 'Matched Movies': matchedMovies
+    // IF current movie count not a key in sortedMovies dict, add it and set value as empty array
+    if (!(movieCount in sortedMovies)) { sortedMovies[movieCount] = [] }
+
+    // FOR every movie that matches current distributor, push movie onto current matchedMovies array
+    Object.values(moviesArr).forEach(movie => {
+
+      if (movie.Distributor === distrib) {
+        matchedMovies.push(movie)
+      }
+
     })
 
-  })
-
-
-  // loop over each movie
-  moviesArr.forEach(movie => {
-
-    const distrib = movie.Distributor
-    // if (distrib === sortedDistribObjs)
-
-  })
-
-
-
-
-
-  moviesArr.forEach((movie, i) => {
-
+    // ADD current movie result object to sortedMovies at movieCount key array
+    sortedMovies[movieCount].push({
+      'Distributor': distrib, 'Matched Movies': matchedMovies.length
+    })
 
 
   })
 
+  const entries = Object.entries(sortedMovies)
+  console.log(entries[0][0])
 
+  console.log({sortedMovies})
 
-  console.log(distribResults)
+  Object.entries(sortedMovies).sort((a, b) => b[0] - a[0])
+
+  console.log(`\nsortedMovies:`)
+  // console.table(sortedMovies)
+  console.log(JSON.stringify(sortedMovies, null, 4));
+  return sortedMovies
 
 
 }
