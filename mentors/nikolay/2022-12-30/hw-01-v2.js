@@ -68,8 +68,9 @@ function main() {
   console.log(`\n\n${horzrule}`)
 
   const distribDict = distributorWithMostFilms(moviesFile)
-  // console.log({distribDict})
-  getMoviesSortedByDistributor(moviesArray, distribDict)
+  const sortedMovies = getMoviesSortedByDistributor(moviesArray, distribDict)
+  console.log(`\nMOVIES SORTED BY DISTRIBUTOR WITH MOST MOVIES\n`)
+  console.log(sortedMovies)
 
 
 }
@@ -79,12 +80,7 @@ main()
 
 function distributorWithMostFilms(filepath) {
 
-  let topDistributor = ''
-  let highestFreq = 0
-
   const distribDict = getMovieCountByDistributor(filepath)
-  // console.log({distribDict})
-  // return [topDistributor, highestFreq]
   return distribDict
 
 
@@ -102,11 +98,6 @@ function getMovieCountByDistributor(filepath) {
 
     let distributor = movie['Distributor'] !== undefined ? movie['Distributor'].toString() : 'MISSING'
 
-    // if (distributor === undefined) {
-    //   console.log({"Distributor undefined": {
-    //     i, movie, distribDict
-    //   }})
-    // } else {
 
     // INCREMENTING key count
     if (distributor in distribDict) {
@@ -115,15 +106,6 @@ function getMovieCountByDistributor(filepath) {
       distribDict[distributor] = 1
     }
 
-
-    // }
-
-
-    // // TEST if current
-    // if (distribDict[movie.Distributor] > highestFreq) {
-    //   highestFreq = distribDict[movie.Distributor]
-    //   topDistributor = movie.Distributor
-    // }
 
   }
 
@@ -154,8 +136,9 @@ function getMoviesSortedByDistributor(moviesArr, distribDict) {
   // LOOP over each distrib Key and add to sortedMovies to populate keys in order
   sortedDistribObjs.forEach(entry => {
 
-    const distrib = entry[0]
-    const movieCount = entry[1]
+    // const distrib = entry[0]
+    // const movieCount = entry[1]
+    const [distrib, movieCount] = entry
     console.log([movieCount, distrib])
 
 
