@@ -137,27 +137,6 @@ function getMovieCountByDistributor(filepath) {
 }
 
 /*
-ALGORITHM:
-
-// FUNCTION: getMoviesSortedByDistributor(moviesArr, distribDict)
-ARG MOVES_CSV filepath
-PARSE MOVIES_CSV into array
-
-DEFINE empty sortedMovies array this is where the sorted results objects will be pushed
-
-DEFINE dictionary to track movie count by distributor
-
-SORT distrib high to low by movie count
-
-LOOP over MOVIE array
-
-  //push movie onto sortedMoviesDict.Distribuor matchedMovies property
-
-
-END
-
-RETURN modified distribDict
-
 // #GOTCHA: WHY AM I GETTING AN UNDEFINED Distributor?
 */
 
@@ -203,15 +182,16 @@ function getMoviesSortedByDistributor(moviesArr, distribDict) {
   })
 
   const entries = Object.entries(sortedMovies)
-  console.log(entries[0][0])
+  console.log(entries[7])
 
   console.log({sortedMovies})
 
-  Object.entries(sortedMovies).sort((a, b) => b[0] - a[0])
+  entries.sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
 
   console.log(`\nsortedMovies:`)
-  // console.table(sortedMovies)
-  console.log(JSON.stringify(sortedMovies, null, 4));
+  console.log(sortedMovies)
+  // console.log(JSON.stringify(sortedMovies, null, 4));
+
   return sortedMovies
 
 
