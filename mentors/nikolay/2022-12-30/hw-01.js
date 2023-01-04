@@ -1,7 +1,9 @@
 /*
-MENTOR Nikolay: HOMEWORK: 2022-12-23
-- For next week write a function to parse CSV
-- Consider whether to use library or write brute force
+MENTOR Nikolay: HOMEWORK: 2022-12-30
+- Return movies array sorted by distributor with most films
+
+Example Output:
+
 
 Eric Hepperle
 2022-12-23
@@ -20,8 +22,6 @@ const Papa = require("papaparse");
 const { filenameToLines } = require('../../../common/io')
 
 const moviesFile = `${__dirname}/../../../docs/top_movies.csv`
-const billboardFile = `${__dirname}/../../../docs/billboard100_2000.csv`
-const nbaFile = `${__dirname}/../../../docs/nba_finals.csv`
 
 
 const testMovies = [
@@ -67,65 +67,11 @@ function main() {
 
   console.log(`\n\n${horzrule}`)
 
-  // PARSE CSV file with papaparse library
-  // moviesParsedWithPapaparse()
+  console.log(distributorWithMostFilms(moviesFile))
 
-  // PARSE CSV with hand-coded parser
-  // parsedWithBruteForce(moviesFile)
-
-  // parsedWithBruteForce(billboardFile)
-
-  // parsedWithBruteForce(nbaFile)
-
-  // console.log(path.basename(moviesFile))
 
 }
 main()
-
-
-
-
-
-// Take in filepath and return array of objects
-function ericParseCSV(filepath) {
-
-  const objArr = []
-
-  const linesArr = filenameToLines(filepath)
-
-  const headers = linesArr.shift().trim().split(',')
-  const rows = linesArr
-
-  // console.log(headers)
-
-  for (let i = 0; i < rows.length; i++) {
-
-    let row = rows[i].trim()
-    let thisObj = {}
-    let cols = row.split(',')
-    // console.table(cols)
-
-    for (let j = 0; j < cols.length; j++) {
-
-      let colVal = cols[j]
-
-      thisObj[headers[j]] = colVal
-
-
-    }
-
-    objArr.push(thisObj)
-
-    if (i === 4) { break }
-
-  }
-
-  return objArr
-
-
-
-}
-
 
 
 
@@ -134,73 +80,86 @@ function distributorWithMostFilms(filepath) {
   let topDistributor = ''
   let highestFreq = 0
 
+  const distribDict = getMovieCountByDistributor(filepath)
+  console.log({distribDict})
+  // return [topDistributor, highestFreq]
+
+
+}
+
+
+function getMovieCountByDistributor(filepath) {
+
   const moviesArr = parseCSVToArray(filepath)
+
   const distribDict = {}
 
-  for (let i=0; i < moviesArr.length; i++ ) {
+  for (let i = 0; i < moviesArr.length; i++) {
 
     let movie = moviesArr[i]
-    
-    // INCREMENTING key count
-    if (movie.Distributor in distribDict) {
-      distribDict[movie.Distributor]++
+
+    let distributor = movie['Distributor'] !== undefined ? movie['Distributor'].toString() : ''
+
+    if (distributor === undefined) {
+      console.log({"Distributor undefined": {
+        i, movie, distribDict
+      }})
     } else {
-      distribDict[movie.Distributor] = 1
+
+    // INCREMENTING key count
+    if (distributor in distribDict) {
+      distribDict[distributor]++
+    } else {
+      distribDict[distributor] = 1
     }
 
-    // TEST if current
-    if (distribDict[movie.Distributor] > highestFreq) {
-      highestFreq = distribDict[movie.Distributor]
-      topDistributor = movie.Distributor
+
     }
 
+
+    // // TEST if current
+    // if (distribDict[movie.Distributor] > highestFreq) {
+    //   highestFreq = distribDict[movie.Distributor]
+    //   topDistributor = movie.Distributor
+    // }
 
   }
 
-  return [topDistributor, highestFreq]
- 
+  const totalExpectedMovieCount = moviesArr.length
+  const totalReturnedMovieCount = Object.values(distribDict).reduce((acc, cur) => acc + cur)
+  console.log(`Total expected movie count: ${totalExpectedMovieCount}`)
+  console.log(`Total Movie Count Returned:`, totalReturnedMovieCount)
 
-}
-console.log(distributorWithMostFilms(moviesFile))
-
-
-
-
-
-
-function parsedWithBruteForce(filepath) {
-
-  let msg = `THIS VERSION USES A PARSER I DESIGNED AND CODED FROM SCRATCH`
-  console.log(`\n${msg}\n`)
-  console.log(path.basename(filepath))
-
-  console.log(ericParseCSV(filepath))
-}
-
-
-
-function moviesParsedWithPapaparse() {
-
-  let msg = `THIS VERSION USES THE PAPAPARSE LIBRARY`
-  console.log(`\n${msg}\n`)
-
-  // Q: What movies on this list were distributed by DreamWorks?
-  const dreamworksMovies = getMoviesByDistributor(moviesArray, "DreamWorks")
-  console.log(`MATCHED MOVIES: `)
-
-  // dreamworksMovies.forEach(movie => console.log(movie.Title))
-  const filtered = moviesArray.filter(movie => movie.Distributor === "DreamWorks")
-  console.log("DreamWorks movies: ", filtered)
-
-  // Q: What is the highest grossing movie from Universal Pictures, domestically?
-  const highestGrossing = highestUSSales(moviesArray)
-  console.log("Highest US Sales:", highestGrossing)
+  return distribDict
 
 }
 
+/*
+ALGORITHM:
+
+// FUNCTION: sort sortDistribByMostFilms(filepath)
+ARG MOVES_CSV filepath
+PARSE MOVIES_CSV into array
+
+DEFINE empty distribResults array this is where the sorted results objects will be pushed
+
+DEFINE dictionary to track movie count by distributor
+
+LOOP over movies objects array
+
+  IF currentMovie. // TODO ... 
+
+END
 
 
 
+*/
+
+function sortDistribByMostFilms(filepath) {
+
+
+
+}
 
 
 /// FUNCTIONS
