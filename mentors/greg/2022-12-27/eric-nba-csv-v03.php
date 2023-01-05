@@ -64,19 +64,7 @@ function main($memStart, $cssStyles)
   // - 2 times: <etc>
   echo "<H3>Print out a ranking of who has won the MVP more than once, by times won</H3>";
   $mvpDict = getMVPWinnerCounts($nbaDict);
-  // var_dump($mvpDict);
   $sortedMvps = sortMVPsByWins($mvpDict);
-  // printMVPWinnersByFreq($sortedMvps);
-  // ehBubbleSort($mvpDict);
-  // var_dump($sortedMvps);
-
-
-  // 6 => Michael Jordan
-  // 0 => [6, [array of name]]
-
-
-
-
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -85,8 +73,6 @@ main($memStart, $cssStyles);
 
 
 // HW: Implement bubble sort for the answer
-
-
 
 function sortMVPsByWins($dict)
 {
@@ -110,23 +96,11 @@ function sortMVPsByWins($dict)
       }
     }
   }
-  // krsort($rankDict);
-
-  // uksort($rankDict, function($a, $b){
-  //   // return $b - $a;
-  //   return $a - $b ;
-  // });
 
   return ehBubbleSort($rankDict);
 }
 
-/*
-2 -> Jack
-6 -> Michael
-3 -> Sue
 
-
-*/
 function ehBubbleSort($arr) {
 
   $order = [];
@@ -275,14 +249,10 @@ function getFinalistsNotWinners($nbaDict)
 
   foreach ($losers as $loser => $value) {
     if (!isset($winners[$loser])) {
-      // echo "$loser <b>NEVER WON</b> the NBA finals<br>";
       array_push($neverWon, $loser);
     }
   }
 
-
-  // var_dump($winners);
-  // var_dump($losers);
   return $neverWon;
 }
 
