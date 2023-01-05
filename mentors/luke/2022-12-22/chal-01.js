@@ -1,5 +1,5 @@
 /* 
-MENTOR LUKE: CHAL: 2022-12-22
+MENTOR LUKE: CHAL: 2022-12-22 / 2023-01-05
 
 Write a function that takes a string prefix as an argument
 and returns an array of all of the words that start with that
@@ -33,27 +33,6 @@ LOOP through scrabbleWords
 END
 
 RETURN matchedWords
-
-
-// FUNCTION: startsWith(word, prefix)
-LOOP through each char in word
-
-  SET temp var wordChar = word[i]
-
-  LOOP through each prefix char
-    
-    // if word[i] !== prefix[i]
-    IF wordChar NOT SAME as prefix char
-
-      RETURN FALSE
-
-    END
- 
-  END
-
-END
-
-RETURN TRUE
 
 */
 
