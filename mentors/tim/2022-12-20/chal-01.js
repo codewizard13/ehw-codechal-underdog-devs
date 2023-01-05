@@ -39,7 +39,7 @@ const illegalArr = (illegalCharStr).split('')
 const illegalChars = new Set(illegalArr)
 
 const testWords = [
-  "AA", "BBB", "BBBE", "AEIOSHRTN", "DZY", "nnnn"
+  "AA", "BBB", "BBBE", "AEIOSHRTN", "DZY", "nnnn", "", "UUUUUUUUUUUUUUA", ..."AEIOSHRTN".split('')
 ]
 
 /**
