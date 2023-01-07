@@ -29,42 +29,45 @@ if artist blank
 if songname is blank
 convert num strings to integers
 
+0000000000001
+
+song_artist_year
+
 */
 
 
 // ERIC'S JS code library
-const { filenameToLines, parseCSVToArray } = require('../../../common/io')
+const { parseCSVToArray } = require('../../../common/io')
 
 const billboardFile = `${__dirname}/../../../docs/billboard100_2000.csv`
 
-
-const testMovies = [
+const testSongs = [
   {
-    Title: 'The Twilight Saga: Breaking Dawn - Part 2',
-    Distributor: 'Lionsgate',
-    'Release Date': '2012',
-    'US Sales': '111111',
-    'World Sales': '829747654',
-    Runtime: '1 hr 55 min',
-    Rating: 'PG-13'
+    rank: '1',
+    song: 'Independent Women Part I',
+    artist: "Destiny's Child",
+    'last-week': '1',
+    'peak-rank': '1',
+    'weeks-on-board': '15',
+    date: '2000-12-30'
   },
   {
-    Title: 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe',
-    Distributor: 'Walt Disney Studios Motion Pictures',
-    'Release Date': '2005',
-    'US Sales': '333333333',
-    'World Sales': '745013115',
-    Runtime: '2 hr 23 min',
-    Rating: 'PG'
+    rank: '2',
+    song: 'He Loves U Not',
+    artist: 'Dream',
+    'last-week': '5',
+    'peak-rank': '2',
+    'weeks-on-board': '14',
+    date: '2000-12-30'
   },
   {
-    Title: 'Man of Steel',
-    Distributor: 'DreamWorks',
-    'Release Date': '2013',
-    'US Sales': '5000',
-    'World Sales': '668045518',
-    Runtime: '2 hr 23 min',
-    Rating: 'PG-13'
+    rank: '3',
+    song: "It Wasn't Me",
+    artist: 'Shaggy Feat. Ricardo "RikRok" Ducent',
+    'last-week': '2',
+    'peak-rank': '2',
+    'weeks-on-board': '9',
+    date: '2000-12-30'
   }
 ]
 
@@ -72,6 +75,25 @@ const billboardArray = parseCSVToArray(billboardFile)
 
 const horzrule = "*".repeat(30)
 
+// Popular means rank 1 for the most weeks
+function getMostPopularSong(songs) {
+
+  const songCount = {}
+
+  for (let i=0; i < songs.length; i++) {
+
+    let song = songs[i]
+    
+    if (song.song !== undefined && song.song !== "") {
+      console.log(song.song)
+    } else {
+      console.error(song)
+    }
+
+
+  }
+
+}
 
 
 /**
@@ -81,7 +103,7 @@ function main() {
 
   console.log(`\n\n${horzrule}`)
 
-  console.log(billboardArray[0])
+  console.log(getMostPopularSong(testSongs))
 
 
 
