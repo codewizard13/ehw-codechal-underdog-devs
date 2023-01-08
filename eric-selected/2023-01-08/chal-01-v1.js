@@ -110,9 +110,12 @@ function main() {
 
   let entries = Object.entries(artistDict)
 
-  console.log(JSON.stringify(artistDict, null, 4))
+  // console.log(JSON.stringify(artistDict, null, 4))
   // console.log(`Artist Dict:`,JSON.stringify(artistDict["Destiny's Child"].songNames, null, 4))
-
+  let myset = artistDict["Destiny's Child"].songNames
+  let setOut = Array.from(myset).join(' ')
+  console.log(`Set out:`, setOut)
+  console.log(myset.size)
 }
 main()
 
@@ -141,9 +144,6 @@ function getMostPopularArtist(songs) {
       // IF ARTIST key doesn't exist yet
       artistDict[curArtist] = {count: 1, songs: [curSong], songNames: new Set(songName)}
     }
-
-    // ADD song to artist key object
-    // console.log(songName)
 
     if (i === 300) break // only do first 5 songs
 
