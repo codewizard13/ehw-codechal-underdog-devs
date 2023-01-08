@@ -108,14 +108,15 @@ function main() {
 
   const artistDict = getMostPopularArtist(songsArray)
 
-  let entries = Object.entries(artistDict)
+  // let entries = Object.entries(artistDict)
 
   // console.log(JSON.stringify(artistDict, null, 4))
   // console.log(`Artist Dict:`,JSON.stringify(artistDict["Destiny's Child"].songNames, null, 4))
-  let myset = artistDict["Destiny's Child"].songNames
-  let setOut = Array.from(myset).join(' ')
-  console.log(`Set out:`, setOut)
-  console.log(myset.size)
+  // let myset = artistDict["Destiny's Child"].songNames
+  let myset = artistDict["Creed"].songNames
+  // let setOut = Array.from(myset).join(' ')
+  // console.log(`Set out:`, myset)
+  console.log(myset)
 }
 main()
 
@@ -125,7 +126,7 @@ function getMostPopularArtist(songs) {
   const artistDict = {}
 
   // ITERATE OVER ALL SONGS
-  for (let i=0; i < songs.length; i++) {
+  for (let i = 0; i < songs.length; i++) {
 
     // console.log(`Iteration ${i}`)
 
@@ -136,16 +137,18 @@ function getMostPopularArtist(songs) {
     // console.log([curSong, curArtist])
 
     // CHECK IF ARTIST KEY EXITS
-    if (curArtist in artistDict) {
-      artistDict[curArtist].count++
-      artistDict[curArtist].songs.push(curSong)
-      artistDict[curArtist].songNames.add(songName)
-    } else {
-      // IF ARTIST key doesn't exist yet
-      artistDict[curArtist] = {count: 1, songs: [curSong], songNames: new Set(songName)}
+    if (!(curArtist in artistDict)) {
+      let set = new Set()
+
+      artistDict[curArtist] = { count: 1, songs: [curSong], songNames: set }
     }
 
-    if (i === 300) break // only do first 5 songs
+    artistDict[curArtist].count++
+    artistDict[curArtist].songs.push(curSong)
+    // console.log(songName)
+    artistDict[curArtist].songNames.add(songName)
+
+    // if (i === 10) break // only do first 5 songs
 
   }
 
