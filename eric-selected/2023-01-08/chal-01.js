@@ -116,38 +116,49 @@ function getMostPopularArtist(songs) {
 
   const artistDict = {}
 
+  let valObj = {
+    count: 0,
+    songs: []
+  }
+
   // ITERATE OVER ALL SONGS
   for (let i=0; i < songs.length; i++) {
 
+    console.log(`Iteration ${i}`)
+
     let curSong = songs[i]
     let curArtist = curSong.artist
-
-    let valObj = {
-      count: 0,
-      songs: []
-    }
 
     // console.log([curSong, curArtist])
 
     if (curArtist in artistDict) {
       artistDict[curArtist].count++
+
     } else {
-      artistDict[curArtist] = valObj
+      artistDict[curArtist] = {count: 0, songs: []}
       artistDict[curArtist].count = 1
+
     }
 
     // ADD song to artist key object
     artistDict[curArtist].songs.push(curSong)
 
-
-
-
-
-    console.log(JSON.stringify(artistDict, null, 4))
-
-
-    if (i === 4) break // only do first 5 songs
+    // if (i === 4) break // only do first 5 songs
 
   }
 
+  console.log(JSON.stringify(artistDict, null, 4))
+
 }
+
+/*
+if artist key already exists
+  increment count
+  push current song onto songs
+else
+  set artist key value as object
+  set count to 1
+  set songs as current song
+
+
+*/
