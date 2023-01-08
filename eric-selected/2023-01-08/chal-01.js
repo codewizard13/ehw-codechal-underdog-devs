@@ -1,7 +1,7 @@
 /*
-MENTOR [MENTOR_NAME]: CHALLENGE: 2023-01-05
+ERIC SELF CHALLENGE: 2023-01-08
 
-[CHALLENGE_DESCRIPTION]
+What artist had the most songs chart in 2000, and what were those songs?
 
 Programmer: Eric Hepperle
 
@@ -9,43 +9,89 @@ V1
 
 */
 
+
+/*
+
+DEFINE empty artist poplarity dict (artistPop)
+
+// BUILD ARTIST POP DICT
+LOOP over all songs in array
+
+  SET temp var curSong
+  SET temp var curArtist
+
+  VALUE is an object {
+    count:
+    songs:
+  }
+
+  IF the curSong artist is already a key in artistPop dict
+    INCREMENT count by 1
+  ELSE
+    add artist as key in dict
+    add tmpObj as value
+    SET tmpObj.artist.count to 1
+  END
+
+  ADD 
+
+  ADD curSong to artistPop.artist.songs
+
+
+END
+
+
+
+
+*/
+
+
+
 // ERIC'S JS code library
 const { filenameToLines, parseCSVToArray } = require('../../common/io')
 
-const moviesFile = `${__dirname}/../../docs/top_movies.csv`
+const moviesFile = `${__dirname}/../../docs/billboard100_2000.csv`
 
-
-const testMovies = [
+const testSongs = [
   {
-    Title: 'The Twilight Saga: Breaking Dawn - Part 2',
-    Distributor: 'Lionsgate',
-    'Release Date': '2012',
-    'US Sales': '111111',
-    'World Sales': '829747654',
-    Runtime: '1 hr 55 min',
-    Rating: 'PG-13'
+    rank: '1',
+    song: 'Independent Women Part I',
+    artist: "Destiny's Child",
+    'last-week': '1',
+    'peak-rank': '1',
+    'weeks-on-board': '15',
+    date: '2000-12-30'
   },
   {
-    Title: 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe',
-    Distributor: 'Walt Disney Studios Motion Pictures',
-    'Release Date': '2005',
-    'US Sales': '333333333',
-    'World Sales': '745013115',
-    Runtime: '2 hr 23 min',
-    Rating: 'PG'
+    rank: '2',
+    song: 'He Loves U Not',
+    artist: 'Dream',
+    'last-week': '5',
+    'peak-rank': '2',
+    'weeks-on-board': '14',
+    date: '2000-12-30'
   },
   {
-    Title: 'Man of Steel',
-    Distributor: 'DreamWorks',
-    'Release Date': '2013',
-    'US Sales': '5000',
-    'World Sales': '668045518',
-    Runtime: '2 hr 23 min',
-    Rating: 'PG-13'
+    rank: '3',
+    song: "It Wasn't Me",
+    artist: 'Shaggy Feat. Ricardo "RikRok" Ducent',
+    'last-week': '2',
+    'peak-rank': '2',
+    'weeks-on-board': '9',
+    date: '2000-12-30'
+  },
+  {
+    rank: '4',
+    song: 'Case Of The Ex (Whatcha Gonna Do)',
+    artist: 'Mya',
+    'last-week': '3',
+    'peak-rank': '2',
+    'weeks-on-board': '20',
+    date: '2000-12-30'
   }
 ]
 
-const moviesArray = parseCSVToArray(moviesFile)
+const songsArray = parseCSVToArray(moviesFile)
 
 const horzrule = "*".repeat(30)
 
@@ -56,12 +102,52 @@ const horzrule = "*".repeat(30)
  */
 function main() {
 
-  console.log(`\n\n${horzrule}`)
+  const today = new Date().toString().split("(Central")[0]
 
-  console.log(moviesArray[0])
+  console.log(`\n\n\n${horzrule} ${today}\n`)
 
+  const results = getMostPopularArtist(songsArray)
 
 }
 main()
 
 
+function getMostPopularArtist(songs) {
+
+  const artistDict = {}
+
+  // ITERATE OVER ALL SONGS
+  for (let i=0; i < songs.length; i++) {
+
+    let curSong = songs[i]
+    let curArtist = curSong.artist
+
+    let valObj = {
+      count: 0,
+      songs: []
+    }
+
+    // console.log([curSong, curArtist])
+
+    if (curArtist in artistDict) {
+      artistDict[curArtist].count++
+    } else {
+      artistDict[curArtist] = valObj
+      artistDict[curArtist].count = 1
+    }
+
+    // ADD song to artist key object
+    artistDict[curArtist].songs.push(curSong)
+
+
+
+
+
+    console.log(JSON.stringify(artistDict, null, 4))
+
+
+    if (i === 4) break // only do first 5 songs
+
+  }
+
+}
