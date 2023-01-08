@@ -106,7 +106,12 @@ function main() {
 
   console.log(`\n\n\n${horzrule} ${today}\n`)
 
-  const results = getMostPopularArtist(songsArray)
+  const artistDict = getMostPopularArtist(songsArray)
+
+  let entries = Object.entries(artistDict)
+
+  console.log(JSON.stringify(artistDict, null, 4))
+  // console.log(`Artist Dict:`,JSON.stringify(artistDict["Destiny's Child"].songNames, null, 4))
 
 }
 main()
@@ -116,49 +121,35 @@ function getMostPopularArtist(songs) {
 
   const artistDict = {}
 
-  let valObj = {
-    count: 0,
-    songs: []
-  }
-
   // ITERATE OVER ALL SONGS
   for (let i=0; i < songs.length; i++) {
 
-    console.log(`Iteration ${i}`)
+    // console.log(`Iteration ${i}`)
 
     let curSong = songs[i]
     let curArtist = curSong.artist
+    let songName = curSong.song
 
     // console.log([curSong, curArtist])
 
+    // CHECK IF ARTIST KEY EXITS
     if (curArtist in artistDict) {
       artistDict[curArtist].count++
-
+      artistDict[curArtist].songs.push(curSong)
+      artistDict[curArtist].songNames.add(songName)
     } else {
-      artistDict[curArtist] = {count: 0, songs: []}
-      artistDict[curArtist].count = 1
-
+      // IF ARTIST key doesn't exist yet
+      artistDict[curArtist] = {count: 1, songs: [curSong], songNames: new Set(songName)}
     }
 
     // ADD song to artist key object
-    artistDict[curArtist].songs.push(curSong)
+    // console.log(songName)
 
-    // if (i === 4) break // only do first 5 songs
+    if (i === 300) break // only do first 5 songs
 
   }
 
-  console.log(JSON.stringify(artistDict, null, 4))
+  // console.log(JSON.stringify(artistDict, null, 4))
+  return artistDict
 
 }
-
-/*
-if artist key already exists
-  increment count
-  push current song onto songs
-else
-  set artist key value as object
-  set count to 1
-  set songs as current song
-
-
-*/
