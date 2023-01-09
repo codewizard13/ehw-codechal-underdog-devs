@@ -12,9 +12,11 @@ to complete the following:
   - 3 times: Shaquille O'Neal, LeBron James
   - 2 times: <etc>
 
+HW: Implement bubble sort for the answer
+
 Programmer:   Eric Hepperle
 Date Created: 2022-12-26
-
+Date Finished: 2023-01-09
 V3
 */
 
@@ -40,6 +42,7 @@ function main($memStart, $cssStyles)
   $year = 1993;
   $teamName = "Los Angeles Lakers";
 
+  // NOTE: Previous 3 questions are in previous version (3).
 
   // Q: Print out a ranking of who has won the MVP more than once, by times won, e.g. this output:
   // - 6 times: Michael Jordan
@@ -47,8 +50,8 @@ function main($memStart, $cssStyles)
   // - 2 times: <etc>
   echo "<H3>Print out a ranking of who has won the MVP more than once, by times won</H3>";
   $mvpDict = getMVPWinnerCounts($nbaDict);
-  // var_dump($mvpDict);
   $sortedMvps = sortMVPsByWins($mvpDict);
+  echo $sortedMvps;
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
@@ -56,19 +59,12 @@ function main($memStart, $cssStyles)
 main($memStart, $cssStyles);
 
 
-// HW: Implement bubble sort for the answer
-
 
 
 function sortMVPsByWins($dict)
 {
 
   $rankDict = [];
-
-  // How many MVPs are in the winnersDict?
-  $totalMvps = count($dict);
-  echo "Total MVPs: $totalMvps<br>";
-
 
   // Build Rankings Dict
   foreach ($dict as $mvp => $mvpCount) {
@@ -83,147 +79,42 @@ function sortMVPsByWins($dict)
     }
   }
 
-  // var_dump($rankDict);
-  // return ehBubbleSort($rankDict);
-  // return ehBubbleSort2($rankDict);
-  return ehBubbleSort3($rankDict);
+  return ehBubbleSort($rankDict);
 }
 
-/*
-2 -> Jack
-6 -> Michael
-3 -> Sue
 
 
-*/
-
-
-/*
-ALGORITHM
-
-// FUNCTION: ehBubbleSort2($assoc)
-DEFINE empty temp var $temp
-
-LOOP over each value in $assoc array while index ($1) is less than
-
-
-
-END
-
-*/
-
-
-function ehBubbleSort3(&$assoc)
+function ehBubbleSort($arr)
 {
 
-  $style = "color: blue; background: aliceblue; padding: 5px; margin: 5px; line-height: 3; border: solid 1px blue;";
+  $out = '';
 
-  $i = 0;
+  $keys = array_keys($arr);
 
-  foreach ($assoc as $key => $value) {
-
-    echo "<span style ='$style'>\$key: $key</span><br>";
-    var_dump($value);
+  // ORDER ARRAY KEYS FIRST
+  for ($i = 0; $i < count($keys); $i++) {
 
 
-    // Only compare if this isn't the first run
-    if ($i > 0) {
+    for ($j = 0; $j < count($keys) - $i - 1; $j++) {
 
-      // BEGIN SORT
-      // If current key less than last key, then swap
-      if (isset($prevKey) && $key < $prevKey) {
+      $currentEl = $keys[$j];
+      $nextEl = $keys[$j + 1];
 
-        $curKVP = [$assoc[$key] => $assoc[$value]];
-
-        // SWAP
-        list($curKVP, $prevKVP) = array($prevKVP, $curKVP);
-
+      if ($currentEl < $nextEl) {
+        $keys[$j] = $nextEl;
+        $keys[$j + 1] = $currentEl;
       }
-
-      // DO THIS PART on every iteration
-      $prevKey = $i === 0 ? $key : NULL;
-      $prevVal = $i === 0 ? $value : NULL;
-      $prevKVP = [$assoc[$prevKey] => $assoc[$prevVal]];
-
-      $i++;
-    }
-
-  }
-  var_dump($assoc);
-  return $assoc;
-}
-
-
-/**
- * @param: array $assoc: Associative array
- * @return: array $arrCopy: sorted copy of $assoc
- */
-function ehBubbleSort2($assoc)
-{
-
-  $size = count($assoc) - 1;
-
-  for ($i = 0; $i < $size; $i++) {
-
-    for ($j = 0; $j < $size - $i; $j++) {
-
-      $k = $j + 1;
-
-      if ($assoc[$k] < $assoc[$j]) {
-        // SWAP elements at indices: $j, $k
-        list($assoc[$j], $assoc[$k]) = array($assoc[$k], $assoc[$j]);
-      }
-
     }
   }
-  return $assoc;
+
+  // PRINT RANKING BASED ON ORDERD ARRAY KEYS
+  foreach ($keys as $winCount) {
+    $winners = implode(', ', $arr[$winCount]);
+    $out .= "  - $winCount times: $winners<br>\n";
+  }
+
+  return $out;
 }
-
-
-
-// function ehBubbleSort($rankDict)
-// {
-
-//   $sortedDict = [];
-
-//   $keys = array_keys($rankDict); // 
-//   $values = array_values($rankDict);
-
-//   // Order Keys
-//   for ($i = 0; $i < count($keys); $i++) {
-
-//     for ($j = 0; $j < count($keys) - $i - 1; $j++) {
-
-//       $currentKey = $keys[$j];
-//       $nextKey = $keys[$j + 1];
-
-//       // SWAP
-//       if ($currentKey < $nextKey) {
-//         $currentKey = $nextKey;
-//         $values[$j] = $values[$j + 1];
-//         $nextKey = $currentKey;
-//         $values[$j + 1] = $values[$j];
-//       }
-//     }
-//   }
-
-//   var_dump($rankDict);
-// }
-
-
-
-
-/*
-ALGORITHM
-
-// RETURN WINNERS sorted by value, highest to lowest
-LOOP through each entry in rankDict as
-
-  IF ???
-
-END looping through rankDict
-
-*/
 
 /// FUNCTIONS
 
@@ -266,9 +157,6 @@ function getMVPWinnerCounts($nbaDict)
 
   return $winnerCounts;
 }
-
-// NOTE: Previous 3 questions are in previous version (3).
-
 
 
 function buildNBADictFromCSV($filepath)
