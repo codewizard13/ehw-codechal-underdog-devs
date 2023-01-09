@@ -28,7 +28,6 @@ require_once('functions.php');
 define('NBA_CSV', DOCS_PATH . 'nba_finals.csv');
 
 
-
 /**
  * Primary controller function.
  */
@@ -85,7 +84,9 @@ function sortMVPsByWins($dict)
   }
 
   // var_dump($rankDict);
-  return ehBubbleSort($rankDict);
+  // return ehBubbleSort($rankDict);
+  // return ehBubbleSort2($rankDict);
+  return ehBubbleSort3($rankDict);
 }
 
 /*
@@ -97,41 +98,117 @@ function sortMVPsByWins($dict)
 */
 
 
+/*
+ALGORITHM
 
-function ehBubbleSort($rankDict) {
+// FUNCTION: ehBubbleSort2($assoc)
+DEFINE empty temp var $temp
 
-  $sortedDict = [];
+LOOP over each value in $assoc array while index ($1) is less than
 
-  $keys = array_keys($rankDict); // 
-  $values = array_values($rankDict);
 
-  // Order Keys
-  for ($i = 0; $i < count($keys); $i++) {
 
-    for ($j = 0; $j < count($keys) - $i-1; $j++) {
+END
 
-      $currentKey = $keys[$j];
-      $nextKey = $keys[$j+1];
+*/
+
+
+function ehBubbleSort3(&$assoc)
+{
+
+  $style = "color: blue; background: aliceblue; padding: 5px; margin: 5px; line-height: 3; border: solid 1px blue;";
+
+  $i = 0;
+
+  foreach ($assoc as $key => $value) {
+
+    echo "<span style ='$style'>\$key: $key</span><br>";
+    var_dump($value);
+
+
+    // Only compare if this isn't the first run
+    if ($i > 0) {
+
+      // BEGIN SORT
+      // If current key less than last key, then swap
+      if (isset($prevKey) && $key < $prevKey) {
+
+        $curKVP = [$assoc[$key] => $assoc[$value]];
 
         // SWAP
-        if ($currentKey < $nextKey) {
-          $currentKey = $nextKey;
-        $values[$j] = $values[$j + 1];
-          $nextKey = $currentKey;
-        $values[$j + 1] = $values[$j];
+        list($curKVP, $prevKVP) = array($prevKVP, $curKVP);
 
-          
-        }
+      }
+
+      // DO THIS PART on every iteration
+      $prevKey = $i === 0 ? $key : NULL;
+      $prevVal = $i === 0 ? $value : NULL;
+      $prevKVP = [$assoc[$prevKey] => $assoc[$prevVal]];
+
+      $i++;
+    }
+
+  }
+  var_dump($assoc);
+  return $assoc;
+}
+
+
+/**
+ * @param: array $assoc: Associative array
+ * @return: array $arrCopy: sorted copy of $assoc
+ */
+function ehBubbleSort2($assoc)
+{
+
+  $size = count($assoc) - 1;
+
+  for ($i = 0; $i < $size; $i++) {
+
+    for ($j = 0; $j < $size - $i; $j++) {
+
+      $k = $j + 1;
+
+      if ($assoc[$k] < $assoc[$j]) {
+        // SWAP elements at indices: $j, $k
+        list($assoc[$j], $assoc[$k]) = array($assoc[$k], $assoc[$j]);
+      }
 
     }
-    
   }
-
-  var_dump($rankDict);
-
-
-  
+  return $assoc;
 }
+
+
+
+// function ehBubbleSort($rankDict)
+// {
+
+//   $sortedDict = [];
+
+//   $keys = array_keys($rankDict); // 
+//   $values = array_values($rankDict);
+
+//   // Order Keys
+//   for ($i = 0; $i < count($keys); $i++) {
+
+//     for ($j = 0; $j < count($keys) - $i - 1; $j++) {
+
+//       $currentKey = $keys[$j];
+//       $nextKey = $keys[$j + 1];
+
+//       // SWAP
+//       if ($currentKey < $nextKey) {
+//         $currentKey = $nextKey;
+//         $values[$j] = $values[$j + 1];
+//         $nextKey = $currentKey;
+//         $values[$j + 1] = $values[$j];
+//       }
+//     }
+//   }
+
+//   var_dump($rankDict);
+// }
 
 
 
