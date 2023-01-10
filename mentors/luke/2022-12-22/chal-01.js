@@ -1,12 +1,12 @@
 /* 
-MENTOR LUKE: CHAL: 2022-12-22
+MENTOR LUKE: CHAL: 2022-12-22 / 2023-01-05
 
 Write a function that takes a string prefix as an argument
 and returns an array of all of the words that start with that
 prefix (the prefix has to be at the beginning of the word).
 
 Eric Hepperle
-2022-12-22
+2023-01-05
 
 V1
 
@@ -18,8 +18,6 @@ const fs = require('fs')
 
 /*
 ALGORITHM:
-
-
 
 // FUNCTION: wordsStartWith(words, prefix)
 SLURP file into array (scrabbleWords)
@@ -36,38 +34,29 @@ END
 
 RETURN matchedWords
 
-
-// FUNCTION: startsWith(word, prefix)
-LOOP through each char in word
-
-  SET temp var wordChar = word[i]
-
-  LOOP through each prefix char
-    
-    // if word[i] !== prefix[i]
-    IF wordChar NOT SAME as prefix char
-
-      RETURN FALSE
-
-    END
- 
-  END
-
-END
-
-RETURN TRUE
-
 */
-
 
 // SLURP file into array
 let scrabblePath = '../../../docs/sowpods.txt'
-// let scrabbleWords = filenameToLines(scrabblePath)
+let scrabbleWords = filenameToLines(scrabblePath)
 
 let prefix = "CHE"
 
-let scrabbleWords = ["CHEERY", "CHERRY", "CAN"]
+// let scrabbleWords = ["CHEERY", "CHERRY", "CAN"]
 // let scrabbleWords = ["CHE"]
+
+function main() {
+
+  // console.log(startsWith("CHEERY", "CHV"))
+  // console.log(startsWith("CHEERY", "CHE"))
+  // console.log(startsWith("CHEERY", "CHBT"))
+  // console.log(startsWith("CHEERY", "B"))
+  wordsStartWith(scrabbleWords, prefix)
+
+}
+main()
+
+
 
 function wordsStartWith(words, prefix) {
 
@@ -88,25 +77,71 @@ function wordsStartWith(words, prefix) {
   console.log(`\nMATCHED WORDS\n`)
   console.table(matchedWords)
 }
-wordsStartWith(scrabbleWords, prefix)
 
 
+
+
+// function startsWith(word, prefix) {
+
+//   // let prefixFound = false
+
+//   // LOOP through each char in word
+//   for (let i = 0; i < word.length; i++) {
+
+//     let wordChar = word[i]
+
+//     // ONLY loop until no more prefix chars
+//     for (let j = 0; j < prefix.length; j++) {
+
+//       let prefixChar = prefix[j]
+
+//       if (wordChar !== prefixChar) {
+//         return false
+//       }
+
+//     }
+
+//     // prefixFound = true
+
+//   }
+
+//   return true
+
+// }
+
+
+/*
+ALGORITH for function startsWith(word, prefix)
+
+LOOP over each char in word WHILE:
+- index less than length of word in chars
+- index less than prefix length
+
+  SET temp var wordChar
+  SET temp var prefixChar
+
+  IF prefixChar NOT same as wordChar
+    RETURN false
+  END
+
+END
+
+RETURN true
+
+
+*/
 
 
 function startsWith(word, prefix) {
 
   // LOOP through each char in word
-  for (i = 0; i < word.length; i++) {
+  for (let i = 0; i < prefix.length && i < word.length; i++) {
 
     let wordChar = word[i]
+    let prefixChar = prefix[i]
 
-    // ONLY loop until no more prefix chars
-    for (j=0; j < prefix.length; j++) {
-
-    if (word[i] !== prefix[i]) {
+    if (prefixChar !== wordChar) {
       return false
-    }
-
     }
 
   }
@@ -114,7 +149,6 @@ function startsWith(word, prefix) {
   return true
 
 }
-
 
 
 /// FUNCTIONS
@@ -135,6 +169,3 @@ function filenameToLines(filename) {
   return lines
 
 }
-
-
-
