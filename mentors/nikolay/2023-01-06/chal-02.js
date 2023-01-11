@@ -113,24 +113,26 @@ const billboardArray = parseCSVToArray(billboardFile)
 
 const horzrule = "*".repeat(30)
 
-// Popular means rank 1 for the most weeks
-function getMostPopularSong(songs) {
 
-  const songCount = {}
 
-  for (let i = 0; i < songs.length; i++) {
+/**
+ * Main: The main function; controller.
+ */
+function main() {
 
-    let song = songs[i]
+  console.log(`\n\n${horzrule}`)
 
-    if (song.song !== undefined && song.song !== "") {
-      console.log(song.song)
-    } else {
-      console.error(song)
-    }
+  const numOneSongs = getSongsByRank(billboardArray, 1)
 
-  }
+  const weeksCount = buildWeeksCountDict(numOneSongs)
+  console.table(weeksCount)
+
+  reportNumOneSongMostWeeks(weeksCount)
 
 }
+main()
+
+/// FUNCTIONS
 
 function getSongsByRank(songs, targetRank) {
 
@@ -157,53 +159,19 @@ function getSongsByRank(songs, targetRank) {
 }
 
 
-/**
- * Main: The main function; controller.
- */
-function main() {
-
-  console.log(`\n\n${horzrule}`)
-
-  const numOneSongs = getSongsByRank(billboardArray, 1)
-
-  const weeksCount = buildWeeksCountDict(numOneSongs)
-  console.log({ weeksCount })
-  console.table(weeksCount)
-
-  reportNumOneSongMostWeeks(weeksCount)
-
-
-}
-main()
-
-
-
-
 function reportNumOneSongMostWeeks(weeksCount) {
 
+  // Convert object to assoc array so it can be sorted
   const entries = Object.entries(weeksCount)
 
-  entries.forEach(entry => {
-    // console.log(entry)
-
-    let checkVal = entry[0]
-    checkVal = entry[1].count
-
-    console.log(checkVal)
-  })
-
-
   const songsSortedByMostWeeks = entries.sort((a, b) => b[1].count - a[1].count)
-  console.log()
-  console.log({songsSortedByMostWeeks})
   const topSong = songsSortedByMostWeeks[0]
   const topSongName = topSong[0]
   const topSongArtist = topSong[1].songObj.artist
   const topSongWeeksCount = topSong[1].count
-  console.log()
-  console.log({topSong})
 
-  console.log(`The top song was: "${topSongName}" by ${topSongArtist}`)
+  console.log(`The #1 song for the most weeks on 2000 was:`)
+  console.log(`"${topSongName}" by ${topSongArtist}`)
   console.log(`With`, topSongWeeksCount, `weeks on the the Billboard 100 chart`)
 
 }
