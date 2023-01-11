@@ -26,40 +26,6 @@ FILTER and return movies where release date is the earliest year (array of movie
 */
 
 
-function getFilteredMovies(moviesArr) {
-
-  // SORT movies
-  
-
-  // FILTER movies
-
-  // RETURN filtered movies
-
-}
-
-function getEarliestYear(moviesArr) {}
-
-function getMoviesForYear(moviesArr, year) {
-
-  // TODO ... ensure year is INT
-  return moviesArr.filter(movie => parseInt(movie['Release Date']) === year)
-
-}
-
-module.exports = {
-  getFilteredMovies, getEarliestYear, getMoviesForYear
-}
-
-
-
-
-
-
-
-
-
-
-
 // ERIC'S JS code library
 const { filenameToLines, parseCSVToArray } = require('../../../common/io')
 
@@ -98,7 +64,7 @@ const testMovies = [
 
 const moviesArray = parseCSVToArray(moviesFile)
 
-const horzrule = "*".repeat(30)
+const horzrule = `\n\n` + "*".repeat(30) + `\n`
 
 
 
@@ -107,12 +73,101 @@ const horzrule = "*".repeat(30)
  */
 function main() {
 
-  // console.log(`\n\n${horzrule}`)
+  console.log(horzrule)
 
-  // console.log(moviesArray[0])
+  const matchedMovies = getFilteredMovies(moviesArray)
+  const earliestYear = matchedMovies[0]['Release Date']
 
+  // console.log(getMoviesForYear(moviesArray, 2005))
+
+  console.log(`The earliest year for top grossing movies was ${earliestYear}`)
+  console.log('The movies for that year were:')
+  console.log(matchedMovies)
+
+  printTitleAndYearFancy(matchedMovies)
+
+  printTitleAndYearFancy(getMoviesForYear(moviesArray, 2005))
 
 }
 main()
 
+function printTitleAndYearFancy(moviesArr) {
+  // Print Headers
+  console.log('\nFormatted Nicely:\n')
+  console.log(("Movie Title").padEnd(60, ' '), '| Release Year')
+  console.log(('-'.repeat(61)) + '+' + '-'.repeat(14))
 
+
+  moviesArr.forEach((movie, i) => {
+
+    const displayTitle = trunc(movie.Title, 50)
+    const releaseDate = movie['Release Date']
+
+    console.log(displayTitle.padEnd(60, ' '), `| ${releaseDate}`)
+
+  })
+}
+
+function moviesSortedByLongestTitle(moviesArr) {
+  return moviesArr.sort((a, b) => b.Title.length - a.Title.length)
+}
+const longTitleMovies = moviesSortedByLongestTitle(moviesArray)[0]
+console.log(`\nThe longest movie title is`, longTitleMovies.Title, `at`, longTitleMovies.Title.length, 'chars.')
+
+
+
+function printLongestMovieLengths(moviesArr, maxMovies = 10) {
+  const matchedMovies = moviesSortedByLongestTitle(moviesArr)
+
+  console.log(`\n****** TOP ${maxMovies} MOVIES with Longest Title ******\n`)
+
+  for (let i = 0; i <= maxMovies && i < moviesArr.length; i++) {
+    let movie = moviesArr[i]
+    let movieTitle = movie.Title
+    let titleLength = movie.Title.length
+    console.log(`${trunc(movieTitle, 50)} has length of`, titleLength)
+  }
+}
+printLongestMovieLengths(moviesArray)
+
+
+
+function trunc(string, limit) {
+
+  // Don't truncate if string within limit
+  if (string.length <= limit) {
+    return string
+  } else {
+    const shortened = string.slice(0, limit)
+    return shortened + '...'
+  }
+}
+
+/// FUNCTIONS
+
+function getFilteredMovies(moviesArr) {
+
+  const earliestYear = parseInt(getEarliestYear(moviesArr)['Release Date'])
+
+  const matchedMovies = getMoviesForYear(moviesArr, earliestYear)
+
+  return matchedMovies
+
+}
+
+function getEarliestYear(moviesArr) {
+
+  return moviesArr.sort((a, b) => a['Release Date'] - b['Release Date'])[0]
+
+}
+
+function getMoviesForYear(moviesArr, year) {
+
+  // TODO ... ensure year is INT
+  return moviesArr.filter(movie => parseInt(movie['Release Date']) === year)
+
+}
+
+module.exports = {
+  getFilteredMovies, getEarliestYear, getMoviesForYear
+}
