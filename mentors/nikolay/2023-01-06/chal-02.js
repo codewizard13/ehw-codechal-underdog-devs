@@ -164,7 +164,7 @@ function main() {
 
   console.log(`\n\n${horzrule}`)
 
-  const numOneSongs = getSongsByRank(testSongs, 1)
+  const numOneSongs = getSongsByRank(billboardArray, 1)
 
   const weeksCount = buildWeeksCountDict(numOneSongs)
   console.log({ weeksCount })
