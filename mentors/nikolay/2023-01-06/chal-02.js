@@ -12,6 +12,8 @@ V1
 
 
 /*
+ALGORITHM:
+
 FIND the song with rank of 1 that appears the most weeks
 
 RETURN artist and how many weeks this song had rank 1
@@ -68,7 +70,43 @@ const testSongs = [
     'peak-rank': '2',
     'weeks-on-board': '9',
     date: '2000-12-30'
-  }
+  },
+  {
+    rank: '1',
+    song: "Enter Sandman",
+    artist: 'Metallica',
+    'last-week': '2',
+    'peak-rank': '2',
+    'weeks-on-board': '9',
+    date: '1991-10-31'
+  },
+  {
+    rank: '1',
+    song: 'Independent Women Part I',
+    artist: "Destiny's Child",
+    'last-week': '1',
+    'peak-rank': '1',
+    'weeks-on-board': '15',
+    date: '2000-11-30'
+  },
+  {
+    rank: '1',
+    song: "Enter Sandman",
+    artist: 'Metallica',
+    'last-week': '2',
+    'peak-rank': '2',
+    'weeks-on-board': '9',
+    date: '1991-10-11'
+  },
+  {
+    rank: '1',
+    song: "Enter Sandman",
+    artist: 'Metallica',
+    'last-week': '2',
+    'peak-rank': '2',
+    'weeks-on-board': '9',
+    date: '1991-10-31'
+  },
 ]
 
 const billboardArray = parseCSVToArray(billboardFile)
@@ -80,18 +118,41 @@ function getMostPopularSong(songs) {
 
   const songCount = {}
 
-  for (let i=0; i < songs.length; i++) {
+  for (let i = 0; i < songs.length; i++) {
 
     let song = songs[i]
-    
+
     if (song.song !== undefined && song.song !== "") {
       console.log(song.song)
     } else {
       console.error(song)
     }
 
+  }
+
+}
+
+function getSongsByRank(songs, targetRank) {
+
+  const matchedSongs = []
+
+  for (let i = 0; i < songs.length; i++) {
+
+    let song = songs[i]
+    let title = song.song
+    let rank = parseInt(song.rank)
+
+    if (rank === targetRank) {
+      matchedSongs.push(song)
+    }
 
   }
+
+  console.log("\nSongs By Rank for rank", targetRank, ":")
+
+  return matchedSongs
+  // Concise way:
+  // return songs.filter(song => parseInt(song.rank) === 1)
 
 }
 
@@ -103,12 +164,70 @@ function main() {
 
   console.log(`\n\n${horzrule}`)
 
-  console.log(getMostPopularSong(testSongs))
+  const numOneSongs = getSongsByRank(testSongs, 1)
 
+  const weeksCount = buildWeeksCountDict(numOneSongs)
+  console.log({ weeksCount })
+  console.table(weeksCount)
+
+  reportNumOneSongMostWeeks(weeksCount)
 
 
 }
 main()
 
+
+
+
+function reportNumOneSongMostWeeks(weeksCount) {
+
+  const entries = Object.entries(weeksCount)
+
+  entries.forEach(entry => {
+    // console.log(entry)
+
+    let checkVal = entry[0]
+    checkVal = entry[1].count
+
+    console.log(checkVal)
+  })
+
+
+  const songsSortedByMostWeeks = entries.sort((a, b) => b[1].count - a[1].count)
+  console.log()
+  console.log({songsSortedByMostWeeks})
+  const topSong = songsSortedByMostWeeks[0]
+  const topSongName = topSong[0]
+  const topSongArtist = topSong[1].songObj.artist
+  const topSongWeeksCount = topSong[1].count
+  console.log()
+  console.log({topSong})
+
+  console.log(`The top song was: "${topSongName}" by ${topSongArtist}`)
+  console.log(`With`, topSongWeeksCount, `weeks on the the Billboard 100 chart`)
+
+}
+
+function buildWeeksCountDict(songs) {
+
+  weeksCount = {}
+
+  for (let i = 0; i < songs.length; i++) {
+
+    let song = songs[i]
+    let title = song.song
+
+    if (!(title in weeksCount)) {
+      let valObj = { count: 1, songObj: song }
+      weeksCount[title] = valObj
+    } else {
+      weeksCount[title].count++
+    }
+
+  }
+
+  return weeksCount
+
+}
 
 
