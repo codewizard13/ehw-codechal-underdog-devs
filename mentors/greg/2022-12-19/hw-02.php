@@ -15,11 +15,10 @@ V2
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once('functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 
 // FILE PATHS
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
-
 
 
 /**
@@ -30,11 +29,8 @@ function main($memStart, $cssStyles)
   sayFilename($cssStyles);
 
   // SLURP file into array
-  // $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
   $scrabbleWords = fileToArray(SCRABBLE_FILE);
-  // $scrabbleWords = ["ADVERT", "AD", "ADULTERY", "JOHN"];
 
-  // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   tellLabelAndValue("Scrabble Words Count", $scrabbleWordsCount);
 
@@ -47,11 +43,11 @@ function main($memStart, $cssStyles)
 
   // PRINT MEMORY USAGE
   reportMemUsage($memStart);
-} // END main
-
-// RUN program
+}
 main($memStart, $cssStyles);
 
+
+/// FUNCTIONS ///
 
 
 /**
@@ -135,9 +131,6 @@ function substringOf($word, $needle)
 }
 
 
-
-
-
 /**
  * Sanitize word and return true if validates. 
  */
@@ -156,9 +149,6 @@ function wordIsValid($word, $needle)
   return true;
 }
 
-
-
-/// FUNCTIONS ///
 
 /** 
  * Ouptut a styled message.
@@ -190,7 +180,6 @@ function tellLabelAndValue($label, $value)
   echo "<span style ='$labelStyle'>$label:</span>";
   echo "<span style='$textStyleMain'>$value</span></div>";
 }
-
 
 
 // Given a set of needle values

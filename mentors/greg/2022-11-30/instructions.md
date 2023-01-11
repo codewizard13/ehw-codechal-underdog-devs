@@ -3,6 +3,8 @@ Mentor 1:1 - Greg
 Eric Hepperle
 2022-11-30
 
+**UPDATE:** 2022-12-28 -- We switched gears and did some earlier problems rather than working on the monster maker. I did my own "pre-work" over in **/eric-selected/2022-11-30**
+
 - Greg said next session we'd start with Monster Maker
 
 ---
