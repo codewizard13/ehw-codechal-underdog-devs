@@ -1,4 +1,4 @@
-const { getMoviesForYear, getEarliestYear, getFilteredMovies } = require('./chal-01')
+const { getMoviesForYear, getEarliestYear, getFilteredMovies, getLatestYear } = require('./chal-01-v2')
 
 // DEFINE testMovies globally to be used in multiple tests
 const testMovies = [
@@ -99,6 +99,40 @@ const testMovies2 = [
 
 const testYear1 = 2005
 const testYear2 = 2013
+
+test('getLatestYear(moviesArr)', () => {
+  const expectedReturn5 = 2013
+
+  expect(getLatestYear(testMovies2)).toEqual(expectedReturn5)
+
+})
+
+test('getFilteredMovies(moviesArr, getLatestYear)', () => {
+
+  const expectedReturn4 = [
+    {
+      Title: 'Man of Rubber',
+      Distributor: 'DreamWorks',
+      'Release Date': '2013',
+      'US Sales': '5002',
+      'World Sales': '668045518',
+      Runtime: '2 hr 23 min',
+      Rating: 'PG-13'
+    },
+    {
+      Title: 'Man of Steel',
+      Distributor: 'DreamWorks',
+      'Release Date': '2013',
+      'US Sales': '5000',
+      'World Sales': '668045518',
+      Runtime: '2 hr 23 min',
+      Rating: 'PG-13'
+    }
+  ]
+
+  expect(getFilteredMovies(testMovies2, getLatestYear)).toEqual(expectedReturn4)
+
+})
 
 test('getFilteredMovies(moviesArr)', () => {
 

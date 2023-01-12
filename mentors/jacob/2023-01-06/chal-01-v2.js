@@ -153,21 +153,36 @@ function trunc(string, limit) {
 
 /// FUNCTIONS
 
-function getFilteredMovies(moviesArr) {
+function getFilteredMovies(moviesArr, yearSelectionFunction=getEarliestYear) {
 
-  const earliestYear = getEarliestYear(moviesArr)
+  const year = yearSelectionFunction(moviesArr)
 
-  const matchedMovies = getMoviesForYear(moviesArr, earliestYear)
+  const matchedMovies = getMoviesForYear(moviesArr, year)
 
   return matchedMovies
 
 }
 
+function getLatestYear(moviesArr) {
 
+  const sorted =  moviesArr.sort((a, b) => b['Release Date'] - a['Release Date'])
+  const latest = sorted[0]
+  const latestYear = parseInt(latest['Release Date'])
+
+  return latestYear
+
+}
+
+function earliestMovieComparator(a, b) {
+  return parseInt(a['Release Date']) - parseInt(b['Release Date'])
+}
+
+// const earliestMovieComparator2 = (a, b) => parseInt(a['Release Date']) - parseInt(b['Release Date']
 
 function getEarliestYear(moviesArr) {
 
-  const sorted =  moviesArr.sort((a, b) => a['Release Date'] - b['Release Date'])
+  // const sorted =  moviesArr.sort((a, b) => a['Release Date'] - b['Release Date'])
+  const sorted = moviesArr.sort(earliestMovieComparator)
   const earliest = sorted[0]
   const earliestYear = parseInt(earliest['Release Date'])
 
@@ -187,5 +202,5 @@ function getMoviesForYear(moviesArr, year) {
 
 
 module.exports = {
-  getFilteredMovies, getEarliestYear, getMoviesForYear
+  getFilteredMovies, getEarliestYear, getMoviesForYear, getLatestYear
 }
