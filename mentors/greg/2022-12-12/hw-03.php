@@ -16,39 +16,36 @@ V2
 $memStart = memory_get_usage();
 
 // INCLUDE FUNCTIONS LIBRARY
-require_once(__DIR__ . '/../inc/functions.php');
+require_once(__DIR__ . '/../../../inc/functions.php');
 
 // FILE PATHS
-define('DOCS_PATH', __DIR__ . '/../../../docs/');
 define('SCRABBLE_FILE', DOCS_PATH . 'sowpods.txt');
+
 
 /* ALGORITHM in SEPARATE FILE */
 
 /**
  * Primary controller function.
  */
-function main($memStart)
+function main($memStart, $cssStyles)
 {
 
-  sayFilename();
+  sayFilename($cssStyles);
 
   // CREATE ARRAYS FROM FILES
   $scrabbleWords = fileToHashmap(SCRABBLE_FILE);
-  // $scrabbleWords = fileToArray(SCRABBLE_FILE);
+
+  echo "<h2 style='color: cadetblue; background: aliceblue; padding: 1rem;'>USES: hashmap</h2>";
 
   // testHarness($scrabbleWords);
   $scrabbleWordsCount = count($scrabbleWords);
   echo "SCRABBLE Words count: $scrabbleWordsCount<br>";
-  // var_dump($scrabbleWords);
 
   $smallWordsArr = [
     'AA', 'THAATH', 'THIRTEENTH', 'JOHN'
   ];
 
   // FIND AND RETURN MATCHES
-  // testHarness($smallWordsArr, ["TH", "ED"]);
-  // testHarness($smallWordsArr, ["TH"]);
-  // testHarness($scrabbleWords, ["TH"]);
   testHarness($scrabbleWords, ["TH", "ED"]);
 
   // PRINT MEMORY USAGE
@@ -56,7 +53,7 @@ function main($memStart)
 } // END main
 
 // RUN program
-main($memStart);
+main($memStart, $cssStyles);
 
 
 
@@ -65,18 +62,18 @@ main($memStart);
 /**
  * Print styled filename so you know what file you are seeing.
  */
-function sayFilename()
+function sayFilename($cssStyles)
 {
   // IDENTIFY file name
   $thisFilename = basename(__FILE__);
-  echo "<br><h3>Current File: <span style='" . $_SESSION['styleInfo'] . "'>$thisFilename</span></h3>";
+  echo "<br><h3>Current File: <span style='" . $cssStyles['msgInfo'] . "'>$thisFilename</span></h3>";
 }
 
 /**
  * Given a set of needle values, loop through each value
  * and report any matches in haystack.
  * 
- * @arg: $testValues array
+ * @arg: array $testValues
  * @return: void
  */
 function testHarness($wordsArr, $needleSet = [])
@@ -93,33 +90,28 @@ function testHarness($wordsArr, $needleSet = [])
 
       // IF we find any matches add them to results array
       $results = findMatches($wordsArr, $currentNeedle);
-      
+
       // OUPUT RESULTS
       echo "<H2>RESULTS:</H2>";
       echo count($results) . " words begin and end with $currentNeedle<br>";
       var_dump($results);
     }
   }
-
 }
 
 
 // Given a set of needle values
 function findMatches($wordsHash, $needle)
 {
-
-  $style = 'background: antiquewhite; font-weight: bold;';
   $matches = [];
 
   // LOOP through each word in array
   foreach ($wordsHash as $currentWord => $value)
 
     if ($currentWord !== '' && startsWith($currentWord, $needle) && endsWith($currentWord, $needle)) {
-
-      // echo "<p>Word <span style='$style'>$currentWord</span> @ index [$i] starts and ends with $needle</p>";
-
       array_push($matches, $currentWord);
-  }
+    }
+    
   return $matches;
 }
 
